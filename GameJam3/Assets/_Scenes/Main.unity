@@ -156,18 +156,6 @@ Prefab:
       propertyPath: m_Name
       value: Store/Build
       objectReference: {fileID: 0}
-    - target: {fileID: 4304239179350812, guid: eab47b77e28fde44db20eb657cfcec8a, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1.0221326
-      objectReference: {fileID: 0}
-    - target: {fileID: 4304239179350812, guid: eab47b77e28fde44db20eb657cfcec8a, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 0.9688567
-      objectReference: {fileID: 0}
-    - target: {fileID: 4304239179350812, guid: eab47b77e28fde44db20eb657cfcec8a, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 1.0220591
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eab47b77e28fde44db20eb657cfcec8a, type: 2}
   m_IsPrefabParent: 0
@@ -355,6 +343,10 @@ Prefab:
     - target: {fileID: 4898072557900380, guid: fa6011c292596494eaf0b74d6a82208f, type: 2}
       propertyPath: m_RootOrder
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1720999338945686, guid: fa6011c292596494eaf0b74d6a82208f, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fa6011c292596494eaf0b74d6a82208f, type: 2}
