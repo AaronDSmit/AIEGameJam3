@@ -17,6 +17,12 @@ public class Shop : MonoBehaviour
     [SerializeField]
     private Part[] body;
 
+    private int currentThruster;
+    private int currentFuel;
+    private int currentBody;
+
+
+
     private void Awake()
     {
         jetPack = FindObjectOfType<JetPack>();
