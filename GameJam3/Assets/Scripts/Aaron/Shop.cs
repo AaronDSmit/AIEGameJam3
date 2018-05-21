@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class Shop : MonoBehaviour
 {
-    private CustomerGenerator cusomter;
+    private CustomerGenerator customerGen;
 
     private JetPack jetPack;
 
@@ -21,13 +20,14 @@ public class Shop : MonoBehaviour
     private void Awake()
     {
         jetPack = FindObjectOfType<JetPack>();
+        customerGen = GetComponent<CustomerGenerator>();
     }
-
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            customerGen.GenerateOrder();
             Launch();
         }
     }
