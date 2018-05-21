@@ -39,8 +39,6 @@ public class OnClickSquashAndStretch : MonoBehaviour
 
     public void Click()
     {
-        Debug.Log("on Click");
-
         StartCoroutine(SquashAndStretch());
     }
 
