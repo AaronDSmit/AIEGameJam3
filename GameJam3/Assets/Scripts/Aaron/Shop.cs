@@ -5,8 +5,12 @@ using UnityEngine;
 public class Shop : MonoBehaviour
 {
     private CustomerGenerator customerGen;
+    private UIManager UI;
 
     private JetPack jetPack;
+
+    [SerializeField]
+    private float launchDelay;
 
     [SerializeField]
     private Part[] fuelTanks;
@@ -25,6 +29,8 @@ public class Shop : MonoBehaviour
         jetPack = FindObjectOfType<JetPack>();
         customerGen = GetComponent<CustomerGenerator>();
 
+        UI = GetComponent<UIManager>();
+
         selectedComponent = -1;
 
         currentComponent = new int[3];
@@ -32,12 +38,6 @@ public class Shop : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            customerGen.GenerateOrder();
-            Launch();
-        }
-
         if (MobileInput.SwipedRight)
         {
             Debug.Log("Swiped Right");
@@ -67,7 +67,13 @@ public class Shop : MonoBehaviour
         jetPack.VSpeed = 20.0f;
         jetPack.BurnTime = 1.0f;
 
+        UI.ToggleUI();
 
+        Invoke("FireJetpack", launchDelay);
+    }
+
+    private void FireJetpack()
+    {
         jetPack.TakeOff();
     }
 

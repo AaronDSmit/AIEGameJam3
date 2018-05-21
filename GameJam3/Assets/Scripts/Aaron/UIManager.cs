@@ -54,6 +54,13 @@ public class UIManager : MonoBehaviour
         componentsSelection.TogglePullDown();
     }
 
+    public void ToggleUI()
+    {
+        currentStats.TogglePullDown();
+        componentsSelection.TogglePullDown();
+        fireButton.TogglePullDown();
+    }
+
     public void SelectCatagory(int index)
     {
         shop.SelectCatagory(index);
@@ -74,7 +81,7 @@ public class UIManager : MonoBehaviour
 
         if (selectedCatagories[0] && selectedCatagories[1] && selectedCatagories[2])
         {
-            if(!fireButton.PulledDown)
+            if (!fireButton.PulledDown)
             {
                 fireButton.TogglePullDown();
             }
