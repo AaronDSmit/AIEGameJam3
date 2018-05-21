@@ -17,16 +17,17 @@ public class Shop : MonoBehaviour
     [SerializeField]
     private Part[] body;
 
-    private int currentThruster;
-    private int currentFuel;
-    private int currentBody;
-
-
+    private int[] currentComponent;
+    private int selectedComponent;
 
     private void Awake()
     {
         jetPack = FindObjectOfType<JetPack>();
         customerGen = GetComponent<CustomerGenerator>();
+
+        selectedComponent = -1;
+
+        currentComponent = new int[3];
     }
 
     private void Update()
@@ -35,6 +36,28 @@ public class Shop : MonoBehaviour
         {
             customerGen.GenerateOrder();
             Launch();
+        }
+
+        if (MobileInput.SwipedRight)
+        {
+            Debug.Log("Swiped Right");
+
+            ChangeSelectedComponent(+1);
+        }
+
+        if (MobileInput.SwipedLeft)
+        {
+            Debug.Log("Swiped Left");
+
+            ChangeSelectedComponent(-1);
+        }
+    }
+
+    private void ChangeSelectedComponent(int change)
+    {
+        if (selectedComponent > 0 && selectedComponent < 3)
+        {
+            currentComponent[selectedComponent] += change;
         }
     }
 
@@ -46,6 +69,11 @@ public class Shop : MonoBehaviour
 
 
         jetPack.TakeOff();
+    }
+
+    public void SelectCatagory(int index)
+    {
+        selectedComponent = index;
     }
 
     public void ArrivedSafely()

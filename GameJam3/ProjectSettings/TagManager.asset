@@ -6,6 +6,7 @@ TagManager:
   tags:
   - FireButton
   - ComponentSelection
+  - CurrentStats
   layers:
   - Default
   - TransparentFX

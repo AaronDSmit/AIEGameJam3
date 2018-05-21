@@ -28,11 +28,6 @@ public class DropDownMenu : MonoBehaviour
         RectTransform[] rects = GetComponentsInChildren<RectTransform>();
     }
 
-    private void Start()
-    {
-        TogglePullDown();
-    }
-
     public void TogglePullDown()
     {
         if (!pulledDown)

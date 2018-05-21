@@ -19,6 +19,11 @@ public class SlideInUI : MonoBehaviour
 
     private bool pulledDown = false;
 
+    public bool PulledDown
+    {
+        get { return pulledDown; }
+    }
+
     private void Awake()
     {
         rect = GetComponent<RectTransform>();
@@ -28,14 +33,9 @@ public class SlideInUI : MonoBehaviour
         RectTransform[] rects = GetComponentsInChildren<RectTransform>();
     }
 
-    public void Start()
-    {
-        TogglePullDown();
-    }
-
     public void TogglePullDown()
     {
-        if (!pulledDown)
+        if (!PulledDown)
         {
             StartCoroutine(AnimatePullDown(startX, overshootTargetX, targetX));
         }
