@@ -12,6 +12,8 @@ public class JetPack : MonoBehaviour
     private ParticleSystem packParticle;
     [SerializeField]
     private ParticleSystem launchParticle;
+    [SerializeField]
+    private ParticleSystem explosionParticle;
     [Tooltip("The vitcory range.")]
     [SerializeField]
     private float range;
@@ -24,6 +26,9 @@ public class JetPack : MonoBehaviour
     private float currentLerpTime = 0.0f;
     private float targetHeight;
     private float destination;
+    private Shop shop;
+    private bool belowTarget;
+    private bool aboveTarget;
     #endregion
 
     #region Getters and Setters
@@ -53,6 +58,11 @@ public class JetPack : MonoBehaviour
     #endregion
 
 
+    private void Awake()
+    {
+        shop = FindObjectOfType<Shop>();
+    }
+
     IEnumerator Move()
     {
         float t = 0;
@@ -75,40 +85,83 @@ public class JetPack : MonoBehaviour
 
         float totalRange = range + destination;
 
-        //If we haven't reached our destination
-        if(targetHeight < destination || targetHeight > totalRange)
+        if(targetHeight > destination && targetHeight < totalRange)
         {
-            //Play the particle effect
+            //Arrived safely
+            shop.ArrivedSafely();
+        }
+        
+
+        //If we haven't reached our destination
+        if (targetHeight < destination)
+        {
+            belowTarget = true;
+        }
+
+        if(targetHeight > totalRange)
+        {
+            aboveTarget = true;
+        }
+
+
+        if(belowTarget)
+        {
+            //Explosion particle
             if (packParticle != null)
             {
+                //Play particle
                 packParticle.Play();
 
                 //Wait
                 yield return new WaitForSeconds(packParticle.main.duration);
 
-                //Stop the particle effect
+                //Stop particle
                 packParticle.Stop();
-
             }
 
-            //Fall
-            float c = 0;
-            currentLerpTime = 0.0f;
+            Fall();
+        }
 
-            while (c < 1.0f)
+        if(aboveTarget)
+        {
+            //Explosion particle
+            if(explosionParticle != null)
             {
-                //Increment timer once per frame
-                currentLerpTime += Time.deltaTime;
+                //Play particle
+                explosionParticle.Play();
 
-                //Begin to lerp
-                c = currentLerpTime / lerpTime;
-                c = 1.0f - Mathf.Cos(c * Mathf.PI * 0.5f);
+                //Wait
+                yield return new WaitForSeconds(explosionParticle.main.duration);
 
-                //Move up
-                transform.position = new Vector3(transform.position.x, Mathf.Lerp(targetHeight, 0, c), transform.position.z);
-
-                yield return null;
+                //Stop particle
+                explosionParticle.Stop();
             }
+
+            Fall();
+        }
+
+
+    }
+
+    IEnumerator Fall()
+    {
+        //Fall
+        float c = 0;
+        currentLerpTime = 0.0f;
+
+        while (c < 1.0f)
+        {
+            //Increment timer once per frame
+            currentLerpTime += Time.deltaTime;
+
+            //Begin to lerp
+            c = currentLerpTime / lerpTime;
+            c = 1.0f - Mathf.Cos(c * Mathf.PI * 0.5f);
+
+            //Move up
+            transform.position = new Vector3(transform.position.x, Mathf.Lerp(targetHeight, 0, c), transform.position.z);
+
+            yield return null;
         }
     }
 
@@ -117,12 +170,12 @@ public class JetPack : MonoBehaviour
         //Calculate target height
         targetHeight = (vSpeed - weight) * burnTime;
 
-        if(launchParticle != null)
+        if (launchParticle != null)
         {
             launchParticle.Play();
         }
 
         //Launch
-        StartCoroutine("Move");
+        StartCoroutine(Move());
     }
 }
