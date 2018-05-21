@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
     private DropDownMenu currentStats;
     private DropDownMenu componentsSelection;
     private SlideInUI fireButton;
+    private SlideInUI flyHUD;
 
     private RectTransform[] componentButtons;
 
@@ -28,6 +29,8 @@ public class UIManager : MonoBehaviour
         shop = GetComponent<Shop>();
 
         fireButton = GameObject.FindGameObjectWithTag("FireButton").GetComponent<SlideInUI>();
+
+        flyHUD = GameObject.FindGameObjectWithTag("FlyHUD").GetComponent<SlideInUI>();
 
         Transform ComponentSelection = GameObject.FindGameObjectWithTag("ComponentSelection").transform;
 
@@ -52,6 +55,11 @@ public class UIManager : MonoBehaviour
     private void ShowComponentsSelection()
     {
         componentsSelection.TogglePullDown();
+    }
+
+    public void ToggleFlyHUD()
+    {
+        flyHUD.TogglePullDown();
     }
 
     public void ToggleUI()

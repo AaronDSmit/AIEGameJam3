@@ -75,6 +75,7 @@ public class Shop : MonoBehaviour
     private void FireJetpack()
     {
         jetPack.TakeOff();
+        UI.ToggleFlyHUD();
     }
 
     public void SelectCatagory(int index)
