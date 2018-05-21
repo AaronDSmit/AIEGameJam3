@@ -18,6 +18,20 @@ public class Shop : MonoBehaviour
     [SerializeField]
     private Part[] body;
 
+    private void Awake()
+    {
+        jetPack = FindObjectOfType<JetPack>();
+    }
+
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Launch();
+        }
+    }
+
     public void Launch()
     {
         jetPack.Weight = 10.0f;
