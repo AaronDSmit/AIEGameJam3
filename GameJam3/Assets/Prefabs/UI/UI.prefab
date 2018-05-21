@@ -184,9 +184,10 @@ GameObject:
   m_Component:
   - component: {fileID: 224432769056678834}
   - component: {fileID: 222375618065367806}
+  - component: {fileID: 114434334666007170}
   m_Layer: 5
   m_Name: _04 Fly HUD
-  m_TagString: Untagged
+  m_TagString: FlyHUD
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1933,6 +1934,20 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114434334666007170
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1217617875460510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5150987efaecad45b22425dfe396fab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetX: 30
+  overshootTargetX: 5
+  animationTime: 0.25
 --- !u!114 &114442745644465172
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2358,6 +2373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e821b79bcd19b5f4d97d679b7c4d9be7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  launchDelay: 1.5
   fuelTanks: []
   thruster: []
   body: []
@@ -4319,10 +4335,10 @@ RectTransform:
   m_Father: {fileID: 224169388218145966}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -187}
-  m_SizeDelta: {x: 0, y: 40}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: -25, y: -187}
+  m_SizeDelta: {x: 530, y: 40}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &224480824846114332
 RectTransform:
