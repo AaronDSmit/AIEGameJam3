@@ -10,15 +10,17 @@ public class JetPack : MonoBehaviour
     private float lerpTime = 1.0f;
     [SerializeField]
     private ParticleSystem packParticle;
+    [SerializeField]
+    private ParticleSystem launchParticle;
     #endregion
 
     #region Variables
-    public float vSpeed = 0.0f;
-    public float burnTime = 0.0f;
-    public float weight = 0.0f;
-    private bool launch = false;
+    private float vSpeed = 0.0f;
+    private float burnTime = 0.0f;
+    private float weight = 0.0f;
     private float currentLerpTime = 0.0f;
     private float targetHeight;
+    private float destination;
     #endregion
 
     #region Getters and Setters
@@ -38,6 +40,12 @@ public class JetPack : MonoBehaviour
     {
         get { return burnTime; }
         set { burnTime = value; }
+    }
+
+    public float Destination
+    {
+        get { return destination; }
+        set { destination = value; }
     }
     #endregion
 
@@ -62,36 +70,40 @@ public class JetPack : MonoBehaviour
             yield return null;
         }
 
-        //Play the particle effect
-        if(packParticle != null)
+        //If we haven't reached our destination
+        if(targetHeight < destination)
         {
-            packParticle.Play();
+            //Play the particle effect
+            if (packParticle != null)
+            {
+                packParticle.Play();
 
-            //Wait
-            yield return new WaitForSeconds(packParticle.main.duration);
+                //Wait
+                yield return new WaitForSeconds(packParticle.main.duration);
 
-            //Stop the particle effect
-            packParticle.Stop();
+                //Stop the particle effect
+                packParticle.Stop();
 
-        }
+            }
 
-        //Fall
-        float c = 0;
-        currentLerpTime = 0.0f;
+            //Fall
+            float c = 0;
+            currentLerpTime = 0.0f;
 
-        while (c < 1.0f)
-        {
-            //Increment timer once per frame
-            currentLerpTime += Time.deltaTime;
+            while (c < 1.0f)
+            {
+                //Increment timer once per frame
+                currentLerpTime += Time.deltaTime;
 
-            //Begin to lerp
-            c = currentLerpTime / lerpTime;
-            c = 1.0f - Mathf.Cos(c * Mathf.PI * 0.5f);
+                //Begin to lerp
+                c = currentLerpTime / lerpTime;
+                c = 1.0f - Mathf.Cos(c * Mathf.PI * 0.5f);
 
-            //Move up
-            transform.position = new Vector3(transform.position.x, Mathf.Lerp(targetHeight, 0, c), transform.position.z);
+                //Move up
+                transform.position = new Vector3(transform.position.x, Mathf.Lerp(targetHeight, 0, c), transform.position.z);
 
-            yield return null;
+                yield return null;
+            }
         }
     }
 
@@ -99,6 +111,11 @@ public class JetPack : MonoBehaviour
     {
         //Calculate target height
         targetHeight = (vSpeed - weight) * burnTime;
+
+        if(launchParticle != null)
+        {
+            launchParticle.Play();
+        }
 
         //Launch
         StartCoroutine("Move");
