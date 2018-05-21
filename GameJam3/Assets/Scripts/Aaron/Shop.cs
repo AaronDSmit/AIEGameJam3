@@ -41,6 +41,11 @@ public class Shop : MonoBehaviour
 
         jetPack.TakeOff();
     }
+
+    public void ArrivedSafely()
+    {
+
+    }
 }
 
 [System.Serializable]
