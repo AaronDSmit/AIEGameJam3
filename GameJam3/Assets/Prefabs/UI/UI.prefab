@@ -185,12 +185,12 @@ GameObject:
   - component: {fileID: 222918233718447784}
   - component: {fileID: 114868500140430394}
   m_Layer: 5
-  m_Name: _01 Fade
+  m_Name: _02 Fade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1362201506113438
 GameObject:
   m_ObjectHideFlags: 1
@@ -461,7 +461,7 @@ GameObject:
   - component: {fileID: 222570216260461804}
   - component: {fileID: 114228937442027976}
   m_Layer: 5
-  m_Name: _02 HUD
+  m_Name: _01 HUD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -976,7 +976,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1653816134215514}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -2741,8 +2741,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 224893923282692396}
   - {fileID: 224563077281873110}
+  - {fileID: 224893923282692396}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3050,7 +3050,7 @@ RectTransform:
   - {fileID: 224053165291141998}
   - {fileID: 224677571109408248}
   m_Father: {fileID: 224169388218145966}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -3180,7 +3180,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224169388218145966}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
