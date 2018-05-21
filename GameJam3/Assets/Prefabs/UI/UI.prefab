@@ -787,6 +787,7 @@ GameObject:
   - component: {fileID: 224610732075141914}
   - component: {fileID: 222186532895171128}
   - component: {fileID: 114173108471530476}
+  - component: {fileID: 114936802322920870}
   m_Layer: 5
   m_Name: FuelValue
   m_TagString: Untagged
@@ -3228,6 +3229,18 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 'This is how well you did, wow. you''re good. '
+--- !u!114 &114936802322920870
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1891141787373024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95ab03dd887bbd34eafd0267633d5503, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHeight: 1000
 --- !u!114 &114945657871474650
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4414,7 +4427,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 10, y: 200}
+  m_SizeDelta: {x: 10, y: 500}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!224 &224616286932767366
 RectTransform:
