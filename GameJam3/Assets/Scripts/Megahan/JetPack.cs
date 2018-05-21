@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class JetPack : MonoBehaviour
 {
-    #region Variables
-    private float vSpeed = 0.0f;
-    private float burnTime = 0.0f;
-    private float weight = 0.0f;
-    private float timer = 0.0f;
-    private bool launch = false;
-    private float flightSpeed = 0.0f;
+
+    #region Public Variables
+    [Tooltip("Time it takes to lerp to destination.")]
+    [SerializeField]
     private float lerpTime = 1.0f;
+    #endregion
+
+    #region Variables
+    public float vSpeed = 0.0f;
+    public float burnTime = 0.0f;
+    public float weight = 0.0f;
+    private bool launch = false;
     private float currentLerpTime = 0.0f;
     private float targetHeight;
+    private float t = 0.0f;
     #endregion
 
     #region Getters and Setters
@@ -38,31 +43,20 @@ public class JetPack : MonoBehaviour
 
     void Update()
     {
-        if (launch)
-        {
-            //Increase timer
-            timer += Time.deltaTime;
 
+        if (launch && t < 1.0f)
+        {
             //Increment timer once per frame
             currentLerpTime += Time.deltaTime;
-            if (currentLerpTime > lerpTime)
-            {
-                currentLerpTime = lerpTime;
-            }
 
-            if (timer < burnTime)
-            {
-                //Begin to lerp
-                float t = currentLerpTime / lerpTime;
-                t = 1.0f - Mathf.Cos(t * Mathf.PI * 0.5f);
+            //Begin to lerp
+            t = currentLerpTime / lerpTime;
+            t = 1.0f - Mathf.Cos(t * Mathf.PI * 0.5f);
 
-
-                //Move up
-                transform.position = new Vector3(transform.position.x, Mathf.Lerp(0, targetHeight, t), transform.position.z);
-            }
+            //Move up
+            transform.position = new Vector3(transform.position.x, Mathf.Lerp(0, targetHeight, t), transform.position.z);
         }
     }
-
 
     public void TakeOff()
     {
@@ -71,5 +65,9 @@ public class JetPack : MonoBehaviour
 
         //Launch
         launch = true;
+
+        t = 0;
+        currentLerpTime = 0.0f;
+
     }
 }
