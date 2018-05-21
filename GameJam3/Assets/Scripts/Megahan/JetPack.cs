@@ -119,7 +119,7 @@ public class JetPack : MonoBehaviour
                 packParticle.Stop();
             }
 
-            Fall();
+            StartCoroutine(Fall());
         }
 
         if(aboveTarget)
@@ -137,7 +137,7 @@ public class JetPack : MonoBehaviour
                 explosionParticle.Stop();
             }
 
-            Fall();
+            StartCoroutine(Fall());
         }
 
 
