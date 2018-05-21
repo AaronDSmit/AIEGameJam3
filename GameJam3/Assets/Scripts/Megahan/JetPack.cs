@@ -12,6 +12,9 @@ public class JetPack : MonoBehaviour
     private ParticleSystem packParticle;
     [SerializeField]
     private ParticleSystem launchParticle;
+    [Tooltip("The vitcory range.")]
+    [SerializeField]
+    private float range;
     #endregion
 
     #region Variables
@@ -70,8 +73,10 @@ public class JetPack : MonoBehaviour
             yield return null;
         }
 
+        float totalRange = range + destination;
+
         //If we haven't reached our destination
-        if(targetHeight < destination)
+        if(targetHeight < destination || targetHeight > totalRange)
         {
             //Play the particle effect
             if (packParticle != null)
