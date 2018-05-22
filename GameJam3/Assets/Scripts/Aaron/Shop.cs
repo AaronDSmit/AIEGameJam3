@@ -27,8 +27,13 @@ public class Shop : MonoBehaviour
 
     private bool flying;
 
-    private float maxTurnPower;
-    private float maxBurnTIme;
+    private int currentCustomerIndex;
+
+    private float maxTurnPower = 400.0f;
+    private float maxBurnTime = 400.0f;
+
+    private float currentTurnPower;
+    private float currentBurnTime;
 
     private GameObject fuelTypes;
 
@@ -49,6 +54,12 @@ public class Shop : MonoBehaviour
         currentCustomer = FindObjectOfType<Customer>();
 
         flying = false;
+    }
+
+    private void Start()
+    {
+        UI.SelectCatagory(0);
+        UpdateStatsUI();
     }
 
     private void Update()
@@ -93,6 +104,32 @@ public class Shop : MonoBehaviour
         {
             currentCustomer.SetGem(gemType[currentComponent[selectedComponent]].sprite);
         }
+
+        UpdateStatsUI();
+    }
+
+    private void UpdateStatsUI()
+    {
+        CalculateCurrentStats();
+        UI.UpdateStatBars(currentTurnPower / maxTurnPower, currentBurnTime / maxBurnTime);
+    }
+
+    private void CalculateCurrentStats()
+    {
+        currentTurnPower = 0.0f;
+        currentBurnTime = 0.0f;
+
+        currentBurnTime += Jetpack[currentComponent[0]].burnTime;
+        currentTurnPower += Jetpack[currentComponent[0]].turnSpeed;
+
+        currentBurnTime += Thruster[currentComponent[1]].burnTime;
+        currentTurnPower += Thruster[currentComponent[1]].turnSpeed;
+
+        currentBurnTime += gemType[currentComponent[2]].burnTime;
+        currentTurnPower += gemType[currentComponent[2]].turnSpeed;
+
+        currentBurnTime += Customers[currentCustomerIndex].burnTime;
+        currentTurnPower += Customers[currentCustomerIndex].turnSpeed;
     }
 
     public void Launch()

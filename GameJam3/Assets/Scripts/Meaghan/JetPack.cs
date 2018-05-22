@@ -130,8 +130,6 @@ public class JetPack : MonoBehaviour
                 {
                     dyingOffScreenCheck = true;
 
-                    Debug.Log("Checking if off screen");
-
                     Invoke("DieOffScreen", offScreenKillDelay);
                 }
             }
@@ -173,7 +171,7 @@ public class JetPack : MonoBehaviour
 
             if (burnTime / totalBurnTime < 0.95f)
             {
-                fuelPercent = (burnTime / totalBurnTime) + 0.1f;
+                fuelPercent = (burnTime / totalBurnTime) + 0.05f;
             }
 
             flying = burnTime > 0;

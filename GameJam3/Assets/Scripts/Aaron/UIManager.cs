@@ -21,6 +21,9 @@ public class UIManager : MonoBehaviour
     private SlideInUI fireButton;
     private SlideInUI flyHUD;
 
+    private BarAnimation burnTimeBar;
+    private BarAnimation turningPowerBar;
+
     private RectTransform[] componentButtons;
 
     private Shop shop;
@@ -30,6 +33,11 @@ public class UIManager : MonoBehaviour
     private void Awake()
     {
         fadePlane = GameObject.FindGameObjectWithTag("FadeScreen").GetComponent<Image>();
+
+        BarAnimation[] statBars = FindObjectsOfType<BarAnimation>();
+
+        burnTimeBar = statBars[0];
+        turningPowerBar = statBars[1];
 
         jetPack = FindObjectOfType<JetPack>();
         jCamera = FindObjectOfType<JetpackCamera>();
@@ -57,11 +65,6 @@ public class UIManager : MonoBehaviour
 
         Invoke("ShowCurrentStats", currentStatsDelay);
         Invoke("ShowComponentsSelection", componentsSelectionDelay);
-    }
-
-    public void Start()
-    {
-        SelectCatagory(0);
     }
 
     private void ShowCurrentStats()
@@ -115,6 +118,12 @@ public class UIManager : MonoBehaviour
                 fireButton.TogglePullDown();
             }
         }
+    }
+
+    public void UpdateStatBars(float burnTimePercent, float turningPowerPercent)
+    {
+        burnTimeBar.UpdateValue(burnTimePercent);
+        turningPowerBar.UpdateValue(turningPowerPercent);
     }
 
     public void FadeOutIn()

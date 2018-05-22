@@ -25,19 +25,6 @@ public class BarAnimation : MonoBehaviour
         currentGhostPercent = 0.0f;
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            UpdateValue(1.0f);
-        }
-
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            UpdateValue(0.2f);
-        }
-    }
-
     public void UpdateValue(float valuePercent)
     {
         if (currentValuePercent < valuePercent)
