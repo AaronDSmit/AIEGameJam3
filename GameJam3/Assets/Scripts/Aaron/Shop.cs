@@ -69,7 +69,7 @@ public class Shop : MonoBehaviour
 
         UI.ToggleUI();
 
-        ScreenShake.instance.Shake();
+        ScreenShake.instance.ShakeEaseOut(60);
 
         Invoke("FireJetpack", launchDelay);
     }
@@ -99,4 +99,6 @@ public struct Part
     public float thrustPower;
 
     public float thrustDuration;
+
+    public Sprite sprite;
 };
