@@ -108,7 +108,7 @@ public class JetPack : MonoBehaviour
 
             flying = burnTime > 0;
 
-            if(!flying)
+            if (!flying)
             {
 
             }
