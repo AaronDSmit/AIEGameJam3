@@ -30,11 +30,17 @@ public class UIManager : MonoBehaviour
 
     private Shop shop;
 
+    private float scorchMarkStartAlpha;
+
+    private SpriteRenderer scorchMark;
+
     private bool[] selectedCatagories;
 
     private void Awake()
     {
         fadePlane = GameObject.FindGameObjectWithTag("FadeScreen").GetComponent<Image>();
+
+        scorchMark = GameObject.FindGameObjectWithTag("ScorchMark").GetComponent<SpriteRenderer>();
 
         BarAnimation[] statBars = FindObjectsOfType<BarAnimation>();
 
@@ -71,6 +77,8 @@ public class UIManager : MonoBehaviour
 
         Invoke("ShowCurrentStats", currentStatsDelay);
         Invoke("ShowComponentsSelection", componentsSelectionDelay);
+
+        scorchMarkStartAlpha = scorchMark.color.a;
     }
 
     private void ShowCurrentStats()
@@ -132,6 +140,29 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void FadeInScorchMark(float fadeTime)
+    {
+        StartCoroutine(FadeScorchMark(fadeTime));
+    }
+
+    private IEnumerator FadeScorchMark(float time)
+    {
+        float to = 1.0f;
+
+        float currentLerpTime = 0;
+        float t = 0;
+
+        while (t < 1)
+        {
+            currentLerpTime += Time.deltaTime;
+            t = currentLerpTime / time;
+
+            scorchMark.color = new Color(fadePlane.color.r, fadePlane.color.g, fadePlane.color.b, Mathf.Lerp(scorchMarkStartAlpha, to, t));
+
+            yield return null;
+        }
+    }
+
     public void UpdateStatBars(float burnTimePercent, float turningPowerPercent)
     {
         burnTimeBar.UpdateValue(burnTimePercent);
@@ -156,13 +187,15 @@ public class UIManager : MonoBehaviour
         ScreenShake.instance.StopScreenShake();
         shop.Flying = false;
 
+        scorchMark.color = new Color(fadePlane.color.r, fadePlane.color.g, fadePlane.color.b, scorchMarkStartAlpha);
+
         selectedCatagories[0] = false;
         selectedCatagories[2] = false;
         selectedCatagories[2] = false;
 
         SelectCatagory(0);
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.0f);
 
         StartCoroutine(FadeImage(1, 0, 1.0f));
         ToggleUI();

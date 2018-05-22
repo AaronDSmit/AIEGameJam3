@@ -200,6 +200,8 @@ public class Shop : MonoBehaviour
 
         ScreenShake.instance.ShakeEaseOut(60);
 
+        UI.FadeInScorchMark(launchDelay * 1.5f);
+
         Invoke("FireJetpack", launchDelay);
     }
 
