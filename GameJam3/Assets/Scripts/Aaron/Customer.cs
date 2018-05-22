@@ -2,16 +2,22 @@
 
 public class Customer : MonoBehaviour
 {
+    private SpriteRenderer customerRenderer;
     private SpriteRenderer wingsRenderer;
     private SpriteRenderer thrusterRenderer;
     private SpriteRenderer gemRenderer;
 
-
     private void Awake()
     {
+        customerRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
         wingsRenderer = transform.GetChild(1).GetComponent<SpriteRenderer>();
         thrusterRenderer = transform.GetChild(2).GetComponent<SpriteRenderer>();
         gemRenderer = transform.GetChild(3).GetComponent<SpriteRenderer>();
+    }
+
+    public void SetCustomer(Sprite sprite)
+    {
+        customerRenderer.sprite = sprite;
     }
 
     public void SetThruster(Sprite sprite)

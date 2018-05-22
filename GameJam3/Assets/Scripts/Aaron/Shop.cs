@@ -11,6 +11,12 @@ public class Shop : MonoBehaviour
     private JetPack jetPack;
 
     [SerializeField]
+    private float longestBurnTime = 90.0f;
+
+    [SerializeField]
+    private float largestTurnPower = 7.0f;
+
+    [SerializeField]
     private float launchDelay;
 
     [SerializeField]
@@ -59,7 +65,14 @@ public class Shop : MonoBehaviour
     private void Start()
     {
         UI.SelectCatagory(0);
+        GenerateRandomCustomer();
         UpdateStatsUI();
+    }
+
+    private void GenerateRandomCustomer()
+    {
+        currentCustomerIndex = Random.Range(0, Customers.Length);
+        currentCustomer.SetCustomer(Customers[currentCustomerIndex].sprite);
     }
 
     private void Update()
@@ -80,7 +93,15 @@ public class Shop : MonoBehaviour
 
     public bool Flying
     {
-        set { flying = value; }
+        set
+        {
+            flying = value;
+
+            if (!flying)
+            {
+                GenerateRandomCustomer();
+            }
+        }
     }
 
     private void ChangeSelectedComponent(int change)
@@ -117,8 +138,6 @@ public class Shop : MonoBehaviour
     {
         CalculateCurrentStats();
 
-
-
         UI.UpdateStatBars(currentBurnTime / maxBurnTime, currentTurnPower / maxTurnPower);
     }
 
@@ -144,8 +163,8 @@ public class Shop : MonoBehaviour
     {
         flying = true;
 
-        jetPack.BurnTime = 50.0f;
-        jetPack.TurningAngle = 5.0f;
+        jetPack.BurnTime = (currentBurnTime / maxBurnTime) * longestBurnTime;
+        jetPack.TurningAngle = (currentTurnPower / maxTurnPower) * largestTurnPower;
 
         UI.ToggleUI();
 

@@ -124,6 +124,7 @@ public class JetPack : MonoBehaviour
     {
         if (flying)
         {
+            // check if off screen
             if (transform.position.x < minX || transform.position.x > maxX)
             {
                 if (!dyingOffScreenCheck)
@@ -174,10 +175,17 @@ public class JetPack : MonoBehaviour
                 fuelPercent = (burnTime / totalBurnTime) + 0.05f;
             }
 
-            flying = burnTime > 0;
+            flying = fuelPercent > 0.0f;
+
+            if (!flying)
+            {
+                UI.FadeOutIn();
+            }
         }
         else
         {
+            // bobbing motion in shop
+
             transform.position = new Vector3(transform.position.x, Mathf.Sin(Time.time) * 0.2f, transform.position.z);
         }
 
