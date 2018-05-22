@@ -87,10 +87,8 @@ public class Shop : MonoBehaviour
         currentCustomer.SetCustomer(Customers[currentCustomerIndex].sprite);
 
         destination = Random.Range(minDestinationHeight, maxDestinationHeight);
-
-        SpawnDestination();
-
         UI.ToggleDestinationUI(destination);
+        SpawnDestination();
     }
 
     private void SpawnDestination()
@@ -191,20 +189,21 @@ public class Shop : MonoBehaviour
 
     public void Launch()
     {
-        UI.DisableLaunchButton();
+        if (!flying)
+        {
+            flying = true;
 
-        flying = true;
+            jetPack.BurnTime = (currentBurnTime / maxBurnTime) * longestBurnTime;
+            jetPack.TurningAngle = (currentTurnPower / maxTurnPower) * largestTurnPower;
 
-        jetPack.BurnTime = (currentBurnTime / maxBurnTime) * longestBurnTime;
-        jetPack.TurningAngle = (currentTurnPower / maxTurnPower) * largestTurnPower;
+            UI.ToggleUI();
 
-        UI.ToggleUI();
+            ScreenShake.instance.ShakeEaseOut(60);
 
-        ScreenShake.instance.ShakeEaseOut(60);
+            UI.FadeInScorchMark(launchDelay * 1.5f);
 
-        UI.FadeInScorchMark(launchDelay * 1.5f);
-
-        Invoke("FireJetpack", launchDelay);
+            Invoke("FireJetpack", launchDelay);
+        }
     }
 
     private void FireJetpack()

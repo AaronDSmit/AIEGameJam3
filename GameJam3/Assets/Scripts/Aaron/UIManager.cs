@@ -20,7 +20,9 @@ public class UIManager : MonoBehaviour
     private DropDownMenu componentsSelection;
     private SlideInUI fireButton;
     private SlideInUI flyHUD;
+
     private SlideInUI destinationUI;
+    private DropDownMenu destinationUIDown;
     private Text destinationText;
 
     private BarAnimation burnTimeBar;
@@ -64,6 +66,8 @@ public class UIManager : MonoBehaviour
 
         destinationText = GameObject.FindGameObjectWithTag("DestinationUI").GetComponentInChildren<Text>();
 
+        destinationUIDown = GameObject.FindGameObjectWithTag("DestinationUI").GetComponent<DropDownMenu>();
+
         Transform ComponentSelection = GameObject.FindGameObjectWithTag("ComponentSelection").transform;
 
         currentStats = GameObject.FindGameObjectWithTag("CurrentStats").GetComponent<DropDownMenu>();
@@ -81,11 +85,13 @@ public class UIManager : MonoBehaviour
         scorchMarkStartAlpha = scorchMark.color.a;
     }
 
+    // used for invoke
     private void ShowCurrentStats()
     {
         currentStats.TogglePullDown();
     }
 
+    // used for invoke
     private void ShowComponentsSelection()
     {
         componentsSelection.TogglePullDown();
@@ -99,7 +105,11 @@ public class UIManager : MonoBehaviour
     public void ToggleDestinationUI(float target)
     {
         destinationText.text = (int)target + "M";
-        destinationUI.TogglePullDown();
+        
+        if(!destinationUI.PulledDown)
+        {
+            destinationUI.TogglePullDown();
+        }
     }
 
     public void ToggleUI()
@@ -110,7 +120,13 @@ public class UIManager : MonoBehaviour
         if (fireButton.PulledDown)
         {
             fireButton.TogglePullDown();
+            Invoke("Delayed", 1.0f);
         }
+    }
+
+    private void Delayed()
+    {
+        destinationUIDown.TogglePullDown();
     }
 
     public void SelectCatagory(int index)
@@ -174,11 +190,6 @@ public class UIManager : MonoBehaviour
         StartCoroutine(FadeYoYo());
     }
 
-    public void DisableLaunchButton()
-    {
-        fireButton.GetComponent<Button>().interactable = false;
-    }
-
     private IEnumerator FadeYoYo()
     {
         StartCoroutine(FadeImage(0, 1, 1.0f));
@@ -192,6 +203,7 @@ public class UIManager : MonoBehaviour
         ScreenShake.instance.StopScreenShake();
         shop.Flying = false;
 
+        destinationUIDown.TogglePullDown();
         scorchMark.color = new Color(fadePlane.color.r, fadePlane.color.g, fadePlane.color.b, scorchMarkStartAlpha);
 
         selectedCatagories[0] = false;

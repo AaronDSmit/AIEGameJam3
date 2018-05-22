@@ -59,17 +59,19 @@ public class JetpackCamera : MonoBehaviour
     {
         if (!hasLanded)
         {
-            if (hasTakenOff && t < 1)
+            if (hasTakenOff && t < 1 && target.position.y > 2.0f)
             {
-                //Increment timer once per frame
+                ////Increment timer once per frame
                 currentLerpTime += Time.deltaTime;
 
                 //Begin to lerp
                 t = currentLerpTime / initialDelay;
-                // t = 1.0f - Mathf.Cos(t * Mathf.PI * 0.5f); // AB Testing
+                t = 1.0f - Mathf.Cos(t * Mathf.PI * 0.5f); // AB Testing
 
-                //Lerp delay for takeoff
-                transform.position = new Vector3(transform.position.x, Mathf.Lerp(0, (target.position.y + yOffset), t), transform.position.z);
+                transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, target.position.y, transform.position.z), t);
+
+                ////Lerp delay for takeoff
+                //transform.position = new Vector3(transform.position.x, Mathf.Lerp(0, (target.position.y + yOffset), t), transform.position.z);
             }
             else if (hasTakenOff && t >= 1)
             {

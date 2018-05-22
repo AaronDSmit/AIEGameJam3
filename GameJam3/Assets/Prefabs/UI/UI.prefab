@@ -677,6 +677,7 @@ GameObject:
   - component: {fileID: 224103219429249734}
   - component: {fileID: 222965191043918570}
   - component: {fileID: 114565707686527838}
+  - component: {fileID: 114758796279214396}
   m_Layer: 5
   m_Name: _06 Customer Destination
   m_TagString: DestinationUI
@@ -872,6 +873,7 @@ GameObject:
   - component: {fileID: 222478758244779616}
   - component: {fileID: 114286009394297540}
   - component: {fileID: 114243875676840402}
+  - component: {fileID: 114652681976103522}
   m_Layer: 5
   m_Name: FireButton
   m_TagString: Untagged
@@ -2075,7 +2077,6 @@ GameObject:
   - component: {fileID: 222277418388946718}
   - component: {fileID: 114448988019994066}
   - component: {fileID: 114205697736354832}
-  - component: {fileID: 114762573730568028}
   - component: {fileID: 114403520873336440}
   m_Layer: 5
   m_Name: FireButton
@@ -3471,7 +3472,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3618,8 +3619,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82165270e36033a4b9d7291e350885b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentStatsDelay: 1
-  componentsSelectionDelay: 1
+  currentStatsDelay: 0
+  componentsSelectionDelay: 0
 --- !u!114 &114323391039851978
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4617,7 +4618,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetY: 0
   overshootTargetY: 10
-  animationTime: 0.6
+  animationTime: 0.9
 --- !u!114 &114489889925791736
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4976,7 +4977,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetX: 12
   overshootTargetX: 16
-  animationTime: 0.8
+  animationTime: 0.9
 --- !u!114 &114567506875151998
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5245,6 +5246,58 @@ MonoBehaviour:
   m_EffectColor: {r: 0.33001727, g: 0.33058104, b: 0.41176468, a: 0.441}
   m_EffectDistance: {x: 1, y: -3}
   m_UseGraphicAlpha: 1
+--- !u!114 &114652681976103522
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1434405052716518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 114286009394297540}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114556490128552584}
+        m_MethodName: Launch
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114655087612544174
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5662,58 +5715,20 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114762573730568028
+--- !u!114 &114758796279214396
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1974147907559180}
+  m_GameObject: {fileID: 1302572582542876}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: e64405ad1995c5649add90885d5950d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_DisabledTrigger: Disabled
-  m_Interactable: 0
-  m_TargetGraphic: {fileID: 114448988019994066}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 114556490128552584}
-        m_MethodName: Launch
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+  targetY: -335
+  overshootTargetY: -340
+  animationTime: 1
 --- !u!114 &114767303286859362
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7863,7 +7878,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 157, y: 156}
+  m_AnchoredPosition: {x: 157, y: 154}
   m_SizeDelta: {x: 152, y: 199.7}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!224 &224105151055817760
