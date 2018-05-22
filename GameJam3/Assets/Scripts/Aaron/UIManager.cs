@@ -13,6 +13,9 @@ public class UIManager : MonoBehaviour
 
     private Image fadePlane = null;
 
+    private JetPack jetPack;
+    private JetpackCamera jCamera;
+
     private DropDownMenu currentStats;
     private DropDownMenu componentsSelection;
     private SlideInUI fireButton;
@@ -27,6 +30,9 @@ public class UIManager : MonoBehaviour
     private void Awake()
     {
         fadePlane = GameObject.FindGameObjectWithTag("FadeScreen").GetComponent<Image>();
+
+        jetPack = FindObjectOfType<JetPack>();
+        jCamera = FindObjectOfType<JetpackCamera>();
 
         fadePlane.gameObject.SetActive(true);
 
@@ -77,7 +83,11 @@ public class UIManager : MonoBehaviour
     {
         currentStats.TogglePullDown();
         componentsSelection.TogglePullDown();
-        fireButton.TogglePullDown();
+
+        if (fireButton.PulledDown)
+        {
+            fireButton.TogglePullDown();
+        }
     }
 
     public void SelectCatagory(int index)
@@ -109,22 +119,45 @@ public class UIManager : MonoBehaviour
 
     public void FadeOutIn()
     {
-        FadeImage(1, 0, 0.5f);
+        StartCoroutine(FadeYoYo());
+    }
+
+    private IEnumerator FadeYoYo()
+    {
+        StartCoroutine(FadeImage(0, 1, 1.0f));
+
+        yield return new WaitForSeconds(1.1f);
 
         // move camera
+        ToggleFlyHUD();
+        jetPack.ResetJetpack();
+        jCamera.ResetCamera();
+        ScreenShake.instance.StopScreenShake();
 
-        FadeImage(0, 1, 0.5f);
+
+        selectedCatagories[0] = false;
+        selectedCatagories[2] = false;
+        selectedCatagories[2] = false;
+
+        SelectCatagory(0);
+
+        yield return new WaitForSeconds(0.5f);
+
+        StartCoroutine(FadeImage(1, 0, 1.0f));
+        ToggleUI();
     }
 
     private IEnumerator FadeImage(float from, float to, float time)
     {
-        float speed = 1 / time;
-        float percent = 0;
+        float currentLerpTime = 0;
+        float t = 0;
 
-        while (percent < 1)
+        while (t < 1)
         {
-            percent += Time.deltaTime * speed;
-            fadePlane.color = new Color(fadePlane.color.r, fadePlane.color.g, fadePlane.color.b, Mathf.Lerp(from, to, percent));
+            currentLerpTime += Time.deltaTime;
+            t = currentLerpTime / time;
+
+            fadePlane.color = new Color(fadePlane.color.r, fadePlane.color.g, fadePlane.color.b, Mathf.Lerp(from, to, t));
 
             yield return null;
         }

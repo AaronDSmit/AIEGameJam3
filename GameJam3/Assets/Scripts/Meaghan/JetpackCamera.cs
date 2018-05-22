@@ -79,12 +79,15 @@ public class JetpackCamera : MonoBehaviour
         }
         else
         {
-            Invoke("ToOrigin", originDelay);
+            Invoke("ResetCamera", originDelay);
         }
     }
 
-    void ToOrigin()
+    public void ResetCamera()
     {
         transform.position = startPos.position;
+        t = 0;
+        hasTakenOff = false;
+        hasLanded = false;
     }
 }

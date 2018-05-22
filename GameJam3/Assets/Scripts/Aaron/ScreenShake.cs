@@ -30,6 +30,8 @@ public class ScreenShake : MonoBehaviour
 
     private bool kickedBacked = false;
 
+    private bool stopShake = false;
+
     public static ScreenShake instance = null;
 
     private void Awake()
@@ -77,6 +79,11 @@ public class ScreenShake : MonoBehaviour
         }
     }
 
+    public void StopScreenShake()
+    {
+        stopShake = true;
+    }
+
     private IEnumerator ShakeCamEaseOut(float duration)
     {
         float t = 0;
@@ -85,6 +92,11 @@ public class ScreenShake : MonoBehaviour
 
         while (t < 1.0f)
         {
+            if(stopShake)
+            {
+                stopShake = false;
+                break;
+            }
             //Increment timer once per frame
             currentLerpTime += Time.deltaTime;
 
@@ -108,6 +120,12 @@ public class ScreenShake : MonoBehaviour
     {
         while (shakeTime > 0)
         {
+            if (stopShake)
+            {
+                stopShake = false;
+                break;
+            }
+
             //transform.localPosition = originalPos + Random.insideUnitSphere * shakeAmount;
             transform.localPosition = Vector3.Lerp(transform.localPosition, originalPos + Random.insideUnitSphere * shakeAmount, Time.deltaTime * 3);
             shakeTime -= Time.deltaTime * decreaseFactor;

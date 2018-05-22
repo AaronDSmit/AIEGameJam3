@@ -307,7 +307,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeToMaxSpeed: 20
   maxSpeed: 10
-  minSpeed: 1
+  minX: -5
+  maxX: 5
+  offScreenKillDelay: 1
   range: 0
   fuelReduction: 0
   minHeightControl: 9.25

@@ -12,6 +12,15 @@ public class JetPack : MonoBehaviour
     [SerializeField]
     private float maxSpeed;
 
+    [SerializeField]
+    private float minX;
+
+    [SerializeField]
+    private float maxX;
+
+    [SerializeField]
+    private float offScreenKillDelay;
+
     [Tooltip("The vitcory range.")]
     [SerializeField]
     private float range;
@@ -38,6 +47,12 @@ public class JetPack : MonoBehaviour
     private bool hasBurntFuel = false;
     private float fuelPercent = 1.0f;
     private float totalBurnTime;
+    private bool dyingOffScreenCheck;
+
+    private Vector3 startPos;
+    private Quaternion startRot;
+
+    private UIManager UI;
     #endregion
 
     #region Getters and Setters
@@ -79,12 +94,48 @@ public class JetPack : MonoBehaviour
         shop = FindObjectOfType<Shop>();
 
         Jcamera = FindObjectOfType<JetpackCamera>();
+        UI = FindObjectOfType<UIManager>();
+
+        startPos = transform.position;
+        startRot = transform.rotation;
+    }
+
+    private void DieOffScreen()
+    {
+        if (transform.position.x < minX || transform.position.x > maxX)
+        {
+            // Die
+            UI.FadeOutIn();
+        }
+        else
+        {
+            dyingOffScreenCheck = false;
+        }
+    }
+
+    public void ResetJetpack()
+    {
+        transform.position = startPos;
+        transform.rotation = startRot;
+        flying = false;
     }
 
     private void Update()
     {
         if (flying)
         {
+            if (transform.position.x < minX || transform.position.x > maxX)
+            {
+                if (!dyingOffScreenCheck)
+                {
+                    dyingOffScreenCheck = true;
+
+                    Debug.Log("Checking if off screen");
+
+                    Invoke("DieOffScreen", offScreenKillDelay);
+                }
+            }
+
             if (transform.position.y > minHeightControl && Input.GetMouseButtonDown(0))
             {
                 if (!isFalling)
@@ -205,8 +256,10 @@ public class JetPack : MonoBehaviour
     {
         //Launch
         Jcamera.HasTakenOff = true;
+        dyingOffScreenCheck = false;
         flying = true;
 
+        fuelPercent = 1.0f;
         totalBurnTime = burnTime;
         StartCoroutine(Move());
     }
