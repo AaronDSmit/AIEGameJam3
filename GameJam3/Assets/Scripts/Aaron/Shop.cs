@@ -99,4 +99,6 @@ public struct Part
     public float thrustPower;
 
     public float thrustDuration;
+
+    public Sprite sprite;
 };
