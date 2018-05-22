@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JetPack : MonoBehaviour
+public class SecondJetpack : MonoBehaviour
 {
     #region Public Variables
     [Tooltip("Time it takes to lerp to destination.")]
@@ -17,6 +17,9 @@ public class JetPack : MonoBehaviour
     [Tooltip("The vitcory range.")]
     [SerializeField]
     private float range;
+
+
+    private JetpackCamera Jcamera;
     #endregion
 
     #region Variables
@@ -26,6 +29,7 @@ public class JetPack : MonoBehaviour
     private float currentLerpTime = 0.0f;
     private float targetHeight;
     private float destination;
+    private bool flying = false;
     private Shop shop;
     private bool belowTarget;
     private bool aboveTarget;
@@ -58,10 +62,36 @@ public class JetPack : MonoBehaviour
     #endregion
 
 
+    [SerializeField]
+    private float roationDegree;
+
     private void Awake()
     {
-        //Get the shop
         shop = FindObjectOfType<Shop>();
+
+        Jcamera = FindObjectOfType<JetpackCamera>();
+    }
+
+    private void Update()
+    {
+        if (flying)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (Input.mousePosition.x < Screen.width / 2)
+                {
+                    // move left
+                    transform.Rotate(Vector3.forward, roationDegree);
+                }
+                else
+                {
+                    // move right
+                    transform.Rotate(Vector3.forward, -roationDegree);
+                }
+            }
+
+            transform.position += transform.up * vSpeed * Time.deltaTime;
+        }
     }
 
     IEnumerator Move()
@@ -78,70 +108,10 @@ public class JetPack : MonoBehaviour
             t = currentLerpTime / lerpTime;
             t = 1.0f - Mathf.Cos(t * Mathf.PI * 0.5f);
 
-            //Move up
-            transform.position = new Vector3(transform.position.x, Mathf.Lerp(0, targetHeight, t), transform.position.z);
+            vSpeed = Mathf.Lerp(0, 10, t);
 
             yield return null;
         }
-
-        float totalRange = range + destination;
-
-        if(targetHeight > destination && targetHeight < totalRange)
-        {
-            //Arrived safely
-            shop.ArrivedSafely();
-        }
-        
-
-        //If we haven't reached our destination
-        if (targetHeight < destination)
-        {
-            belowTarget = true;
-        }
-
-        if(targetHeight > totalRange)
-        {
-            aboveTarget = true;
-        }
-
-
-        if(belowTarget)
-        {
-            //Explosion particle
-            if (packParticle != null)
-            {
-                //Play particle
-                packParticle.Play();
-
-                //Wait
-                yield return new WaitForSeconds(packParticle.main.duration);
-
-                //Stop particle
-                packParticle.Stop();
-            }
-
-            StartCoroutine(Fall());
-        }
-
-        if(aboveTarget)
-        {
-            //Explosion particle
-            if(explosionParticle != null)
-            {
-                //Play particle
-                explosionParticle.Play();
-
-                //Wait
-                yield return new WaitForSeconds(explosionParticle.main.duration);
-
-                //Stop particle
-                explosionParticle.Stop();
-            }
-
-            StartCoroutine(Fall());
-        }
-
-
     }
 
     IEnumerator Fall()
@@ -176,7 +146,10 @@ public class JetPack : MonoBehaviour
             launchParticle.Play();
         }
 
+
+        Jcamera.HasTakenOff = true;
         //Launch
+        flying = true;
         StartCoroutine(Move());
     }
 }
