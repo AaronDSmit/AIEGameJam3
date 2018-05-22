@@ -6,6 +6,7 @@ public class Shop : MonoBehaviour
 {
     private CustomerGenerator customerGen;
     private UIManager UI;
+    private Customer currentCustomer;
 
     private JetPack jetPack;
 
@@ -39,35 +40,48 @@ public class Shop : MonoBehaviour
         selectedComponent = -1;
 
         currentComponent = new int[3];
+
+        currentCustomer = FindObjectOfType<Customer>();
     }
 
     private void Update()
     {
         if (MobileInput.SwipedRight)
         {
-            Debug.Log("Swiped Right");
-
             ChangeSelectedComponent(+1);
         }
 
         if (MobileInput.SwipedLeft)
         {
-            Debug.Log("Swiped Left");
-
             ChangeSelectedComponent(-1);
         }
     }
 
     private void ChangeSelectedComponent(int change)
     {
-        if (selectedComponent > 0 && selectedComponent < 3)
+        currentComponent[selectedComponent] += change;
+
+        if (currentComponent[selectedComponent] < 0)
         {
-            currentComponent[selectedComponent] += change;
+            currentComponent[selectedComponent] = 2;
+        }
+        else if (currentComponent[selectedComponent] > 2)
+        {
+            currentComponent[selectedComponent] = 0;
+        }
 
-            if (selectedComponent == 0) // Customer
-            {
-
-            }
+        // Update visuals
+        if (selectedComponent == 0) // Jetpack
+        {
+            currentCustomer.SetWings(Jetpack[currentComponent[selectedComponent]].sprite);
+        }
+        else if (selectedComponent == 1) // Thruster
+        {
+            currentCustomer.SetThruster(Thruster[currentComponent[selectedComponent]].sprite);
+        }
+        else if (selectedComponent == 2) // gem
+        {
+            currentCustomer.SetGem(gemType[currentComponent[selectedComponent]].sprite);
         }
     }
 

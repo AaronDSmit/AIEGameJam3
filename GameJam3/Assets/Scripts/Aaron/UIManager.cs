@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
@@ -45,6 +42,11 @@ public class UIManager : MonoBehaviour
 
         Invoke("ShowCurrentStats", currentStatsDelay);
         Invoke("ShowComponentsSelection", componentsSelectionDelay);
+    }
+
+    public void Start()
+    {
+        SelectCatagory(0);
     }
 
     private void ShowCurrentStats()
