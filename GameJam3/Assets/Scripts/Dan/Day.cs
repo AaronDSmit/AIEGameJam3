@@ -84,12 +84,23 @@ public class Day : MonoBehaviour {
 
         StarRating rating = ratingCalculator.GetStarRating(aliveCustomers, customersPerDay);
 
-		dayUI.EndDay(currentDay, descriptionLibrary.GetDescriptionByRating(rating), 100, aliveCustomers, deadCustomers);
-        starRatingUI.ActivateStars(rating);
-
+		dayUI.EndDay(currentDay, descriptionLibrary.GetEndOfDayDescription(rating), 100, aliveCustomers, deadCustomers);
+		StartCoroutine(ActivateStarRating(rating));
     }
 
 	private void EndGame() {
-		Debug.Log("Note to Dan: Work out this with team");
+		StarRating rating = ratingCalculator.GetStarRating(totalAliveCustomers, totalAliveCustomers + totalDeadCustomers);
+
+		dayUI.FinalDay(currentDay, descriptionLibrary.GetFinalDayDescription(rating), totalAliveCustomers, totalDeadCustomers);
+		StartCoroutine(ActivateStarRating(rating, true));
+	}
+
+	private IEnumerator ActivateStarRating(StarRating rating, bool finalDay = false) {
+		yield return new WaitForEndOfFrame();
+
+		if (finalDay)
+			starRatingUI.ActivateFinalDayStars(rating);
+		else
+			starRatingUI.ActivateEndOfDayStars(rating);
 	}
 }

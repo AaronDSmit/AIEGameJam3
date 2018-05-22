@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6446e86ee3c15444a926d4870205785, type: 3}
   m_Name: Star Activation
   m_EditorClassIdentifier: 
-  scaleTime: 0.5
+  scaleTime: 0.75
   scaleCurve:
     serializedVersion: 2
     m_Curve:
@@ -32,7 +32,7 @@ MonoBehaviour:
     m_RotationOrder: 0
   borderFadeTime: 0.2
   increaseScale: 0.4
-  increaseScaleTime: 0.2
+  increaseScaleTime: 0.4
   increaseCurve:
     serializedVersion: 2
     m_Curve:
@@ -70,6 +70,3 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 0
   glowFadeTime: 0.2
-  glowRotationSpeed: 1
-  minPulseTime: 0.2
-  maxPulseTime: 0.3

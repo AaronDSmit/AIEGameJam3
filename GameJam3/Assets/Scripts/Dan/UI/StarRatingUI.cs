@@ -4,48 +4,79 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class StarRatingUI : MonoBehaviour {
-    [SerializeField] private RectTransform starParent;
+    [SerializeField] private RectTransform endOfDayStarParent;
+	[SerializeField] private RectTransform finalDayStarParent;
     [SerializeField] private StarActivation activationInfo;
     [SerializeField] private float delayBetweenStars;
 
-    private List<Star> stars;
+    private List<Star> endOfDayStars;
+	private List<Star> finalDayStars;
 
     private void Start () {
-        stars = new List<Star>();
+        endOfDayStars = new List<Star>();
+		finalDayStars = new List<Star>();
 
-        foreach (Transform child in starParent.transform) {
-            stars.Add(child.GetComponent<Star>());
+        foreach (Transform child in endOfDayStarParent.transform) {
+            endOfDayStars.Add(child.GetComponent<Star>());
         }
-    }
 
-    public void ActivateStars (StarRating rating) {
-        for (int i = 0; i < stars.Count; i++) {
-            stars[i].ResetStar();
+		foreach (Transform child in finalDayStarParent.transform) {
+			finalDayStars.Add(child.GetComponent<Star>());
+		}
+	}
+
+    public void ActivateEndOfDayStars (StarRating rating) {
+        for (int i = 0; i < endOfDayStars.Count; i++) {
+            endOfDayStars[i].ResetStar();
         }
 
         switch (rating) {
             case StarRating.ZERO:
                 break;
             case StarRating.ONE:
-                stars[0].ActivateStar(activationInfo);
+                endOfDayStars[0].ActivateStar(activationInfo);
                 break;
             case StarRating.TWO:
-                stars[0].ActivateStar(activationInfo);
-                StartCoroutine(Activate(stars[1], delayBetweenStars));
+                endOfDayStars[0].ActivateStar(activationInfo);
+                StartCoroutine(Activate(endOfDayStars[1], delayBetweenStars));
                 break;
             case StarRating.THREE:
-                stars[0].ActivateStar(activationInfo);
-                StartCoroutine(Activate(stars[1], delayBetweenStars));
-                StartCoroutine(Activate(stars[2], delayBetweenStars * 2));
+                endOfDayStars[0].ActivateStar(activationInfo);
+                StartCoroutine(Activate(endOfDayStars[1], delayBetweenStars));
+                StartCoroutine(Activate(endOfDayStars[2], delayBetweenStars * 2));
                 break;
             default:
                 break;
         }
     }
 
-    private IEnumerator Activate (Star star, float delay) {
-        yield return new WaitForSeconds(delay);
+	public void ActivateFinalDayStars(StarRating rating) {
+		for (int i = 0; i < endOfDayStars.Count; i++) {
+			finalDayStars[i].ResetStar();
+		}
 
+		switch (rating) {
+			case StarRating.ZERO:
+				break;
+			case StarRating.ONE:
+				finalDayStars[0].ActivateStar(activationInfo);
+				break;
+			case StarRating.TWO:
+				finalDayStars[0].ActivateStar(activationInfo);
+				StartCoroutine(Activate(finalDayStars[1], delayBetweenStars));
+				break;
+			case StarRating.THREE:
+				finalDayStars[0].ActivateStar(activationInfo);
+				StartCoroutine(Activate(finalDayStars[1], delayBetweenStars));
+				StartCoroutine(Activate(finalDayStars[2], delayBetweenStars * 2));
+				break;
+			default:
+				break;
+		}
+	}
+
+	private IEnumerator Activate (Star star, float delay) {
+        yield return new WaitForSeconds(delay);
         star.ActivateStar(activationInfo);
     }
 }

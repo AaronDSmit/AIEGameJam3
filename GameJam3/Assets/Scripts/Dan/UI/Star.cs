@@ -20,9 +20,12 @@ public class Star : MonoBehaviour {
     }
 
     public void ResetStar () {
-        filled.rectTransform.localScale = Vector2.zero;
+		if(originalSize == Vector2.zero)
+			originalSize = filled.rectTransform.localScale;
 
-        Color c = outline.color;
+		filled.rectTransform.localScale = Vector2.zero;
+
+		Color c = outline.color;
         c.a = 0f;
 
         outline.color = c;
@@ -39,9 +42,11 @@ public class Star : MonoBehaviour {
     private IEnumerator Activate (StarActivation activationInfo) {
         float t = 0f;
 
-        filled.gameObject.SetActive(true);
+		originalSize = Vector2.one;
+
+		filled.gameObject.SetActive(true);
         glow.gameObject.SetActive(true);
-        Vector2 startSize = filled.rectTransform.localScale;
+        Vector2 startSize = Vector2.zero;
 
         while (t <= activationInfo.ScaleTime) {
             t += Time.deltaTime;
