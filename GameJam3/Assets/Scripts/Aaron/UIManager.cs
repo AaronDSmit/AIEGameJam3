@@ -79,22 +79,9 @@ public class UIManager : MonoBehaviour
         componentButtons[1] = ComponentSelection.GetChild(1).GetComponent<RectTransform>();
         componentButtons[2] = ComponentSelection.GetChild(2).GetComponent<RectTransform>();
 
-        Invoke("ShowCurrentStats", currentStatsDelay);
-        Invoke("ShowComponentsSelection", componentsSelectionDelay);
-
         scorchMarkStartAlpha = scorchMark.color.a;
-    }
 
-    // used for invoke
-    private void ShowCurrentStats()
-    {
-        currentStats.TogglePullDown();
-    }
-
-    // used for invoke
-    private void ShowComponentsSelection()
-    {
-        componentsSelection.TogglePullDown();
+        ToggleUI();
     }
 
     public void ToggleFlyHUD()
@@ -122,6 +109,10 @@ public class UIManager : MonoBehaviour
             fireButton.TogglePullDown();
             Invoke("Delayed", 1.0f);
         }
+        else
+        {
+            fireButton.TogglePullDown();
+        }
     }
 
     private void Delayed()
@@ -144,14 +135,6 @@ public class UIManager : MonoBehaviour
             if (i != index)
             {
                 componentButtons[i].anchoredPosition = new Vector2(componentButtons[i].anchoredPosition.x, componentButtons[i].anchoredPosition.y - 15);
-            }
-        }
-
-        if (selectedCatagories[0] && selectedCatagories[1] && selectedCatagories[2])
-        {
-            if (!fireButton.PulledDown)
-            {
-                fireButton.TogglePullDown();
             }
         }
     }
