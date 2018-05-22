@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -668,6 +668,18 @@ Prefab:
       propertyPath: m_Name
       value: Store/Build
       objectReference: {fileID: 0}
+    - target: {fileID: 4919979477856392, guid: eab47b77e28fde44db20eb657cfcec8a, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 3.04176
+      objectReference: {fileID: 0}
+    - target: {fileID: 4919979477856392, guid: eab47b77e28fde44db20eb657cfcec8a, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 3.041759
+      objectReference: {fileID: 0}
+    - target: {fileID: 4919979477856392, guid: eab47b77e28fde44db20eb657cfcec8a, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 3.041759
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eab47b77e28fde44db20eb657cfcec8a, type: 2}
   m_IsPrefabParent: 0
@@ -710,6 +722,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 198183368016099994, guid: fa6011c292596494eaf0b74d6a82208f,
+        type: 2}
+      propertyPath: CollisionModule.plane0
+      value: 
+      objectReference: {fileID: 1596944214}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fa6011c292596494eaf0b74d6a82208f, type: 2}
   m_IsPrefabParent: 0
@@ -796,6 +813,11 @@ GameObject:
   m_PrefabParentObject: {fileID: 1954035907374136, guid: 24b5ab29b4499994bb568bb32f39d79a,
     type: 2}
   m_PrefabInternal: {fileID: 1644266036}
+--- !u!4 &1596944214 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4919979477856392, guid: eab47b77e28fde44db20eb657cfcec8a,
+    type: 2}
+  m_PrefabInternal: {fileID: 778188533}
 --- !u!1 &1634696446 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1126107799749996, guid: 24b5ab29b4499994bb568bb32f39d79a,
