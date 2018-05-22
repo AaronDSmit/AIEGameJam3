@@ -78,6 +78,11 @@ public class Shop : MonoBehaviour
         }
     }
 
+    public bool Flying
+    {
+        set { flying = value; }
+    }
+
     private void ChangeSelectedComponent(int change)
     {
         currentComponent[selectedComponent] += change;

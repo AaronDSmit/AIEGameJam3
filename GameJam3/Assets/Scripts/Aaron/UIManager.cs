@@ -142,7 +142,7 @@ public class UIManager : MonoBehaviour
         jetPack.ResetJetpack();
         jCamera.ResetCamera();
         ScreenShake.instance.StopScreenShake();
-
+        shop.Flying = false;
 
         selectedCatagories[0] = false;
         selectedCatagories[2] = false;
