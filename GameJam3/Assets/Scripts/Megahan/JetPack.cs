@@ -224,6 +224,7 @@ public class JetPack : MonoBehaviour
                 //Stop moving
                 aboveTarget = false;
                 shop.ArrivedSafely();
+                Jcamera.HasLanded = true;
             }
         }
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class JetpackCamera : MonoBehaviour
 {
-    #region Public Variables
+    #region Inspector Variables
     [Tooltip("The offset for the Y on the camera.")]
     [SerializeField]
     private float yOffset;
@@ -17,6 +17,9 @@ public class JetpackCamera : MonoBehaviour
     [Tooltip("The target to stop at.")]
     [SerializeField]
     private Transform goalTarget;
+    [Tooltip("The delay for the camera going back to it's original position.")]
+    [SerializeField]
+    private float originDelay;
     #endregion
 
     #region Variables
@@ -25,8 +28,9 @@ public class JetpackCamera : MonoBehaviour
     private bool isAtGoal;
     private bool getCurrentY = true;
     private float currY;
-
+    private Transform startPos;
     private bool hasTakenOff = false;
+    private bool hasLanded = false;
     #endregion
 
     #region Getters and Setters
@@ -36,17 +40,24 @@ public class JetpackCamera : MonoBehaviour
 
         set { hasTakenOff = value; }
     }
+
+    public bool HasLanded
+    {
+        get { return hasLanded; }
+
+        set { hasLanded = value; }
+    }
     #endregion
+
+    private void Start()
+    {
+        startPos = transform;
+    }
 
     // Update is called once per frame
     void LateUpdate()
     {
-        if (transform.position.y >= goalTarget.position.y)
-        {
-            isAtGoal = true;
-        }
-
-        if (!isAtGoal)
+        if(!hasLanded)
         {
             if (hasTakenOff && t < 1)
             {
@@ -68,8 +79,13 @@ public class JetpackCamera : MonoBehaviour
         }
         else
         {
-            //Stop at the y pos of the goal target
-            transform.position = new Vector3(transform.position.x, goalTarget.position.y, transform.position.z);
+            Invoke("ToOrigin", originDelay);
         }
     }
+
+    void ToOrigin()
+    {
+        transform.position = startPos.position;
+    } 
+
 }
