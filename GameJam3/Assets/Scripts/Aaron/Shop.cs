@@ -25,6 +25,11 @@ public class Shop : MonoBehaviour
     [SerializeField]
     private Part[] gemType;
 
+    private bool flying;
+
+    private float maxTurnPower;
+    private float maxBurnTIme;
+
     private GameObject fuelTypes;
 
     private int[] currentComponent;
@@ -42,18 +47,23 @@ public class Shop : MonoBehaviour
         currentComponent = new int[3];
 
         currentCustomer = FindObjectOfType<Customer>();
+
+        flying = false;
     }
 
     private void Update()
     {
-        if (MobileInput.SwipedRight)
+        if (!flying)
         {
-            ChangeSelectedComponent(+1);
-        }
+            if (MobileInput.SwipedRight)
+            {
+                ChangeSelectedComponent(+1);
+            }
 
-        if (MobileInput.SwipedLeft)
-        {
-            ChangeSelectedComponent(-1);
+            if (MobileInput.SwipedLeft)
+            {
+                ChangeSelectedComponent(-1);
+            }
         }
     }
 
@@ -87,6 +97,8 @@ public class Shop : MonoBehaviour
 
     public void Launch()
     {
+        flying = true;
+
         jetPack.BurnTime = 10.0f;
         jetPack.TurningAngle = 5.0f;
 
@@ -113,7 +125,6 @@ public class Shop : MonoBehaviour
         UI.FadeOutIn();
     }
 }
-
 
 [System.Serializable]
 public struct Part

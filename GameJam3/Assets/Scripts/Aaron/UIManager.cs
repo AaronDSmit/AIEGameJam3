@@ -110,6 +110,8 @@ public class UIManager : MonoBehaviour
     {
         FadeImage(1, 0, 0.5f);
 
+        // move camera
+
         FadeImage(0, 1, 0.5f);
     }
 
@@ -125,7 +127,5 @@ public class UIManager : MonoBehaviour
 
             yield return null;
         }
-
-        fadePlane.gameObject.SetActive(to != 0.0f);
     }
 }
