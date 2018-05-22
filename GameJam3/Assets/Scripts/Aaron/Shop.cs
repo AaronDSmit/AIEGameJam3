@@ -116,7 +116,10 @@ public class Shop : MonoBehaviour
     private void UpdateStatsUI()
     {
         CalculateCurrentStats();
-        UI.UpdateStatBars(currentTurnPower / maxTurnPower, currentBurnTime / maxBurnTime);
+
+
+
+        UI.UpdateStatBars(currentBurnTime / maxBurnTime, currentTurnPower / maxTurnPower);
     }
 
     private void CalculateCurrentStats()
