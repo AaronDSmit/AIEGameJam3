@@ -4902,6 +4902,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e821b79bcd19b5f4d97d679b7c4d9be7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  longestBurnTime: 90
+  largestTurnPower: 7
   launchDelay: 1.5
   Customers:
   - turnSpeed: 0
@@ -4914,33 +4916,33 @@ MonoBehaviour:
     burnTime: 50
     sprite: {fileID: 21300000, guid: 5a10b1d2c2393b8459f44bb485917e6e, type: 3}
   Jetpack:
-  - turnSpeed: 0
+  - turnSpeed: 25
     burnTime: 50
     sprite: {fileID: 21300000, guid: 0e023d541cada4d4bba1306e3439cf3c, type: 3}
-  - turnSpeed: -10
+  - turnSpeed: 10
     burnTime: 60
     sprite: {fileID: 21300000, guid: 20dd0ee6676f0c042afde7d275d3dbe3, type: 3}
-  - turnSpeed: -20
+  - turnSpeed: 20
     burnTime: 70
     sprite: {fileID: 21300000, guid: 99c68d8abc413b64cafc59ea297e185c, type: 3}
   Thruster:
-  - turnSpeed: 0
+  - turnSpeed: 10
     burnTime: 50
     sprite: {fileID: 21300000, guid: 72b8f7b1bc40da54e9e1fde0b98ff5cf, type: 3}
-  - turnSpeed: 0
+  - turnSpeed: 20
     burnTime: 40
     sprite: {fileID: 21300000, guid: 74a6d9a2c184cef4585a1f4c4f2edd9e, type: 3}
-  - turnSpeed: 0
+  - turnSpeed: 30
     burnTime: 30
     sprite: {fileID: 21300000, guid: e2843cddabc38d6499c07a94b5d870ea, type: 3}
   gemType:
-  - turnSpeed: 0
+  - turnSpeed: 25
     burnTime: 55
     sprite: {fileID: 21300000, guid: 011a2736f1bca5141bdfedb771461873, type: 3}
-  - turnSpeed: -10
+  - turnSpeed: 15
     burnTime: 60
     sprite: {fileID: 21300000, guid: b6735d310c8720247a8834aca1f53856, type: 3}
-  - turnSpeed: -20
+  - turnSpeed: 10
     burnTime: 75
     sprite: {fileID: 21300000, guid: 40b56a6d7b297094881ff49583787874, type: 3}
 --- !u!114 &114560845159720766
