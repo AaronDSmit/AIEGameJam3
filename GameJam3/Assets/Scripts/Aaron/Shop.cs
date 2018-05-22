@@ -13,13 +13,18 @@ public class Shop : MonoBehaviour
     private float launchDelay;
 
     [SerializeField]
-    private Part[] fuelTanks;
+    private Part[] Customers;
 
     [SerializeField]
-    private Part[] thruster;
+    private Part[] Jetpack;
 
     [SerializeField]
-    private Part[] body;
+    private Part[] Thruster;
+
+    [SerializeField]
+    private Part[] gemType;
+
+    private GameObject fuelTypes;
 
     private int[] currentComponent;
     private int selectedComponent;
@@ -58,14 +63,18 @@ public class Shop : MonoBehaviour
         if (selectedComponent > 0 && selectedComponent < 3)
         {
             currentComponent[selectedComponent] += change;
+
+            if (selectedComponent == 0) // Customer
+            {
+
+            }
         }
     }
 
     public void Launch()
     {
-        jetPack.Weight = 10.0f;
-        jetPack.VSpeed = 20.0f;
-        jetPack.BurnTime = 1.0f;
+        jetPack.BurnTime = 10.0f;
+        jetPack.TurningAngle = 5.0f;
 
         UI.ToggleUI();
 
@@ -91,14 +100,13 @@ public class Shop : MonoBehaviour
     }
 }
 
+
 [System.Serializable]
 public struct Part
 {
-    public float weight;
+    public float turnSpeed;
 
-    public float thrustPower;
-
-    public float thrustDuration;
+    public float burnTime;
 
     public Sprite sprite;
 };

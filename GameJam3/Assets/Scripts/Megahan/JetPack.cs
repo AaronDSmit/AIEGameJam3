@@ -7,7 +7,7 @@ public class JetPack : MonoBehaviour
     #region Inspector Variables
     [Tooltip("Time it takes to lerp to destination.")]
     [SerializeField]
-    private float lerpTime = 1.0f;
+    private float timeToMaxSpeed;
     [SerializeField]
     private ParticleSystem packParticle;
     [SerializeField]
@@ -17,16 +17,12 @@ public class JetPack : MonoBehaviour
     [Tooltip("The vitcory range.")]
     [SerializeField]
     private float range;
-    [SerializeField]
-    private float roationDegree;
     #endregion
 
     #region Variables
     private float vSpeed = 0.0f;
     private float burnTime = 0.0f;
-    private float weight = 0.0f;
     private float currentLerpTime = 0.0f;
-    private float targetHeight;
     private float destination;
     private Shop shop;
     private bool belowTarget;
@@ -34,6 +30,7 @@ public class JetPack : MonoBehaviour
     private JetpackCamera Jcamera;
     private bool flying = false;
     private bool isFalling = false;
+    private float turningAngle;
     #endregion
 
     #region Getters and Setters
@@ -41,12 +38,6 @@ public class JetPack : MonoBehaviour
     {
         get { return vSpeed; }
         set { vSpeed = value; }
-    }
-
-    public float Weight
-    {
-        get { return weight; }
-        set { weight = value; }
     }
 
     public float BurnTime
@@ -59,6 +50,12 @@ public class JetPack : MonoBehaviour
     {
         get { return destination; }
         set { destination = value; }
+    }
+
+    public float TurningAngle
+    {
+        get { return turningAngle; }
+        set { turningAngle = value; }
     }
     #endregion
 
@@ -76,17 +73,17 @@ public class JetPack : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                if(!isFalling)
+                if (!isFalling)
                 {
                     if (Input.mousePosition.x < Screen.width / 2)
                     {
                         // move left
-                        transform.Rotate(Vector3.forward, roationDegree);
+                        transform.Rotate(Vector3.forward, turningAngle);
                     }
                     else
                     {
                         // move right
-                        transform.Rotate(Vector3.forward, -roationDegree);
+                        transform.Rotate(Vector3.forward, -turningAngle);
                     }
                 }
                 else
@@ -94,18 +91,27 @@ public class JetPack : MonoBehaviour
                     if (Input.mousePosition.x < Screen.width / 2)
                     {
                         // move left
-                        transform.Rotate(Vector3.forward, -roationDegree);
+                        transform.Rotate(Vector3.forward, -turningAngle);
                     }
                     else
                     {
                         // move right
-                        transform.Rotate(Vector3.forward, roationDegree);
+                        transform.Rotate(Vector3.forward, turningAngle);
                     }
                 }
-                
+
             }
 
             transform.position += transform.up * vSpeed * Time.deltaTime;
+
+            burnTime -= Time.deltaTime;
+
+            flying = burnTime > 0;
+
+            if(!flying)
+            {
+
+            }
         }
     }
 
@@ -120,7 +126,7 @@ public class JetPack : MonoBehaviour
             currentLerpTime += Time.deltaTime;
 
             //Begin to lerp
-            t = currentLerpTime / lerpTime;
+            t = currentLerpTime / timeToMaxSpeed;
             t = 1.0f - Mathf.Cos(t * Mathf.PI * 0.5f);
 
             vSpeed = Mathf.Lerp(0, 10, t);
@@ -137,18 +143,18 @@ public class JetPack : MonoBehaviour
         //}
 
 
-        if(!isFalling)
+        if (!isFalling)
         {
-            //If we haven't reached our destination
-            if (targetHeight < destination)
-            {
-                belowTarget = true;
-            }
+            ////If we haven't reached our destination
+            //if (targetHeight < destination)
+            //{
+            //    belowTarget = true;
+            //}
 
-            if (targetHeight > totalRange)
-            {
-                aboveTarget = true;
-            }
+            //if (targetHeight > totalRange)
+            //{
+            //    aboveTarget = true;
+            //}
         }
 
         if (belowTarget)
@@ -164,13 +170,13 @@ public class JetPack : MonoBehaviour
 
                 //Stop particle
                 packParticle.Stop();
+            }
+
+            StartCoroutine(Fall());
         }
 
-          StartCoroutine(Fall());
-      }
-
         if (aboveTarget)
-        {                                                            
+        {
             StartCoroutine(Fall());
         }
     }
@@ -178,17 +184,18 @@ public class JetPack : MonoBehaviour
     IEnumerator Fall()
     {
         isFalling = true;
+
         //Fall
         float c = 0;
         currentLerpTime = 0.0f;
-        
+
         while (c < 1.0f)
         {
             //Increment timer once per frame
             currentLerpTime += Time.deltaTime;
 
             //Begin to lerp
-            c = currentLerpTime / lerpTime;
+            c = currentLerpTime / timeToMaxSpeed;
             c = 1.0f - Mathf.Cos(c * Mathf.PI * 0.5f);
 
             //Move up
@@ -200,9 +207,6 @@ public class JetPack : MonoBehaviour
 
     public void TakeOff()
     {
-        //Calculate target height
-        targetHeight = (vSpeed - weight) * burnTime;
-
         if (launchParticle != null)
         {
             launchParticle.Play();
@@ -217,7 +221,7 @@ public class JetPack : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(isFalling)
+        if (isFalling)
         {
             if (other.tag == "Goal")
             {

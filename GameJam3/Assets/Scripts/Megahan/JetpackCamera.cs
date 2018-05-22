@@ -41,11 +41,10 @@ public class JetpackCamera : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        if(transform.position.y >= goalTarget.position.y)
+        if (transform.position.y >= goalTarget.position.y)
         {
             isAtGoal = true;
         }
-
 
         if (!isAtGoal)
         {
