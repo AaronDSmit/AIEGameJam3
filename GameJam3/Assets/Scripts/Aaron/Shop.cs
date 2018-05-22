@@ -7,7 +7,7 @@ public class Shop : MonoBehaviour
     private CustomerGenerator customerGen;
     private UIManager UI;
 
-    private SecondJetpack jetPack;
+    private JetPack jetPack;
 
     [SerializeField]
     private float launchDelay;
@@ -26,7 +26,7 @@ public class Shop : MonoBehaviour
 
     private void Awake()
     {
-        jetPack = FindObjectOfType<SecondJetpack>();
+        jetPack = FindObjectOfType<JetPack>();
         customerGen = GetComponent<CustomerGenerator>();
 
         UI = GetComponent<UIManager>();
@@ -68,6 +68,8 @@ public class Shop : MonoBehaviour
         jetPack.BurnTime = 1.0f;
 
         UI.ToggleUI();
+
+        ScreenShake.instance.Shake();
 
         Invoke("FireJetpack", launchDelay);
     }

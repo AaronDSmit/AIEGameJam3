@@ -51,7 +51,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4109387790140408}
   - component: {fileID: 33316104674468304}
-  - component: {fileID: 114224158959962842}
+  - component: {fileID: 114431574507197636}
   m_Layer: 0
   m_Name: JetPack-Test
   m_TagString: Untagged
@@ -166,7 +166,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1642453496324382}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114224158959962842
+--- !u!114 &114431574507197636
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -174,7 +174,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1642453496324382}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2311ae8253489d642b797789e42cf16d, type: 3}
+  m_Script: {fileID: 11500000, guid: c30035129df30574badd9c1f9f3bb72a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   lerpTime: 10
