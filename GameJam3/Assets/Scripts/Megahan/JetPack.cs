@@ -60,6 +60,7 @@ public class JetPack : MonoBehaviour
 
     private void Awake()
     {
+        //Get the shop
         shop = FindObjectOfType<Shop>();
     }
 
