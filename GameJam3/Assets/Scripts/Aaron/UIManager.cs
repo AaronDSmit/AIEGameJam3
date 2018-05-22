@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
@@ -10,6 +10,9 @@ public class UIManager : MonoBehaviour
 
     [SerializeField]
     private float componentsSelectionDelay;
+
+    [SerializeField]
+    private Image fadePlane = null;
 
     private DropDownMenu currentStats;
     private DropDownMenu componentsSelection;
@@ -24,6 +27,8 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
+        fadePlane.gameObject.SetActive(true);
+
         selectedCatagories = new bool[3];
 
         shop = GetComponent<Shop>();
@@ -45,6 +50,11 @@ public class UIManager : MonoBehaviour
 
         Invoke("ShowCurrentStats", currentStatsDelay);
         Invoke("ShowComponentsSelection", componentsSelectionDelay);
+    }
+
+    public void Start()
+    {
+        SelectCatagory(0);
     }
 
     private void ShowCurrentStats()
@@ -94,5 +104,28 @@ public class UIManager : MonoBehaviour
                 fireButton.TogglePullDown();
             }
         }
+    }
+
+    public void FadeOutIn()
+    {
+        FadeImage(1, 0, 0.5f);
+
+        FadeImage(0, 1, 0.5f);
+    }
+
+    private IEnumerator FadeImage(float from, float to, float time)
+    {
+        float speed = 1 / time;
+        float percent = 0;
+
+        while (percent < 1)
+        {
+            percent += Time.deltaTime * speed;
+            fadePlane.color = new Color(fadePlane.color.r, fadePlane.color.g, fadePlane.color.b, Mathf.Lerp(from, to, percent));
+
+            yield return null;
+        }
+
+        fadePlane.gameObject.SetActive(to != 0.0f);
     }
 }

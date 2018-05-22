@@ -57,7 +57,7 @@ public class JetpackCamera : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        if(!hasLanded)
+        if (!hasLanded)
         {
             if (hasTakenOff && t < 1)
             {
@@ -71,7 +71,7 @@ public class JetpackCamera : MonoBehaviour
                 //Lerp delay for takeoff
                 transform.position = new Vector3(transform.position.x, Mathf.Lerp(0, (target.position.y + yOffset), t), transform.position.z);
             }
-            else
+            else if (hasTakenOff && t >= 1)
             {
                 //Follow player
                 transform.position = new Vector3(transform.position.x, target.position.y + yOffset, transform.position.z);
@@ -86,6 +86,6 @@ public class JetpackCamera : MonoBehaviour
     void ToOrigin()
     {
         transform.position = startPos.position;
-    } 
+    }
 
 }

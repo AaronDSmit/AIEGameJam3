@@ -8,6 +8,7 @@ TagManager:
   - ComponentSelection
   - CurrentStats
   - FlyHUD
+  - ScorchMark
   layers:
   - Default
   - TransparentFX

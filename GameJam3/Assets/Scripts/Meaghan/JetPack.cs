@@ -112,7 +112,10 @@ public class JetPack : MonoBehaviour
 
             flying = burnTime > 0;
         }
-
+        else
+        {
+            transform.position = new Vector3(transform.position.x, Mathf.Sin(Time.time) * 0.2f, transform.position.z);
+        }
 
         if (!isFalling)
         {
@@ -120,10 +123,10 @@ public class JetPack : MonoBehaviour
             if (transform.position.y < destination)
 
 
-            if (transform.position.y > range)
-            {
-                aboveTarget = true;
-            }
+                if (transform.position.y > range)
+                {
+                    aboveTarget = true;
+                }
         }
 
         if (belowTarget)
