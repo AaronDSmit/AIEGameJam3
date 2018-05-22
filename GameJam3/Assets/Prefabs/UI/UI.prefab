@@ -359,6 +359,7 @@ GameObject:
   - component: {fileID: 224432769056678834}
   - component: {fileID: 222375618065367806}
   - component: {fileID: 114434334666007170}
+  - component: {fileID: 114746137940903814}
   m_Layer: 5
   m_Name: _04 Fly HUD
   m_TagString: FlyHUD
@@ -607,7 +608,7 @@ GameObject:
   - component: {fileID: 114868500140430394}
   m_Layer: 5
   m_Name: _00 Fade
-  m_TagString: Untagged
+  m_TagString: FadeScreen
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1635,7 +1636,6 @@ GameObject:
   - component: {fileID: 224610732075141914}
   - component: {fileID: 222186532895171128}
   - component: {fileID: 114173108471530476}
-  - component: {fileID: 114936802322920870}
   m_Layer: 5
   m_Name: FuelValue
   m_TagString: Untagged
@@ -3167,7 +3167,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentStatsDelay: 1
   componentsSelectionDelay: 1
-  fadePlane: {fileID: 114868500140430394}
 --- !u!114 &114323391039851978
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5000,6 +4999,18 @@ MonoBehaviour:
   m_EffectColor: {r: 0.22166954, g: 0.22221988, b: 0.30147058, a: 0.653}
   m_EffectDistance: {x: 2, y: -3}
   m_UseGraphicAlpha: 1
+--- !u!114 &114746137940903814
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1217617875460510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95ab03dd887bbd34eafd0267633d5503, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHeight: 1000
 --- !u!114 &114751155625529906
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5850,18 +5861,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 2 / 3
---- !u!114 &114936802322920870
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1891141787373024}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95ab03dd887bbd34eafd0267633d5503, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHeight: 1000
 --- !u!114 &114943617686075454
 MonoBehaviour:
   m_ObjectHideFlags: 1
