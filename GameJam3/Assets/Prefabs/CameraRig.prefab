@@ -129,8 +129,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   yOffset: 0
   initialDelay: 5
-  target: {fileID: 0}
-  goalTarget: {fileID: 0}
   originDelay: 0
 --- !u!114 &114075052995030616
 MonoBehaviour:
