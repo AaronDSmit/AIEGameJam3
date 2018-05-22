@@ -11,10 +11,14 @@ public class RandomSpawner : MonoBehaviour
     [Tooltip("The size of the spawn area.")]
     [SerializeField]
     private Vector3 size;
-    [Tooltip("How long you want spawning to go for.")]
+    [SerializeField]
+    private GameObject spawnObject;
+    [Tooltip("How long the spawn goes for.")]
+    [SerializeField]
+    private float spawnTime = 1.0f;
     #endregion
 
-
+    private float timer;
 
     // Use this for initialization
     void Start ()
@@ -23,12 +27,20 @@ public class RandomSpawner : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
+	void Update ()
+    {
+        timer += Time.deltaTime;
+
+        if(timer < spawnTime)
+        {
+            Spawn();
+        }
 	}
 
     void Spawn()
     {
         Vector3 pos = centre + new Vector3(Random.Range(-size.x / 2, size.x / 2), Random.Range(-size.y / 2, size.y / 2), Random.Range(-size.y / 2, size.y / 2));
+
+        Instantiate(spawnObject, pos, Quaternion.identity);
     }
 }
