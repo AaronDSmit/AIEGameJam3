@@ -109,13 +109,12 @@ public class JetPack : MonoBehaviour
             flying = burnTime > 0;
         }
 
+
         if (!isFalling)
         {
             //If we haven't reached our destination
             if (transform.position.y < destination)
-            {
-                belowTarget = true;
-            }
+
 
             if (transform.position.y > range)
             {

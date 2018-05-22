@@ -282,6 +282,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 114717617333387198, guid: fa6011c292596494eaf0b74d6a82208f,
+        type: 2}
+      propertyPath: timeToMaxSpeed
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fa6011c292596494eaf0b74d6a82208f, type: 2}
   m_IsPrefabParent: 0
@@ -357,6 +362,21 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114556490128552584, guid: 24b5ab29b4499994bb568bb32f39d79a,
+        type: 2}
+      propertyPath: Jetpack.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114556490128552584, guid: 24b5ab29b4499994bb568bb32f39d79a,
+        type: 2}
+      propertyPath: gemType.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114556490128552584, guid: 24b5ab29b4499994bb568bb32f39d79a,
+        type: 2}
+      propertyPath: Thruster.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 114556490128552584, guid: 24b5ab29b4499994bb568bb32f39d79a,
         type: 2}
       propertyPath: Customers.Array.size
@@ -791,6 +811,41 @@ Prefab:
         type: 2}
       propertyPath: m_AnchoredPosition.y
       value: -110.485
+      objectReference: {fileID: 0}
+    - target: {fileID: 114556490128552584, guid: 24b5ab29b4499994bb568bb32f39d79a,
+        type: 2}
+      propertyPath: Customers.Array.data[0].burnTime
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114556490128552584, guid: 24b5ab29b4499994bb568bb32f39d79a,
+        type: 2}
+      propertyPath: gemType.Array.data[2].burnTime
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 114556490128552584, guid: 24b5ab29b4499994bb568bb32f39d79a,
+        type: 2}
+      propertyPath: gemType.Array.data[2].turnSpeed
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114556490128552584, guid: 24b5ab29b4499994bb568bb32f39d79a,
+        type: 2}
+      propertyPath: gemType.Array.data[0].turnSpeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114556490128552584, guid: 24b5ab29b4499994bb568bb32f39d79a,
+        type: 2}
+      propertyPath: gemType.Array.data[0].burnTime
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114556490128552584, guid: 24b5ab29b4499994bb568bb32f39d79a,
+        type: 2}
+      propertyPath: gemType.Array.data[1].burnTime
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114556490128552584, guid: 24b5ab29b4499994bb568bb32f39d79a,
+        type: 2}
+      propertyPath: gemType.Array.data[1].turnSpeed
+      value: -5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24b5ab29b4499994bb568bb32f39d79a, type: 2}
