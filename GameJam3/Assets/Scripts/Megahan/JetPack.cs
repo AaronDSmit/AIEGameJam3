@@ -33,6 +33,7 @@ public class JetPack : MonoBehaviour
     private bool aboveTarget;
     private JetpackCamera Jcamera;
     private bool flying = false;
+    private bool isFalling = false;
     #endregion
 
     #region Getters and Setters
@@ -75,16 +76,33 @@ public class JetPack : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                if (Input.mousePosition.x < Screen.width / 2)
+                if(!isFalling)
                 {
-                    // move left
-                    transform.Rotate(Vector3.forward, roationDegree);
+                    if (Input.mousePosition.x < Screen.width / 2)
+                    {
+                        // move left
+                        transform.Rotate(Vector3.forward, roationDegree);
+                    }
+                    else
+                    {
+                        // move right
+                        transform.Rotate(Vector3.forward, -roationDegree);
+                    }
                 }
                 else
                 {
-                    // move right
-                    transform.Rotate(Vector3.forward, -roationDegree);
+                    if (Input.mousePosition.x < Screen.width / 2)
+                    {
+                        // move left
+                        transform.Rotate(Vector3.forward, -roationDegree);
+                    }
+                    else
+                    {
+                        // move right
+                        transform.Rotate(Vector3.forward, roationDegree);
+                    }
                 }
+                
             }
 
             transform.position += transform.up * vSpeed * Time.deltaTime;
@@ -110,7 +128,7 @@ public class JetPack : MonoBehaviour
             yield return null;
         }
 
-        //float totalRange = range + destination;
+        float totalRange = range + destination;
 
         //if (targetHeight > destination && targetHeight < totalRange)
         //{
@@ -119,61 +137,51 @@ public class JetPack : MonoBehaviour
         //}
 
 
-        ////If we haven't reached our destination
-        //if (targetHeight < destination)
-        //{
-        //    belowTarget = true;
-        //}
+        if(!isFalling)
+        {
+            //If we haven't reached our destination
+            if (targetHeight < destination)
+            {
+                belowTarget = true;
+            }
 
-        //if (targetHeight > totalRange)
-        //{
-        //    aboveTarget = true;
-        //}
+            if (targetHeight > totalRange)
+            {
+                aboveTarget = true;
+            }
+        }
 
+        if (belowTarget)
+        {
+            //Explosion particle
+            if (packParticle != null)
+            {
+                //Play particle
+                packParticle.Play();
 
-        //if (belowTarget)
-        //{
-        //    //Explosion particle
-        //    if (packParticle != null)
-        //    {
-        //        //Play particle
-        //        packParticle.Play();
+                //Wait
+                yield return new WaitForSeconds(packParticle.main.duration);
 
-        //        //Wait
-        //        yield return new WaitForSeconds(packParticle.main.duration);
+                //Stop particle
+                packParticle.Stop();
+        }
 
-        //        //Stop particle
-        //        packParticle.Stop();
-        //    }
+          StartCoroutine(Fall());
+      }
 
-        //    StartCoroutine(Fall());
-        //}
-
-        //if (aboveTarget)
-        //{
-        //    //Explosion particle
-        //    if (explosionParticle != null)
-        //    {
-        //        //Play particle
-        //        explosionParticle.Play();
-
-        //        //Wait
-        //        yield return new WaitForSeconds(explosionParticle.main.duration);
-
-        //        //Stop particle
-        //        explosionParticle.Stop();
-        //    }
-
-        //    StartCoroutine(Fall());
-        //}
+        if (aboveTarget)
+        {                                                            
+            StartCoroutine(Fall());
+        }
     }
 
     IEnumerator Fall()
     {
+        isFalling = true;
         //Fall
         float c = 0;
         currentLerpTime = 0.0f;
-
+        
         while (c < 1.0f)
         {
             //Increment timer once per frame
@@ -184,7 +192,7 @@ public class JetPack : MonoBehaviour
             c = 1.0f - Mathf.Cos(c * Mathf.PI * 0.5f);
 
             //Move up
-            transform.position = new Vector3(transform.position.x, Mathf.Lerp(targetHeight, 0, c), transform.position.z);
+            vSpeed = -Mathf.Lerp(0, 10, c);
 
             yield return null;
         }
@@ -204,5 +212,21 @@ public class JetPack : MonoBehaviour
         Jcamera.HasTakenOff = true;
         flying = true;
         StartCoroutine(Move());
+    }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(isFalling)
+        {
+            if (other.tag == "Goal")
+            {
+                //Call user interface
+                //Particles
+
+                //Stop moving
+                aboveTarget = false;
+            }
+        }
     }
 }
