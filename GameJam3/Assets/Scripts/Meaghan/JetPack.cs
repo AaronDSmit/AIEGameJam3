@@ -36,7 +36,7 @@ public class JetPack : MonoBehaviour
     private bool isFalling = false;
     private float turningAngle;
     private bool hasBurntFuel = false;
-    private float fuelPercent;
+    private float fuelPercent = 1.0f;
     private float totalBurnTime;
     #endregion
 
@@ -120,7 +120,10 @@ public class JetPack : MonoBehaviour
 
             burnTime -= Time.deltaTime;
 
-            fuelPercent = burnTime / totalBurnTime;
+            if (burnTime / totalBurnTime < 0.95f)
+            {
+                fuelPercent = (burnTime / totalBurnTime) + 0.1f;
+            }
 
             flying = burnTime > 0;
         }
