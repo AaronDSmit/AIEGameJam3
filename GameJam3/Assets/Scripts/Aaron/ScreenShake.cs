@@ -68,6 +68,42 @@ public class ScreenShake : MonoBehaviour
         }
     }
 
+    public void ShakeEaseOut(float duration)
+    {
+        if (canShake && !shaking)
+        {
+            StartCoroutine(ShakeCamEaseOut(duration));
+            shaking = true;
+        }
+    }
+
+    private IEnumerator ShakeCamEaseOut(float duration)
+    {
+        float t = 0;
+        float currentLerpTime = 0.0f;
+        float m_shakeAmount = 0;
+
+        while (t < 1.0f)
+        {
+            //Increment timer once per frame
+            currentLerpTime += Time.deltaTime;
+
+            //Begin to lerp
+            t = currentLerpTime / duration;
+            t = Mathf.Sin(t * Mathf.PI * 0.5f);
+
+            m_shakeAmount = Mathf.Lerp(shakeAmount, 0, t);
+
+            transform.localPosition = Vector3.Lerp(transform.localPosition, originalPos + Random.insideUnitSphere * m_shakeAmount, Time.deltaTime * 3);
+
+            yield return null;
+        }
+
+        shaking = false;
+        transform.localPosition = originalPos;
+    }
+
+
     private IEnumerator ShakeCam()
     {
         while (shakeTime > 0)
