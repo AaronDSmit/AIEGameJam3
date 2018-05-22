@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Rating { TERRIBLE, POOR, AVERAGE, GOOD, GREAT }
+public enum StarRating { ZERO, ONE, TWO, THREE }
 
 public class DescriptionLibrary : MonoBehaviour {
 	[SerializeField] private List<Description> descriptions;
 
-	public string GetDescriptionByRating(Rating rating) {
+	public string GetDescriptionByRating(StarRating rating) {
+        if (descriptions.Count <= 0)
+            return string.Empty;
+
 		List<Description> descriptionRating = descriptions.FindAll(d => d.Rating == rating);
 
-		if (descriptionRating == null)
+		if (descriptionRating.Count <= 0)
 			return string.Empty;
 
 		return descriptionRating[Random.Range(0, descriptionRating.Count)].DescriptionText;

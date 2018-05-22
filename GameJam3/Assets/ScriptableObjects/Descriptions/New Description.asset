@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6f89a38c910dc64fb00b8a91e61dde0, type: 3}
-  m_Name: Test
+  m_Name: New Description
   m_EditorClassIdentifier: 
-  rating: 4
-  descriptionText: You're clearly a titan of jetpack sales.
+  rating: 1
+  descriptionText: ctfgkvhip

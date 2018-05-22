@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6446e86ee3c15444a926d4870205785, type: 3}
+  m_Name: Star Activation
+  m_EditorClassIdentifier: 
+  scaleTime: 0.5
+  scaleCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  borderFadeTime: 0.15
+  increaseScale: 0.25
+  increaseScaleTime: 0.2
+  increaseCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0.0025901794
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.2664647
+      value: 0.6954046
+      inSlope: 3.014207
+      outSlope: 3.014207
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.4974093
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.7352989
+      value: 0.70020366
+      inSlope: -3.0061603
+      outSlope: -3.0061603
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1.0033373
+      value: -0.0138529185
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  glowFadeTime: 0.2
+  glowRotationSpeed: 1
+  minPulseTime: 0.2
+  maxPulseTime: 0.3

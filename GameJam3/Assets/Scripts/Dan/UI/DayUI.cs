@@ -19,7 +19,7 @@ public class DayUI : MonoBehaviour {
 		dayNumber.text = string.Format("Day {0}", day.ToString("D2"));
 		description.text = newDescription;
 		goldAmount.text = string.Format("{0}G", gold);
-		results.text = string.Format("{0} alive {1}{2} dead", alive, Environment.NewLine, dead);
+		results.text = string.Format("{0} alive {1} dead", alive, dead);
 
 		dayAlert.SetActive(false);
 	}
