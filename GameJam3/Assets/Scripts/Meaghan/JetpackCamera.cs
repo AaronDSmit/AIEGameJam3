@@ -11,12 +11,6 @@ public class JetpackCamera : MonoBehaviour
     [Tooltip("The initial delay for the camera.")]
     [SerializeField]
     private float initialDelay = 2.0f;
-    [Tooltip("The target to follow.")]
-    [SerializeField]
-    private Transform target;
-    [Tooltip("The target to stop at.")]
-    [SerializeField]
-    private Transform goalTarget;
     [Tooltip("The delay for the camera going back to it's original position.")]
     [SerializeField]
     private float originDelay = 2.0f;
@@ -31,6 +25,7 @@ public class JetpackCamera : MonoBehaviour
     private Vector3 startPos;
     private bool hasTakenOff = false;
     private bool hasLanded = false;
+    private Transform target;
     #endregion
 
     #region Getters and Setters
@@ -48,6 +43,12 @@ public class JetpackCamera : MonoBehaviour
         set { hasLanded = value; }
     }
     #endregion
+
+
+    private void Awake()
+    {
+        target = FindObjectOfType<JetPack>().transform;
+    }
 
     private void Start()
     {

@@ -80,7 +80,7 @@ public class DropDownMenu : MonoBehaviour
         {
             for (int i = 0; i < buttons.Length; i++)
             {
-                buttons[i].interactable = pulledDown;
+                // buttons[i].interactable = pulledDown;
             }
         }
     }
@@ -121,7 +121,7 @@ public class DropDownMenu : MonoBehaviour
         {
             for (int i = 0; i < buttons.Length; i++)
             {
-                buttons[i].interactable = pulledDown;
+                // buttons[i].interactable = pulledDown;
             }
         }
     }
