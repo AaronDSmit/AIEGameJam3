@@ -27,53 +27,50 @@ public class JetpackCamera : MonoBehaviour
     private float currY;
 
     private bool hasTakenOff = false;
-
-    public bool HasTakenOff
-    {
-        get
-        {
-            return hasTakenOff;
-        }
-
-        set
-        {
-            hasTakenOff = value;
-        }
-    }
     #endregion
 
+    #region Getters and Setters
+    public bool HasTakenOff
+    {
+        get { return hasTakenOff; }
+
+        set { hasTakenOff = value; }
+    }
+    #endregion
 
     // Update is called once per frame
     void LateUpdate()
     {
-        if (hasTakenOff && t < 1)
+        if(transform.position.y >= goalTarget.position.y)
         {
-            //Increment timer once per frame
-            currentLerpTime += Time.deltaTime;
+            isAtGoal = true;
+        }
 
-            //Begin to lerp
-            t = currentLerpTime / initialDelay;
-            // t = 1.0f - Mathf.Cos(t * Mathf.PI * 0.5f); // AB Testing
 
-            transform.position = new Vector3(transform.position.x, Mathf.Lerp(0, (target.position.y + yOffset), t), transform.position.z);
+        if (!isAtGoal)
+        {
+            if (hasTakenOff && t < 1)
+            {
+                //Increment timer once per frame
+                currentLerpTime += Time.deltaTime;
+
+                //Begin to lerp
+                t = currentLerpTime / initialDelay;
+                // t = 1.0f - Mathf.Cos(t * Mathf.PI * 0.5f); // AB Testing
+
+                //Lerp delay for takeoff
+                transform.position = new Vector3(transform.position.x, Mathf.Lerp(0, (target.position.y + yOffset), t), transform.position.z);
+            }
+            else
+            {
+                //Follow player
+                transform.position = new Vector3(transform.position.x, target.position.y + yOffset, transform.position.z);
+            }
         }
         else
         {
-            transform.position = new Vector3(transform.position.x, target.position.y + yOffset, transform.position.z);
+            //Stop at the y pos of the goal target
+            transform.position = new Vector3(transform.position.x, goalTarget.position.y, transform.position.z);
         }
-        //if (!isAtGoal)
-        //{
-        //    transform.position = new Vector3(transform.position.x, Mathf.Lerp(0, (target.position.y + yOffset), t), transform.position.z);
-        //}
-        //else
-        //{
-        //    if(getCurrentY)
-        //    {
-        //        currY = transform.position.y;
-        //        getCurrentY = false;
-        //    }
-
-        //    transform.position = new Vector3(transform.position.x, Mathf.Lerp(currY, goalTarget.position.y, t), transform.position.z);
-        //}
     }
 }
