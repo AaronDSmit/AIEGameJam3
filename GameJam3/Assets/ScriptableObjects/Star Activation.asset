@@ -30,8 +30,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
-  borderFadeTime: 0.15
-  increaseScale: 0.25
+  borderFadeTime: 0.2
+  increaseScale: 0.4
   increaseScaleTime: 0.2
   increaseCurve:
     serializedVersion: 2
