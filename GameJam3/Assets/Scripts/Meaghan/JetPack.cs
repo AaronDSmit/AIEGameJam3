@@ -13,6 +13,9 @@ public class JetPack : MonoBehaviour
     private float maxSpeed;
 
     [SerializeField]
+    private float disableThrustDelay;
+
+    [SerializeField]
     private float minX;
 
     [SerializeField]
@@ -168,11 +171,10 @@ public class JetPack : MonoBehaviour
 
             transform.position += transform.up * vSpeed * Time.deltaTime;
 
-            burnTime -= Time.deltaTime;
-
-            if (burnTime / totalBurnTime < 0.95f)
+            if (transform.position.y > 2.0f)
             {
-                fuelPercent = (burnTime / totalBurnTime) + 0.05f;
+                burnTime -= Time.deltaTime;
+                fuelPercent = (burnTime / totalBurnTime);
             }
 
             flying = fuelPercent > 0.0f;
@@ -182,7 +184,7 @@ public class JetPack : MonoBehaviour
                 UI.FadeOutIn();
             }
         }
-        else
+        else if (!shop.Flying)
         {
             // bobbing motion in shop
 
@@ -212,7 +214,7 @@ public class JetPack : MonoBehaviour
         //}
     }
 
-    IEnumerator Move()
+    IEnumerator Accelerate()
     {
         float t = 0;
         currentLerpTime = 0.0f;
@@ -267,41 +269,27 @@ public class JetPack : MonoBehaviour
 
         fuelPercent = 1.0f;
         totalBurnTime = burnTime;
-        StartCoroutine(Move());
+        StartCoroutine(Accelerate());
     }
 
-
-    private void OnTriggerEnter(Collider other)
+    public void HitGoal()
     {
-        if (isFalling)
+        if (!isFalling)
         {
-            if (other.tag == "Goal")
-            {
-                //Call user interface
-                //Particles
-
-                //Stop moving
-                aboveTarget = false;
-                shop.ArrivedSafely();
-                Jcamera.HasLanded = true;
-            }
+            Invoke("DelayedFalling", disableThrustDelay);
         }
-
-        if (other.tag == "Object")
+        else
         {
-            if (!hasBurntFuel)
-            {
-                burnTime -= fuelReduction;
-                hasBurntFuel = true;
-            }
+            StopAllCoroutines();
+            flying = false;
+
+            UI.FadeOutIn();
+            shop.ArrivedSafely();
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void DelayedFalling()
     {
-        if (other.tag == "Object")
-        {
-            hasBurntFuel = false;
-        }
+        StartCoroutine(Fall());
     }
 }

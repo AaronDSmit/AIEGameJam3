@@ -10,6 +10,7 @@ TagManager:
   - FlyHUD
   - ScorchMark
   - FadeScreen
+  - DestinationUI
   layers:
   - Default
   - TransparentFX

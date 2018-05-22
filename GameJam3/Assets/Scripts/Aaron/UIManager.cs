@@ -20,6 +20,8 @@ public class UIManager : MonoBehaviour
     private DropDownMenu componentsSelection;
     private SlideInUI fireButton;
     private SlideInUI flyHUD;
+    private SlideInUI destinationUI;
+    private Text destinationText;
 
     private BarAnimation burnTimeBar;
     private BarAnimation turningPowerBar;
@@ -52,6 +54,10 @@ public class UIManager : MonoBehaviour
 
         flyHUD = GameObject.FindGameObjectWithTag("FlyHUD").GetComponent<SlideInUI>();
 
+        destinationUI = GameObject.FindGameObjectWithTag("DestinationUI").GetComponent<SlideInUI>();
+
+        destinationText = GameObject.FindGameObjectWithTag("DestinationUI").GetComponentInChildren<Text>();
+
         Transform ComponentSelection = GameObject.FindGameObjectWithTag("ComponentSelection").transform;
 
         currentStats = GameObject.FindGameObjectWithTag("CurrentStats").GetComponent<DropDownMenu>();
@@ -80,6 +86,12 @@ public class UIManager : MonoBehaviour
     public void ToggleFlyHUD()
     {
         flyHUD.TogglePullDown();
+    }
+
+    public void ToggleDestinationUI(float target)
+    {
+        destinationText.text = (int)target + "M";
+        destinationUI.TogglePullDown();
     }
 
     public void ToggleUI()

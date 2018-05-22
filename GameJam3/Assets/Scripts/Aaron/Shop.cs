@@ -17,6 +17,12 @@ public class Shop : MonoBehaviour
     private float largestTurnPower = 7.0f;
 
     [SerializeField]
+    private float maxDestinationHeight;
+
+    [SerializeField]
+    private float minDestinationHeight;
+
+    [SerializeField]
     private float launchDelay;
 
     [SerializeField]
@@ -31,6 +37,12 @@ public class Shop : MonoBehaviour
     [SerializeField]
     private Part[] gemType;
 
+    [SerializeField]
+    private GameObject destinationPrefab;
+
+    private GameObject destinationGO;
+
+    private float destination;
     private bool flying;
 
     private int currentCustomerIndex;
@@ -73,6 +85,22 @@ public class Shop : MonoBehaviour
     {
         currentCustomerIndex = Random.Range(0, Customers.Length);
         currentCustomer.SetCustomer(Customers[currentCustomerIndex].sprite);
+
+        destination = Random.Range(minDestinationHeight, maxDestinationHeight);
+
+        SpawnDestination();
+
+        UI.ToggleDestinationUI(destination);
+    }
+
+    private void SpawnDestination()
+    {
+        if (destinationGO != null)
+        {
+            Destroy(destinationGO);
+        }
+
+        destinationGO = Instantiate(destinationPrefab, new Vector3(0, destination, 0), Quaternion.identity);
     }
 
     private void Update()
@@ -102,6 +130,8 @@ public class Shop : MonoBehaviour
                 GenerateRandomCustomer();
             }
         }
+
+        get { return flying; }
     }
 
     private void ChangeSelectedComponent(int change)
