@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SlideInUI : MonoBehaviour
 {
@@ -13,7 +14,9 @@ public class SlideInUI : MonoBehaviour
     [SerializeField]
     private float animationTime;
 
-    RectTransform rect;
+    private RectTransform rect;
+
+    private Button[] buttons;
 
     private float startX;
 
@@ -31,6 +34,8 @@ public class SlideInUI : MonoBehaviour
         startX = rect.anchoredPosition.x;
 
         RectTransform[] rects = GetComponentsInChildren<RectTransform>();
+
+        buttons = GetComponentsInChildren<Button>();
     }
 
     public void TogglePullDown()
@@ -74,8 +79,15 @@ public class SlideInUI : MonoBehaviour
             yield return null;
         }
 
-
         pulledDown = !pulledDown;
+
+        if (buttons.Length > 0)
+        {
+            for (int i = 0; i < buttons.Length; i++)
+            {
+                buttons[i].interactable = pulledDown;
+            }
+        }
     }
 
     private IEnumerator AnimatePullUp(float from, float overshoot, float targetY)
@@ -110,5 +122,13 @@ public class SlideInUI : MonoBehaviour
 
 
         pulledDown = !pulledDown;
+
+        if (buttons.Length > 0)
+        {
+            for (int i = 0; i < buttons.Length; i++)
+            {
+                buttons[i].interactable = pulledDown;
+            }
+        }
     }
 }

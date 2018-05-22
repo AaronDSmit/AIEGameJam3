@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DropDownMenu : MonoBehaviour
 {
@@ -13,7 +14,9 @@ public class DropDownMenu : MonoBehaviour
     [SerializeField]
     private float animationTime;
 
-    RectTransform rect;
+    private RectTransform rect;
+
+    private Button[] buttons;
 
     private float startY;
 
@@ -26,6 +29,8 @@ public class DropDownMenu : MonoBehaviour
         startY = rect.anchoredPosition.y;
 
         RectTransform[] rects = GetComponentsInChildren<RectTransform>();
+
+        buttons = GetComponentsInChildren<Button>();
     }
 
     public void TogglePullDown()
@@ -70,6 +75,14 @@ public class DropDownMenu : MonoBehaviour
         }
 
         pulledDown = !pulledDown;
+
+        if (buttons.Length > 0)
+        {
+            for (int i = 0; i < buttons.Length; i++)
+            {
+                buttons[i].interactable = pulledDown;
+            }
+        }
     }
 
     private IEnumerator AnimatePullUp(float from, float overshoot, float targetY)
@@ -102,7 +115,14 @@ public class DropDownMenu : MonoBehaviour
             yield return null;
         }
 
-
         pulledDown = !pulledDown;
+
+        if (buttons.Length > 0)
+        {
+            for (int i = 0; i < buttons.Length; i++)
+            {
+                buttons[i].interactable = pulledDown;
+            }
+        }
     }
 }

@@ -184,9 +184,10 @@ GameObject:
   m_Component:
   - component: {fileID: 224432769056678834}
   - component: {fileID: 222375618065367806}
+  - component: {fileID: 114434334666007170}
   m_Layer: 5
   m_Name: _04 Fly HUD
-  m_TagString: Untagged
+  m_TagString: FlyHUD
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -786,6 +787,7 @@ GameObject:
   - component: {fileID: 224610732075141914}
   - component: {fileID: 222186532895171128}
   - component: {fileID: 114173108471530476}
+  - component: {fileID: 114936802322920870}
   m_Layer: 5
   m_Name: FuelValue
   m_TagString: Untagged
@@ -1797,7 +1799,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 114453313195443208}
   m_OnClick:
     m_PersistentCalls:
@@ -1933,6 +1935,20 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114434334666007170
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1217617875460510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5150987efaecad45b22425dfe396fab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetX: 30
+  overshootTargetX: 5
+  animationTime: 0.25
 --- !u!114 &114442745644465172
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2304,7 +2320,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 114388609246268986}
   m_OnClick:
     m_PersistentCalls:
@@ -2358,6 +2374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e821b79bcd19b5f4d97d679b7c4d9be7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  launchDelay: 1.5
   fuelTanks: []
   thruster: []
   body: []
@@ -2779,7 +2796,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 114448988019994066}
   m_OnClick:
     m_PersistentCalls:
@@ -3212,6 +3229,18 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 'This is how well you did, wow. you''re good. '
+--- !u!114 &114936802322920870
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1891141787373024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95ab03dd887bbd34eafd0267633d5503, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHeight: 1000
 --- !u!114 &114945657871474650
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3323,7 +3352,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 114751155625529906}
   m_OnClick:
     m_PersistentCalls:
@@ -4319,10 +4348,10 @@ RectTransform:
   m_Father: {fileID: 224169388218145966}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -187}
-  m_SizeDelta: {x: 0, y: 40}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: -25, y: -187}
+  m_SizeDelta: {x: 530, y: 40}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &224480824846114332
 RectTransform:
@@ -4398,7 +4427,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 10, y: 200}
+  m_SizeDelta: {x: 10, y: 500}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!224 &224616286932767366
 RectTransform:
