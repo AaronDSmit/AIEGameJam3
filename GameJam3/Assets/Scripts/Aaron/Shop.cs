@@ -110,7 +110,7 @@ public class Shop : MonoBehaviour
 
     public void ArrivedSafely()
     {
-
+        UI.FadeOutIn();
     }
 }
 
