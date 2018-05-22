@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FuelHUD : MonoBehaviour
 {
@@ -9,18 +10,22 @@ public class FuelHUD : MonoBehaviour
 
     private RectTransform fuelIndicator;
 
+    private Text heightText;
+
+    private JetPack jetpack;
+
     private void Awake()
     {
-        fuelIndicator = GetComponent<RectTransform>();
+        fuelIndicator = transform.GetChild(1).GetChild(0).GetComponent<RectTransform>();
+
+        heightText = GetComponentInChildren<Text>();
+
+        jetpack = FindObjectOfType<JetPack>();
     }
 
-    private void Start()
+    private void Update()
     {
-        UpdateFuel(1.0f);
-    }
-
-    public void UpdateFuel(float percent)
-    {
-        fuelIndicator.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, percent * maxHeight);
+        heightText.text = (int)jetpack.transform.position.y + "M";
+        fuelIndicator.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, jetpack.BurnTimePercent * maxHeight);
     }
 }

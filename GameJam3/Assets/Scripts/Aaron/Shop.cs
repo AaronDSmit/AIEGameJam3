@@ -99,7 +99,7 @@ public class Shop : MonoBehaviour
     {
         flying = true;
 
-        jetPack.BurnTime = 10.0f;
+        jetPack.BurnTime = 50.0f;
         jetPack.TurningAngle = 5.0f;
 
         UI.ToggleUI();

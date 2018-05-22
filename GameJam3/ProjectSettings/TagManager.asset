@@ -9,6 +9,7 @@ TagManager:
   - CurrentStats
   - FlyHUD
   - ScorchMark
+  - FadeScreen
   layers:
   - Default
   - TransparentFX

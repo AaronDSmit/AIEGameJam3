@@ -11,7 +11,6 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private float componentsSelectionDelay;
 
-    [SerializeField]
     private Image fadePlane = null;
 
     private DropDownMenu currentStats;
@@ -27,6 +26,8 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
+        fadePlane = GameObject.FindGameObjectWithTag("FadeScreen").GetComponent<Image>();
+
         fadePlane.gameObject.SetActive(true);
 
         selectedCatagories = new bool[3];

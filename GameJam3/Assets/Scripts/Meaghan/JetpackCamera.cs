@@ -87,5 +87,4 @@ public class JetpackCamera : MonoBehaviour
     {
         transform.position = startPos.position;
     }
-
 }

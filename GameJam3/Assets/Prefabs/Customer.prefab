@@ -257,7 +257,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1720999338945686}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4779347720538254}
@@ -306,11 +306,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeToMaxSpeed: 20
-  packParticle: {fileID: 0}
-  launchParticle: {fileID: 0}
-  explosionParticle: {fileID: 0}
+  maxSpeed: 10
+  minSpeed: 1
   range: 0
   fuelReduction: 0
+  minHeightControl: 9.25
 --- !u!198 &198088449598848714
 ParticleSystem:
   m_ObjectHideFlags: 1

@@ -8,18 +8,19 @@ public class JetPack : MonoBehaviour
     [Tooltip("Time it takes to lerp to destination.")]
     [SerializeField]
     private float timeToMaxSpeed;
+
     [SerializeField]
-    private ParticleSystem packParticle;
-    [SerializeField]
-    private ParticleSystem launchParticle;
-    [SerializeField]
-    private ParticleSystem explosionParticle;
+    private float maxSpeed;
+
     [Tooltip("The vitcory range.")]
     [SerializeField]
     private float range;
     [Tooltip("The amount of fuel that gets reduced when you collide with an object.")]
     [SerializeField]
     private float fuelReduction;
+
+    [SerializeField]
+    private float minHeightControl;
     #endregion
 
     #region Variables
@@ -35,6 +36,8 @@ public class JetPack : MonoBehaviour
     private bool isFalling = false;
     private float turningAngle;
     private bool hasBurntFuel = false;
+    private float fuelPercent;
+    private float totalBurnTime;
     #endregion
 
     #region Getters and Setters
@@ -49,6 +52,12 @@ public class JetPack : MonoBehaviour
         get { return burnTime; }
         set { burnTime = value; }
     }
+
+    public float BurnTimePercent
+    {
+        get { return fuelPercent; }
+    }
+
 
     public float Destination
     {
@@ -71,11 +80,12 @@ public class JetPack : MonoBehaviour
 
         Jcamera = FindObjectOfType<JetpackCamera>();
     }
+
     private void Update()
     {
         if (flying)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (transform.position.y > minHeightControl && Input.GetMouseButtonDown(0))
             {
                 if (!isFalling)
                 {
@@ -110,6 +120,8 @@ public class JetPack : MonoBehaviour
 
             burnTime -= Time.deltaTime;
 
+            fuelPercent = burnTime / totalBurnTime;
+
             flying = burnTime > 0;
         }
         else
@@ -117,31 +129,28 @@ public class JetPack : MonoBehaviour
             transform.position = new Vector3(transform.position.x, Mathf.Sin(Time.time) * 0.2f, transform.position.z);
         }
 
-        if (!isFalling)
-        {
-            //If we haven't reached our destination
-            if (transform.position.y < destination)
+        //if (!isFalling)
+        //{
+        //    //If we haven't reached our destination
+        //    if (transform.position.y < destination)
 
 
-                if (transform.position.y > range)
-                {
-                    aboveTarget = true;
-                }
-        }
+        //        if (transform.position.y > range)
+        //        {
+        //            aboveTarget = true;
+        //        }
+        //}
 
-        if (belowTarget)
-        {
-            ParticleDuration(packParticle);
+        //if (belowTarget)
+        //{
+        //    StartCoroutine(Fall());
+        //}
 
-            StartCoroutine(Fall());
-        }
-
-        if (aboveTarget)
-        {
-            StartCoroutine(Fall());
-        }
+        //if (aboveTarget)
+        //{
+        //    StartCoroutine(Fall());
+        //}
     }
-
 
     IEnumerator Move()
     {
@@ -157,7 +166,7 @@ public class JetPack : MonoBehaviour
             t = currentLerpTime / timeToMaxSpeed;
             t = 1.0f - Mathf.Cos(t * Mathf.PI * 0.5f);
 
-            vSpeed = Mathf.Lerp(0, 10, t);
+            vSpeed = Mathf.Lerp(0, maxSpeed, t);
 
             yield return null;
         }
@@ -189,32 +198,13 @@ public class JetPack : MonoBehaviour
         }
     }
 
-    IEnumerator ParticleDuration(ParticleSystem particle)
-    {
-        //Explosion particle
-        if (particle != null)
-        {
-            //Play particle
-            particle.Play();
-
-            //Wait
-            yield return new WaitForSeconds(packParticle.main.duration);
-
-            //Stop particle
-            particle.Stop();
-        }
-    }
-
     public void TakeOff()
     {
-        if (launchParticle != null)
-        {
-            launchParticle.Play();
-        }
-
         //Launch
         Jcamera.HasTakenOff = true;
         flying = true;
+
+        totalBurnTime = burnTime;
         StartCoroutine(Move());
     }
 
@@ -235,9 +225,9 @@ public class JetPack : MonoBehaviour
             }
         }
 
-        if(other.tag == "Object")
+        if (other.tag == "Object")
         {
-            if(!hasBurntFuel)
+            if (!hasBurntFuel)
             {
                 burnTime -= fuelReduction;
                 hasBurntFuel = true;
@@ -247,7 +237,7 @@ public class JetPack : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.tag == "Object")
+        if (other.tag == "Object")
         {
             hasBurntFuel = false;
         }
