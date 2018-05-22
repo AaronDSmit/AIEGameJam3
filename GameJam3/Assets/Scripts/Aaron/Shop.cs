@@ -7,7 +7,7 @@ public class Shop : MonoBehaviour
     private CustomerGenerator customerGen;
     private UIManager UI;
 
-    private JetPack jetPack;
+    private SecondJetpack jetPack;
 
     [SerializeField]
     private float launchDelay;
@@ -26,7 +26,7 @@ public class Shop : MonoBehaviour
 
     private void Awake()
     {
-        jetPack = FindObjectOfType<JetPack>();
+        jetPack = FindObjectOfType<SecondJetpack>();
         customerGen = GetComponent<CustomerGenerator>();
 
         UI = GetComponent<UIManager>();
