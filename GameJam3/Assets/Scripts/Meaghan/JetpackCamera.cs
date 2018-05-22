@@ -19,7 +19,7 @@ public class JetpackCamera : MonoBehaviour
     private Transform goalTarget;
     [Tooltip("The delay for the camera going back to it's original position.")]
     [SerializeField]
-    private float originDelay;
+    private float originDelay = 2.0f;
     #endregion
 
     #region Variables
