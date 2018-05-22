@@ -174,6 +174,11 @@ public class UIManager : MonoBehaviour
         StartCoroutine(FadeYoYo());
     }
 
+    public void DisableLaunchButton()
+    {
+        fireButton.GetComponent<Button>().interactable = false;
+    }
+
     private IEnumerator FadeYoYo()
     {
         StartCoroutine(FadeImage(0, 1, 1.0f));

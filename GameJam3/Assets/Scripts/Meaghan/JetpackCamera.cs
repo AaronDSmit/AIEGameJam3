@@ -28,7 +28,7 @@ public class JetpackCamera : MonoBehaviour
     private bool isAtGoal;
     private bool getCurrentY = true;
     private float currY;
-    private Transform startPos;
+    private Vector3 startPos;
     private bool hasTakenOff = false;
     private bool hasLanded = false;
     #endregion
@@ -51,7 +51,7 @@ public class JetpackCamera : MonoBehaviour
 
     private void Start()
     {
-        startPos = transform;
+        startPos = transform.position;
     }
 
     // Update is called once per frame
@@ -85,7 +85,7 @@ public class JetpackCamera : MonoBehaviour
 
     public void ResetCamera()
     {
-        transform.position = startPos.position;
+        transform.position = startPos;
         t = 0;
         hasTakenOff = false;
         hasLanded = false;

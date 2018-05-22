@@ -57,7 +57,7 @@ public class ScreenShake : MonoBehaviour
 
     private void OnEnable()
     {
-        originalPos = transform.localPosition;
+        originalPos = transform.GetChild(0).localPosition;
         shakeTime = shakeDuration;
     }
 
@@ -92,7 +92,7 @@ public class ScreenShake : MonoBehaviour
 
         while (t < 1.0f)
         {
-            if(stopShake)
+            if (stopShake)
             {
                 stopShake = false;
                 break;
@@ -106,13 +106,13 @@ public class ScreenShake : MonoBehaviour
 
             m_shakeAmount = Mathf.Lerp(shakeAmount, 0, t);
 
-            transform.localPosition = Vector3.Lerp(transform.localPosition, originalPos + Random.insideUnitSphere * m_shakeAmount, Time.deltaTime * 3);
+            transform.GetChild(0).localPosition = Vector3.Lerp(transform.GetChild(0).localPosition, originalPos + Random.insideUnitSphere * m_shakeAmount, Time.deltaTime * 3);
 
             yield return null;
         }
 
         shaking = false;
-        transform.localPosition = originalPos;
+        transform.GetChild(0).localPosition = originalPos;
     }
 
 
@@ -127,13 +127,13 @@ public class ScreenShake : MonoBehaviour
             }
 
             //transform.localPosition = originalPos + Random.insideUnitSphere * shakeAmount;
-            transform.localPosition = Vector3.Lerp(transform.localPosition, originalPos + Random.insideUnitSphere * shakeAmount, Time.deltaTime * 3);
+            transform.GetChild(0).localPosition = Vector3.Lerp(transform.GetChild(0).localPosition, originalPos + Random.insideUnitSphere * shakeAmount, Time.deltaTime * 3);
             shakeTime -= Time.deltaTime * decreaseFactor;
             yield return null;
         }
 
         shaking = false;
         shakeTime = shakeDuration;
-        transform.localPosition = originalPos;
+        transform.GetChild(0).localPosition = originalPos;
     }
 }

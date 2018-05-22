@@ -191,6 +191,8 @@ public class Shop : MonoBehaviour
 
     public void Launch()
     {
+        UI.DisableLaunchButton();
+
         flying = true;
 
         jetPack.BurnTime = (currentBurnTime / maxBurnTime) * longestBurnTime;
