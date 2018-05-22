@@ -11,9 +11,6 @@ public class StarActivation : ScriptableObject {
     [SerializeField] private float increaseScaleTime;
     [SerializeField] private AnimationCurve increaseCurve;
     [SerializeField] private float glowFadeTime;
-    [SerializeField] private float glowRotationSpeed;
-    [SerializeField] private float minPulseTime;
-    [SerializeField] private float maxPulseTime;
 
     public float ScaleTime { get { return scaleTime; } }
     public AnimationCurve ScaleCurve { get { return scaleCurve; } }
@@ -22,8 +19,5 @@ public class StarActivation : ScriptableObject {
     public float IncreaseScaleTime { get { return increaseScaleTime; } }
     public AnimationCurve IncreaseCurve { get { return increaseCurve; } }
     public float GlowFadeTime { get { return glowFadeTime; } }
-    public float GlowRotationSpeed { get { return glowRotationSpeed; } }
-    public float MinPulseTime { get { return minPulseTime; } }
-    public float MaxPulseTime { get { return maxPulseTime; } }
 
 }
