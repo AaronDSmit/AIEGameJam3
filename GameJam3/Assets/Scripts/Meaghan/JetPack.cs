@@ -17,6 +17,9 @@ public class JetPack : MonoBehaviour
     [Tooltip("The vitcory range.")]
     [SerializeField]
     private float range;
+    [Tooltip("The amount of fuel that gets reduced when you collide with an object.")]
+    [SerializeField]
+    private float fuelReduction;
     #endregion
 
     #region Variables
@@ -31,6 +34,7 @@ public class JetPack : MonoBehaviour
     private bool flying = false;
     private bool isFalling = false;
     private float turningAngle;
+    private bool hasBurntFuel = false;
     #endregion
 
     #region Getters and Setters
@@ -226,6 +230,23 @@ public class JetPack : MonoBehaviour
                 shop.ArrivedSafely();
                 Jcamera.HasLanded = true;
             }
+        }
+
+        if(other.tag == "Object")
+        {
+            if(!hasBurntFuel)
+            {
+                burnTime -= fuelReduction;
+                hasBurntFuel = true;
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.tag == "Object")
+        {
+            hasBurntFuel = false;
         }
     }
 }
