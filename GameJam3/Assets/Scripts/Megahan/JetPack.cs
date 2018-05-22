@@ -107,13 +107,35 @@ public class JetPack : MonoBehaviour
             burnTime -= Time.deltaTime;
 
             flying = burnTime > 0;
+        }
 
-            if(!flying)
+        if (!isFalling)
+        {
+            //If we haven't reached our destination
+            if (transform.position.y < destination)
             {
+                belowTarget = true;
+            }
 
+            if (transform.position.y > range)
+            {
+                aboveTarget = true;
             }
         }
+
+        if (belowTarget)
+        {
+            ParticleDuration(packParticle);
+
+            StartCoroutine(Fall());
+        }
+
+        if (aboveTarget)
+        {
+            StartCoroutine(Fall());
+        }
     }
+
 
     IEnumerator Move()
     {
@@ -135,50 +157,6 @@ public class JetPack : MonoBehaviour
         }
 
         float totalRange = range + destination;
-
-        //if (targetHeight > destination && targetHeight < totalRange)
-        //{
-        //    //Arrived safely
-        //    shop.ArrivedSafely();
-        //}
-
-
-        if (!isFalling)
-        {
-            ////If we haven't reached our destination
-            //if (targetHeight < destination)
-            //{
-            //    belowTarget = true;
-            //}
-
-            //if (targetHeight > totalRange)
-            //{
-            //    aboveTarget = true;
-            //}
-        }
-
-        if (belowTarget)
-        {
-            //Explosion particle
-            if (packParticle != null)
-            {
-                //Play particle
-                packParticle.Play();
-
-                //Wait
-                yield return new WaitForSeconds(packParticle.main.duration);
-
-                //Stop particle
-                packParticle.Stop();
-            }
-
-            StartCoroutine(Fall());
-        }
-
-        if (aboveTarget)
-        {
-            StartCoroutine(Fall());
-        }
     }
 
     IEnumerator Fall()
@@ -202,6 +180,22 @@ public class JetPack : MonoBehaviour
             vSpeed = -Mathf.Lerp(0, 10, c);
 
             yield return null;
+        }
+    }
+
+    IEnumerator ParticleDuration(ParticleSystem particle)
+    {
+        //Explosion particle
+        if (particle != null)
+        {
+            //Play particle
+            particle.Play();
+
+            //Wait
+            yield return new WaitForSeconds(packParticle.main.duration);
+
+            //Stop particle
+            particle.Stop();
         }
     }
 
@@ -230,6 +224,7 @@ public class JetPack : MonoBehaviour
 
                 //Stop moving
                 aboveTarget = false;
+                shop.ArrivedSafely();
             }
         }
     }
