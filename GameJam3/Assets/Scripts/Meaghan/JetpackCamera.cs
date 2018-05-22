@@ -69,7 +69,7 @@ public class JetpackCamera : MonoBehaviour
                 t = currentLerpTime / initialDelay;
                 t = 1.0f - Mathf.Cos(t * Mathf.PI * 0.5f); // AB Testing
 
-                transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, target.position.y, transform.position.z), t);
+                transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, target.position.y + yOffset, transform.position.z), t);
 
                 ////Lerp delay for takeoff
                 //transform.position = new Vector3(transform.position.x, Mathf.Lerp(0, (target.position.y + yOffset), t), transform.position.z);

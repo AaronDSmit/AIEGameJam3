@@ -123,6 +123,11 @@ public class JetPack : MonoBehaviour
         flying = false;
     }
 
+    public void ReduceBurnTime(float percent)
+    {
+        burnTime -= (burnTime * percent);
+    }
+
     private void Update()
     {
         if (flying)
