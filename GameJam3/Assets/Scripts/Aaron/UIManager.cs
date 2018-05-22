@@ -105,8 +105,8 @@ public class UIManager : MonoBehaviour
     public void ToggleDestinationUI(float target)
     {
         destinationText.text = (int)target + "M";
-        
-        if(!destinationUI.PulledDown)
+
+        if (!destinationUI.PulledDown)
         {
             destinationUI.TogglePullDown();
         }

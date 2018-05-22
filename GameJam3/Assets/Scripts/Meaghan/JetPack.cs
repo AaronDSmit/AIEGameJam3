@@ -90,7 +90,6 @@ public class JetPack : MonoBehaviour
     }
     #endregion
 
-
     private void Awake()
     {
         //Get the shop
@@ -158,20 +157,6 @@ public class JetPack : MonoBehaviour
                         transform.Rotate(Vector3.forward, -turningAngle);
                     }
                 }
-                else
-                {
-                    if (Input.mousePosition.x < Screen.width / 2)
-                    {
-                        // move left
-                        transform.Rotate(Vector3.forward, -turningAngle);
-                    }
-                    else
-                    {
-                        // move right
-                        transform.Rotate(Vector3.forward, turningAngle);
-                    }
-                }
-
             }
 
             transform.position += transform.up * vSpeed * Time.deltaTime;
@@ -193,30 +178,8 @@ public class JetPack : MonoBehaviour
         {
             // bobbing motion in shop
 
-            transform.position = new Vector3(transform.position.x, Mathf.Sin(Time.time) * 0.2f, transform.position.z);
+            transform.position = new Vector3(transform.position.x, startPos.y + Mathf.Sin(Time.time) * 0.2f, transform.position.z);
         }
-
-        //if (!isFalling)
-        //{
-        //    //If we haven't reached our destination
-        //    if (transform.position.y < destination)
-
-
-        //        if (transform.position.y > range)
-        //        {
-        //            aboveTarget = true;
-        //        }
-        //}
-
-        //if (belowTarget)
-        //{
-        //    StartCoroutine(Fall());
-        //}
-
-        //if (aboveTarget)
-        //{
-        //    StartCoroutine(Fall());
-        //}
     }
 
     IEnumerator Accelerate()
@@ -271,6 +234,7 @@ public class JetPack : MonoBehaviour
         Jcamera.HasTakenOff = true;
         dyingOffScreenCheck = false;
         flying = true;
+        isFalling = false;
 
         fuelPercent = 1.0f;
         totalBurnTime = burnTime;
@@ -285,10 +249,11 @@ public class JetPack : MonoBehaviour
         }
         else
         {
+            // Second time we hit the goal, aka when falling
+
             StopAllCoroutines();
             flying = false;
 
-            UI.FadeOutIn();
             shop.ArrivedSafely();
         }
     }
