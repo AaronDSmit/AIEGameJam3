@@ -15,7 +15,6 @@ public class DayUI : MonoBehaviour {
 
 	[Header("Final Day")]
 	[SerializeField] private GameObject finalDayUI;
-	[SerializeField] private Text finalDayNumber;
 	[SerializeField] private Text finalDayDescription;
 	//[SerializeField] private Text finalDayGoldAmount;
 	[SerializeField] private Text finalDayResults;
@@ -34,7 +33,6 @@ public class DayUI : MonoBehaviour {
 	}
 
 	public void FinalDay(int day, string newDescription, int alive, int dead) {
-		finalDayNumber.text = string.Format("Day {0}", day.ToString("D2"));
 		finalDayDescription.text = newDescription;
 		//finalDayGoldAmount.text = string.Format("{0}G", gold);
 		finalDayResults.text = string.Format("{0} alive {1} dead", alive, dead);
