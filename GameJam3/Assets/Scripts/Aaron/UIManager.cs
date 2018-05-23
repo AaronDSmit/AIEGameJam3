@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -250,6 +251,8 @@ public class UIManager : MonoBehaviour
                 if (endOfWeekUI.PulledDown)
                 {
                     endOfWeekUI.TogglePullDown();
+
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
                 }
 
                 break;
