@@ -108,13 +108,16 @@ public class Shop : MonoBehaviour
     {
         if (!flying)
         {
-            if (Input.mousePosition.x < Screen.width / 2)
+            if (Input.GetMouseButtonDown(0))
             {
-                ChangeSelectedComponent(-1);
-            }
-            else
-            {
-                ChangeSelectedComponent(+1);
+                if (Input.mousePosition.x < Screen.width / 2)
+                {
+                    ChangeSelectedComponent(-1);
+                }
+                else
+                {
+                    ChangeSelectedComponent(+1);
+                }
             }
 
             //if (MobileInput.SwipedRight)
