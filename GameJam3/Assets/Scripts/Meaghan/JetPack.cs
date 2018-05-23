@@ -154,7 +154,7 @@ public class JetPack : MonoBehaviour
             {
                 if (!isFalling)
                 {
-                    if (Input.mousePosition.x < Screen.width / 2)
+                    if (Input.mousePosition.x < Screen.width)
                     {
                         // move left
                         transform.Rotate(Vector3.forward, turningAngle);
@@ -169,7 +169,7 @@ public class JetPack : MonoBehaviour
 
             transform.position += transform.up * vSpeed * Time.deltaTime;
 
-            if (transform.position.y > 2.0f)
+            if (transform.position.y > 2.0f && !isFalling)
             {
                 burnTime -= Time.deltaTime;
                 fuelPercent = (burnTime / totalBurnTime);
@@ -216,7 +216,9 @@ public class JetPack : MonoBehaviour
     {
         isFalling = true;
 
-        if(audioSource != null)
+        float vSpeedWhenFalling = vSpeed;
+
+        if (audioSource != null)
         {
             //Stop playing the sound
             audioSource.Stop();
@@ -232,11 +234,11 @@ public class JetPack : MonoBehaviour
             currentLerpTime += Time.deltaTime;
 
             //Begin to lerp
-            c = currentLerpTime / timeToMaxSpeed;
+            c = currentLerpTime / 1.0f;
             c = 1.0f - Mathf.Cos(c * Mathf.PI * 0.5f);
 
             //Move up
-            vSpeed = -Mathf.Lerp(0, 10, c);
+            vSpeed = Mathf.Lerp(vSpeedWhenFalling, -5, c);
 
             yield return null;
         }
@@ -254,9 +256,9 @@ public class JetPack : MonoBehaviour
         totalBurnTime = burnTime;
 
 
-        if(audioSource != null)
+        if (audioSource != null)
         {
-            if(takeOffSound != null)
+            if (takeOffSound != null)
             {
                 //Play launch sound
                 audioSource.PlayOneShot(takeOffSound, 0.5f);
@@ -270,7 +272,7 @@ public class JetPack : MonoBehaviour
 
     private void PlayLoopingSound()
     {
-        if(flyingSound != null)
+        if (flyingSound != null)
         {
             audioSource.clip = flyingSound;
             audioSource.Play();

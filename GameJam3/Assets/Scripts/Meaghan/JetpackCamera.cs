@@ -60,7 +60,7 @@ public class JetpackCamera : MonoBehaviour
     {
         if (!hasLanded)
         {
-            if (hasTakenOff && t < 1 && target.position.y > 2.0f)
+            if (hasTakenOff && t < 1 && target.position.y > 3.5f)
             {
                 ////Increment timer once per frame
                 currentLerpTime += Time.deltaTime;

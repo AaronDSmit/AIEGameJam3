@@ -220,7 +220,7 @@ public class UIManager : MonoBehaviour
         if (day.EndOfDay)
         {
             endOfDayUI.TogglePullDown();
-            day.EndDay();
+            day.EndDay(endOfDayUI.AnimationTime);
             StartCoroutine(CheckForTap());
         }
     }

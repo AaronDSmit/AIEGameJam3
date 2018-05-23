@@ -575,6 +575,11 @@ Prefab:
       propertyPath: CollisionModule.plane0
       value: 
       objectReference: {fileID: 1596944214}
+    - target: {fileID: 114717617333387198, guid: fa6011c292596494eaf0b74d6a82208f,
+        type: 2}
+      propertyPath: disableThrustDelay
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fa6011c292596494eaf0b74d6a82208f, type: 2}
   m_IsPrefabParent: 0
@@ -1003,34 +1008,10 @@ Prefab:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1126107799749996, guid: 24b5ab29b4499994bb568bb32f39d79a, type: 2}
-      propertyPath: m_TagString
-      value: EndOfDay
-      objectReference: {fileID: 0}
-    - target: {fileID: 224174401838160426, guid: 24b5ab29b4499994bb568bb32f39d79a,
+    - target: {fileID: 114652681976103522, guid: 24b5ab29b4499994bb568bb32f39d79a,
         type: 2}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 224976918043305764, guid: 24b5ab29b4499994bb568bb32f39d79a,
-        type: 2}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 224432769056678834, guid: 24b5ab29b4499994bb568bb32f39d79a,
-        type: 2}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 224103219429249734, guid: 24b5ab29b4499994bb568bb32f39d79a,
-        type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224702866525164154, guid: 24b5ab29b4499994bb568bb32f39d79a,
-        type: 2}
-      propertyPath: m_RootOrder
-      value: 5
+      propertyPath: m_Interactable
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24b5ab29b4499994bb568bb32f39d79a, type: 2}
