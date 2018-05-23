@@ -45,10 +45,8 @@ public class Day : MonoBehaviour {
 			StartDay();
 	}
 
-    public void EndDay (float delayTime, bool succeeded) {
+    public void EndDay (float delayTime) {
         dayEnded = true;
-
-        OrderComplete(succeeded);
         totalAliveCustomers += aliveCustomers;
         totalDeadCustomers += deadCustomers;
 
@@ -63,7 +61,7 @@ public class Day : MonoBehaviour {
         StartCoroutine(ActivateStarRating(rating, delayTime));
     }
 
-    private void OrderComplete(bool customerSurvived) {
+    public void OrderComplete(bool customerSurvived) {
 		todaysCustomers++;
 
 		if (customerSurvived)

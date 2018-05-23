@@ -19,7 +19,7 @@ public class CloudGenerator : MonoBehaviour {
 	[SerializeField] private float maxCloudNumber;
 
 	[Header("Cloud Objects")]
-	[SerializeField] private List<GameObject> clouds;
+	[SerializeField] private List<GameObject> objects;
 	[SerializeField] private List<float> depths;
 	[SerializeField] private float minCloudSpeed;
 	[SerializeField] private float maxCloudSpeed;
@@ -85,7 +85,7 @@ public class CloudGenerator : MonoBehaviour {
 	private void SpawnCloud() {
 		currentCloudNumber++;
 
-		GameObject cloud = Instantiate(clouds[Random.Range(0, clouds.Count)]);
+		GameObject cloud = Instantiate(objects[Random.Range(0, objects.Count)]);
 		cloud.transform.SetParent(cloudParent);
 
 		float xPosition = Random.Range(0, 2) == 0 ? Random.Range(minXPosition, 0) : Random.Range(0, maxXPosition);
@@ -95,10 +95,13 @@ public class CloudGenerator : MonoBehaviour {
 			transform.position.y + minSpawnHeight,
 			zPosition);
 
-		cloud.transform.position = position;
-		cloud.GetComponent<Cloud>().Init(this, xPosition < 0 ? Vector3.right : Vector3.left, zPosition,
-			Random.Range(minCloudSpeed, maxCloudSpeed), 
-			xPosition == minXPosition ? maxXPosition : minXPosition);
+        cloud.transform.position = position;
+
+        if (cloud.GetComponent<Cloud>()) {
+            cloud.GetComponent<Cloud>().Init(this, xPosition < 0 ? Vector3.right : Vector3.left, zPosition,
+            Random.Range(minCloudSpeed, maxCloudSpeed),
+            xPosition == minXPosition ? maxXPosition : minXPosition);
+        }
 	}
 
 	private void ResetSpawnTime() {
