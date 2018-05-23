@@ -277,6 +277,7 @@ public class JetPack : MonoBehaviour
         {
             audioSource.clip = flyingSound;
             audioSource.Play();
+            audioSource.loop = true;
         }
     }
 
