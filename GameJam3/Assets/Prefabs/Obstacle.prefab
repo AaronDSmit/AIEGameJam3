@@ -100,6 +100,7 @@ MonoBehaviour:
   minX: -4
   maxX: 4
   moveSpeed: 1
+  collisionClip: {fileID: 8300000, guid: 660c65ae9adf28741b1dd8bb30192c65, type: 3}
 --- !u!212 &212126498711997330
 SpriteRenderer:
   m_ObjectHideFlags: 1
