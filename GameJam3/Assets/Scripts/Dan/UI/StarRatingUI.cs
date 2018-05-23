@@ -25,7 +25,7 @@ public class StarRatingUI : MonoBehaviour {
 		}
 	}
 
-    public void ActivateEndOfDayStars (StarRating rating) {
+    public void ActivateEndOfDayStars (StarRating rating, float delay) {
         for (int i = 0; i < endOfDayStars.Count; i++) {
             endOfDayStars[i].ResetStar();
         }
@@ -50,7 +50,7 @@ public class StarRatingUI : MonoBehaviour {
         }
     }
 
-	public void ActivateFinalDayStars(StarRating rating) {
+	public void ActivateFinalDayStars(StarRating rating, float delay) {
 		for (int i = 0; i < endOfDayStars.Count; i++) {
 			finalDayStars[i].ResetStar();
 		}
@@ -59,15 +59,15 @@ public class StarRatingUI : MonoBehaviour {
 			case StarRating.ZERO:
 				break;
 			case StarRating.ONE:
-				finalDayStars[0].ActivateStar(activationInfo);
-				break;
+                StartCoroutine(Activate(finalDayStars[0], delayBetweenStars));
+                break;
 			case StarRating.TWO:
-				finalDayStars[0].ActivateStar(activationInfo);
-				StartCoroutine(Activate(finalDayStars[1], delayBetweenStars));
+                StartCoroutine(Activate(finalDayStars[0], delayBetweenStars));
+                StartCoroutine(Activate(finalDayStars[1], delayBetweenStars));
 				break;
 			case StarRating.THREE:
-				finalDayStars[0].ActivateStar(activationInfo);
-				StartCoroutine(Activate(finalDayStars[1], delayBetweenStars));
+                StartCoroutine(Activate(finalDayStars[0], delayBetweenStars));
+                StartCoroutine(Activate(finalDayStars[1], delayBetweenStars));
 				StartCoroutine(Activate(finalDayStars[2], delayBetweenStars * 2));
 				break;
 			default:
