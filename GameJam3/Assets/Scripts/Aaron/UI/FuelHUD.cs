@@ -10,6 +10,8 @@ public class FuelHUD : MonoBehaviour
 
     private RectTransform fuelIndicator;
 
+    private BarAnimationVertical bar;
+
     private Text heightText;
 
     private JetPack jetpack;
@@ -20,12 +22,15 @@ public class FuelHUD : MonoBehaviour
 
         heightText = GetComponentInChildren<Text>();
 
+        bar = GetComponentInChildren<BarAnimationVertical>();
+
         jetpack = FindObjectOfType<JetPack>();
     }
 
     private void Update()
     {
         heightText.text = (int)jetpack.transform.position.y + "M";
+
         fuelIndicator.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, jetpack.BurnTimePercent * maxHeight);
     }
 }

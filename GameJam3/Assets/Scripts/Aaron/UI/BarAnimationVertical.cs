@@ -27,7 +27,7 @@ public class BarAnimationVertical : MonoBehaviour
 
     public void UpdateValue(float valuePercent)
     {
-        if (currentValuePercent < valuePercent)
+        if (currentValuePercent > valuePercent)
         {
             // increase Value to ghost level
 

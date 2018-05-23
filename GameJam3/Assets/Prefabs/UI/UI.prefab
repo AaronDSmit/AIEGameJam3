@@ -1319,6 +1319,7 @@ GameObject:
   - component: {fileID: 222031816384334936}
   - component: {fileID: 114186948629055634}
   - component: {fileID: 114220976940732600}
+  - component: {fileID: 114620025632521954}
   m_Layer: 5
   m_Name: Fuel
   m_TagString: Untagged
@@ -5690,6 +5691,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: TURNING POWER
+--- !u!114 &114620025632521954
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1590647101665192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45eb75964fc1a5647bc48b30dca08dac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHeight: 1000
+  animationTime: 0.4
 --- !u!114 &114622082528127954
 MonoBehaviour:
   m_ObjectHideFlags: 1
