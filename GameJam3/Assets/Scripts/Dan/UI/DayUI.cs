@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class DayUI : MonoBehaviour {
 	[Header("End of Day")]
 	[SerializeField] private GameObject endOfDayUI;
-	[SerializeField] private GameObject dayAlert;
+	[SerializeField] private Text dayText;
 	[SerializeField] private Text dayNumber;
 	[SerializeField] private Text description;
 	[SerializeField] private Text goldAmount;
@@ -30,10 +30,8 @@ public class DayUI : MonoBehaviour {
 	}
 
 	public void StartDay(int day) {
-		if (dayAlertText == null)
-			dayAlertText = dayAlert.GetComponentInChildren<Text>();
-
-		dayAlertText.text = string.Format("Day {0}", day.ToString("D2"));
+        Debug.Log(day);
+        dayText.text = string.Format("day {0}", day.ToString("D2"));
 	}
 
 	public void FinalDay(int day, string newDescription, int alive, int dead) {
