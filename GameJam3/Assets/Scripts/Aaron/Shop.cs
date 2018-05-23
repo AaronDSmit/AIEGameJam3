@@ -104,21 +104,21 @@ public class Shop : MonoBehaviour
         destinationGO = Instantiate(destinationPrefab, new Vector3(0, destination, 0), Quaternion.identity);
     }
 
-    private void Update()
-    {
-        if (!flying)
-        {
-            //if (MobileInput.SwipedRight)
-            //{
-            //    ChangeSelectedComponent(+1);
-            //}
+    //private void Update()
+    //{
+    //    if (!flying)
+    //    {
+    //        //if (MobileInput.SwipedRight)
+    //        //{
+    //        //    ChangeSelectedComponent(+1);
+    //        //}
 
-            //if (MobileInput.SwipedLeft)
-            //{
-            //    ChangeSelectedComponent(-1);
-            //}
-        }
-    }
+    //        //if (MobileInput.SwipedLeft)
+    //        //{
+    //        //    ChangeSelectedComponent(-1);
+    //        //}
+    //    }
+    //}
 
     public bool Flying
     {

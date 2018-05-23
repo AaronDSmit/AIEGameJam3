@@ -26,6 +26,9 @@ public class UIManager : MonoBehaviour
     private SlideInUI fireButton;
     private SlideInUI flyHUD;
 
+    private SlideInUI rightButton;
+    private SlideInUI leftButton;
+
     private SlideInUI destinationUI;
     private DropDownMenu destinationUIDown;
     private Text destinationText;
@@ -55,6 +58,8 @@ public class UIManager : MonoBehaviour
         endOfDayUI = GameObject.FindGameObjectWithTag("EndOfDay").GetComponent<DropDownMenu>();
         endOfWeekUI = GameObject.FindGameObjectWithTag("EndOfWeek").GetComponent<DropDownMenu>();
 
+        rightButton = GameObject.FindGameObjectWithTag("RightArrow").GetComponent<SlideInUI>();
+        leftButton = GameObject.FindGameObjectWithTag("LeftArrow").GetComponent<SlideInUI>();
 
         day = GameObject.FindGameObjectWithTag("DayManager").GetComponent<Day>();
 
@@ -117,6 +122,9 @@ public class UIManager : MonoBehaviour
     {
         currentStats.TogglePullDown();
         componentsSelection.TogglePullDown();
+
+        rightButton.TogglePullDown();
+        leftButton.TogglePullDown();
 
         if (fireButton.PulledDown)
         {

@@ -1636,9 +1636,10 @@ GameObject:
   - component: {fileID: 114764165194395580}
   - component: {fileID: 114863804708720958}
   - component: {fileID: 114065403231004744}
+  - component: {fileID: 114352732592234742}
   m_Layer: 5
   m_Name: ArrowLeft
-  m_TagString: Untagged
+  m_TagString: LeftArrow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2079,9 +2080,10 @@ GameObject:
   - component: {fileID: 114966361424782888}
   - component: {fileID: 114139272593098322}
   - component: {fileID: 114788027773982192}
+  - component: {fileID: 114281134307508160}
   m_Layer: 5
   m_Name: ArrowRight
-  m_TagString: Untagged
+  m_TagString: RightArrow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3758,6 +3760,20 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114281134307508160
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1942000998171754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5150987efaecad45b22425dfe396fab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetX: -20
+  overshootTargetX: -30
+  animationTime: 0.9
 --- !u!114 &114285634334035202
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3984,7 +4000,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: DAY 03
+  m_Text: FINANCIAL WEEK
 --- !u!114 &114324419853184492
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4046,6 +4062,20 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: HAPPY LANDING!
+--- !u!114 &114352732592234742
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1734083815719744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5150987efaecad45b22425dfe396fab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetX: 102
+  overshootTargetX: 110
+  animationTime: 0.9
 --- !u!114 &114362034640077856
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8656,7 +8686,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180.00002}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 102, y: -96}
+  m_AnchoredPosition: {x: -26.8, y: -96}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!224 &224175958430485900
@@ -8885,7 +8915,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -20, y: -96}
+  m_AnchoredPosition: {x: 79.35272, y: -96}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!224 &224340126190224788
