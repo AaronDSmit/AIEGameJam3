@@ -108,18 +108,6 @@ public class Shop : MonoBehaviour
     {
         if (!flying)
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                if (Input.mousePosition.x < Screen.width / 2)
-                {
-                    ChangeSelectedComponent(-1);
-                }
-                else
-                {
-                    ChangeSelectedComponent(+1);
-                }
-            }
-
             //if (MobileInput.SwipedRight)
             //{
             //    ChangeSelectedComponent(+1);
@@ -147,7 +135,7 @@ public class Shop : MonoBehaviour
         get { return flying; }
     }
 
-    private void ChangeSelectedComponent(int change)
+    public void ChangeSelectedComponent(int change)
     {
         currentComponent[selectedComponent] += change;
 
@@ -235,6 +223,15 @@ public class Shop : MonoBehaviour
     public void ArrivedSafely()
     {
         day.OrderComplete(true);
+
+        UI.ShowResultsUI();
+
+        StartCoroutine(CheckForTap());
+    }
+
+    public void PlayerDied()
+    {
+        day.OrderComplete(false);
 
         UI.ShowResultsUI();
 

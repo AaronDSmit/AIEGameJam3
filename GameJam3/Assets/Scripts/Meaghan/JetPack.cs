@@ -114,8 +114,7 @@ public class JetPack : MonoBehaviour
     {
         if (transform.position.x < minX || transform.position.x > maxX)
         {
-            // Die
-            UI.FadeOutIn();
+            shop.PlayerDied();
         }
         else
         {
@@ -179,7 +178,7 @@ public class JetPack : MonoBehaviour
 
             if (!flying)
             {
-                UI.FadeOutIn();
+                // shop.PlayerDied();
             }
         }
         else if (!shop.Flying)

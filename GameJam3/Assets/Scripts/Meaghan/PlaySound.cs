@@ -58,11 +58,11 @@ public class PlaySound : MonoBehaviour
     {
         int select = Random.Range(0, 2);
 
-        if(select == 0)
+        if (select == 0)
         {
             audioSource.PlayOneShot(animalNoise1, 0.5f);
         }
-        else if(select == 1)
+        else if (select == 1)
         {
             audioSource.PlayOneShot(animalNoise2, 0.5f);
         }

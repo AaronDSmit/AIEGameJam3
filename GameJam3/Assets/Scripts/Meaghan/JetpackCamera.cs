@@ -47,7 +47,7 @@ public class JetpackCamera : MonoBehaviour
 
     private void Awake()
     {
-        target = FindObjectOfType<JetPack>().transform;
+        target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     private void Start()

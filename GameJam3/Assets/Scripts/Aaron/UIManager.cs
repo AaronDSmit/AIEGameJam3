@@ -252,7 +252,7 @@ public class UIManager : MonoBehaviour
                 {
                     endOfWeekUI.TogglePullDown();
 
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                    Application.Quit();
                 }
 
                 break;

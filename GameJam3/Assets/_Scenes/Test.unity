@@ -585,6 +585,10 @@ Prefab:
       propertyPath: disableThrustDelay
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 1720999338945686, guid: fa6011c292596494eaf0b74d6a82208f, type: 2}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fa6011c292596494eaf0b74d6a82208f, type: 2}
   m_IsPrefabParent: 0
