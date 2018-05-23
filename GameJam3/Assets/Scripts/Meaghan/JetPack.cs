@@ -154,7 +154,7 @@ public class JetPack : MonoBehaviour
             {
                 if (!isFalling)
                 {
-                    if (Input.mousePosition.x < Screen.width)
+                    if (Input.mousePosition.x < Screen.width / 2)
                     {
                         // move left
                         transform.Rotate(Vector3.forward, turningAngle);
