@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
 
     private DropDownMenu resultsUI;
     private DropDownMenu endOfDayUI;
+    private DropDownMenu endOfWeekUI;
 
     private JetPack jetPack;
     private JetpackCamera jCamera;
@@ -51,6 +52,8 @@ public class UIManager : MonoBehaviour
 
         resultsUI = GameObject.FindGameObjectWithTag("Results").GetComponent<DropDownMenu>();
         endOfDayUI = GameObject.FindGameObjectWithTag("EndOfDay").GetComponent<DropDownMenu>();
+        endOfWeekUI = GameObject.FindGameObjectWithTag("EndOfWeek").GetComponent<DropDownMenu>();
+
 
         day = GameObject.FindGameObjectWithTag("DayManager").GetComponent<Day>();
 
@@ -217,10 +220,18 @@ public class UIManager : MonoBehaviour
         StartCoroutine(FadeImage(1, 0, 1.0f));
         ToggleUI();
 
-        if (day.EndOfDay)
+        day.EndDay(endOfWeekUI.AnimationTime);
+
+        if (day.EndOfWeek)
+        {
+            endOfWeekUI.TogglePullDown();
+
+            StartCoroutine(CheckForTap());
+        }
+        else if (day.EndOfDay)
         {
             endOfDayUI.TogglePullDown();
-            day.EndDay(endOfDayUI.AnimationTime);
+
             StartCoroutine(CheckForTap());
         }
     }
@@ -231,7 +242,16 @@ public class UIManager : MonoBehaviour
         {
             if (MobileInput.Tap)
             {
-                endOfDayUI.TogglePullDown();
+                if (endOfDayUI.PulledDown)
+                {
+                    endOfDayUI.TogglePullDown();
+                }
+
+                if (endOfWeekUI.PulledDown)
+                {
+                    endOfWeekUI.TogglePullDown();
+                }
+
                 break;
             }
 
