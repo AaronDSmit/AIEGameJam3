@@ -16,13 +16,20 @@ public class Obstacle : MonoBehaviour
     [SerializeField]
     private float moveSpeed;
 
+    [SerializeField]
+    private AudioClip collisionClip;
+
     private Collider2D myCollider;
 
     private float direction;
+    private AudioSource audioSource;
+    private SpriteRenderer spriteRenderer;
 
     private void Awake()
     {
         myCollider = GetComponent<Collider2D>();
+        audioSource = GetComponent<AudioSource>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
         direction = 0;
 
@@ -38,6 +45,11 @@ public class Obstacle : MonoBehaviour
     {
         if (other.gameObject.GetComponent<JetPack>())
         {
+            if(collisionClip != null)
+            {
+                audioSource.PlayOneShot(collisionClip, 0.5f);
+            }
+
             other.gameObject.GetComponent<JetPack>().ReduceBurnTime(burnTimeReduction);
 
             gameObject.SetActive(false);
@@ -51,6 +63,7 @@ public class Obstacle : MonoBehaviour
             if (transform.position.x >= maxX)
             {
                 direction = -1;
+                spriteRenderer.flipX = true;
             }
         }
         else if (direction == -1)// moving Left
@@ -58,6 +71,7 @@ public class Obstacle : MonoBehaviour
             if (transform.position.x <= minX)
             {
                 direction = 1;
+                spriteRenderer.flipX = false;
             }
         }
 
