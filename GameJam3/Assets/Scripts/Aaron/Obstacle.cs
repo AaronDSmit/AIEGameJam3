@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
+    //YAY FLIPPING
+
+
+
     [SerializeField]
     private float burnTimeReduction;
 
