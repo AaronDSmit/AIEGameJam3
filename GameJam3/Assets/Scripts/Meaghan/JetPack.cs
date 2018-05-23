@@ -27,12 +27,23 @@ public class JetPack : MonoBehaviour
     [Tooltip("The vitcory range.")]
     [SerializeField]
     private float range;
+
     [Tooltip("The amount of fuel that gets reduced when you collide with an object.")]
     [SerializeField]
     private float fuelReduction;
 
     [SerializeField]
     private float minHeightControl;
+
+    [SerializeField]
+    private AudioSource audioSource;
+
+    [SerializeField]
+    private AudioClip takeOffSound;
+
+    [SerializeField]
+    private AudioClip flyingSound;
+
     #endregion
 
     #region Variables
@@ -97,6 +108,9 @@ public class JetPack : MonoBehaviour
 
         Jcamera = FindObjectOfType<JetpackCamera>();
         UI = FindObjectOfType<UIManager>();
+
+       
+
 
         startPos = transform.position;
         startRot = transform.rotation;
@@ -208,6 +222,9 @@ public class JetPack : MonoBehaviour
     {
         isFalling = true;
 
+        //Stop playing the sound
+        audioSource.Stop();
+
         //Fall
         float c = 0;
         currentLerpTime = 0.0f;
@@ -238,7 +255,29 @@ public class JetPack : MonoBehaviour
 
         fuelPercent = 1.0f;
         totalBurnTime = burnTime;
+
+
+        if(audioSource != null)
+        {
+            if(takeOffSound != null)
+            {
+                //Play launch sound
+                audioSource.PlayOneShot(takeOffSound, 0.5f);
+
+                Invoke("PlayLoopingSound", takeOffSound.length);
+            }
+        }
+
         StartCoroutine(Accelerate());
+    }
+
+    private void PlayLoopingSound()
+    {
+        if(flyingSound != null)
+        {
+            audioSource.clip = flyingSound;
+            audioSource.Play();
+        }
     }
 
     public void HitGoal()
