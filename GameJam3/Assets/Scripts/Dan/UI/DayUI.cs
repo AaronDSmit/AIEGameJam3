@@ -23,19 +23,13 @@ public class DayUI : MonoBehaviour {
 	private Text dayAlertText;
 
 	public void EndDay(int day, string newDescription, int gold, int alive, int dead) {
-		endOfDayUI.SetActive(true);
 		dayNumber.text = string.Format("Day {0}", day.ToString("D2"));
 		description.text = newDescription;
 		goldAmount.text = string.Format("{0}G", gold);
 		results.text = string.Format("{0} alive {1} dead", alive, dead);
-
-		dayAlert.SetActive(false);
 	}
 
 	public void StartDay(int day) {
-		endOfDayUI.SetActive(false);
-		dayAlert.SetActive(true);
-
 		if (dayAlertText == null)
 			dayAlertText = dayAlert.GetComponentInChildren<Text>();
 
@@ -43,7 +37,6 @@ public class DayUI : MonoBehaviour {
 	}
 
 	public void FinalDay(int day, string newDescription, int alive, int dead) {
-		finalDayUI.SetActive(true);
 		finalDayNumber.text = string.Format("Day {0}", day.ToString("D2"));
 		finalDayDescription.text = newDescription;
 		//finalDayGoldAmount.text = string.Format("{0}G", gold);
