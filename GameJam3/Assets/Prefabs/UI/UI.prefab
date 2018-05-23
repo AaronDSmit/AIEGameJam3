@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 224017858550534984}
   - component: {fileID: 222688257435808368}
   - component: {fileID: 114131055951623800}
+  - component: {fileID: 114117489547058482}
   m_Layer: 5
   m_Name: star02
   m_TagString: Untagged
@@ -126,6 +127,7 @@ GameObject:
   - component: {fileID: 224488858647847990}
   - component: {fileID: 222563250736209652}
   - component: {fileID: 114279018685736422}
+  - component: {fileID: 114971582756443032}
   m_Layer: 5
   m_Name: star03
   m_TagString: Untagged
@@ -557,6 +559,7 @@ GameObject:
   - component: {fileID: 224161242347538848}
   - component: {fileID: 222569900459290288}
   - component: {fileID: 114622082528127954}
+  - component: {fileID: 114449734549561680}
   m_Layer: 5
   m_Name: star02
   m_TagString: Untagged
@@ -1104,6 +1107,7 @@ GameObject:
   - component: {fileID: 224972984424236940}
   - component: {fileID: 222130507888039048}
   - component: {fileID: 114807176304046546}
+  - component: {fileID: 114171222726475738}
   m_Layer: 5
   m_Name: star01
   m_TagString: Untagged
@@ -1405,6 +1409,7 @@ GameObject:
   - component: {fileID: 224857679119448546}
   - component: {fileID: 222515017397407880}
   - component: {fileID: 114030764741204816}
+  - component: {fileID: 114521249250051004}
   m_Layer: 5
   m_Name: star03
   m_TagString: Untagged
@@ -1899,6 +1904,7 @@ GameObject:
   - component: {fileID: 224917325225840910}
   - component: {fileID: 222797138379775410}
   - component: {fileID: 114656956024543474}
+  - component: {fileID: 114418395770706766}
   m_Layer: 5
   m_Name: star01
   m_TagString: Untagged
@@ -2503,6 +2509,21 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114117489547058482
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1087118116775198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a88abcd1ed15446409df269052cbebbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  empty: {fileID: 114131055951623800}
+  filled: {fileID: 114436036438036632}
+  outline: {fileID: 114421121187579544}
+  glow: {fileID: 114692140297568298}
 --- !u!114 &114123340502702018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2839,6 +2860,21 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114171222726475738
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1512079857629960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a88abcd1ed15446409df269052cbebbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  empty: {fileID: 114807176304046546}
+  filled: {fileID: 114719760556566538}
+  outline: {fileID: 114225451029756042}
+  glow: {fileID: 114421175507742524}
 --- !u!114 &114171367310426104
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4184,6 +4220,21 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114418395770706766
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1910126657200158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a88abcd1ed15446409df269052cbebbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  empty: {fileID: 114656956024543474}
+  filled: {fileID: 114209255528690456}
+  outline: {fileID: 114706468241843542}
+  glow: {fileID: 114123340502702018}
 --- !u!114 &114421121187579544
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4333,6 +4384,21 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114449734549561680
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1247189201244774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a88abcd1ed15446409df269052cbebbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  empty: {fileID: 114622082528127954}
+  filled: {fileID: 114837309321581742}
+  outline: {fileID: 114259408068528962}
+  glow: {fileID: 114912875884530178}
 --- !u!114 &114451082358436264
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4790,6 +4856,21 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 20m
+--- !u!114 &114521249250051004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1638665120863168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a88abcd1ed15446409df269052cbebbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  empty: {fileID: 114030764741204816}
+  filled: {fileID: 114527198142986724}
+  outline: {fileID: 114375401056384510}
+  glow: {fileID: 114311399132604900}
 --- !u!114 &114527198142986724
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5292,6 +5373,17 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -6765,6 +6857,21 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
+--- !u!114 &114971582756443032
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1091321239419554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a88abcd1ed15446409df269052cbebbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  empty: {fileID: 114279018685736422}
+  filled: {fileID: 114302167567190458}
+  outline: {fileID: 114777125100753622}
+  glow: {fileID: 114663314137445426}
 --- !u!114 &114981893201303340
 MonoBehaviour:
   m_ObjectHideFlags: 1
