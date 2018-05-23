@@ -12,6 +12,8 @@ TagManager:
   - FadeScreen
   - DestinationUI
   - Obstacle
+  - DayManager
+  - Clouds
   layers:
   - Default
   - TransparentFX

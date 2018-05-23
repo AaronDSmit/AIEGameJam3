@@ -19,7 +19,7 @@ public class Day : MonoBehaviour {
 	private int deadCustomers;
 	private int totalDeadCustomers;
 
-    private UIManager uiManager;
+    //private UIManager uiManager;
 	private DayUI dayUI;
     private StarRatingUI starRatingUI;
     private RatingCalculator ratingCalculator;
@@ -28,7 +28,7 @@ public class Day : MonoBehaviour {
 
 	private void Start () {
 		dayUI = GetComponent<DayUI>();
-        uiManager = FindObjectOfType<UIManager>();
+        //uiManager = FindObjectOfType<UIManager>();
         ratingCalculator = GetComponent<RatingCalculator>();
         starRatingUI = GetComponent<StarRatingUI>();
         descriptionLibrary = GetComponent<DescriptionLibrary>();
@@ -62,8 +62,10 @@ public class Day : MonoBehaviour {
 		dayUI.StartDay(currentDay);
 		dayEnded = false;
 
+        /*
         if (toggleUI)
             uiManager.ToggleUI();
+         */
 
 		todaysCustomers = 1;
 		aliveCustomers = 0;
@@ -72,7 +74,8 @@ public class Day : MonoBehaviour {
 
 	private void EndDay() {
 		dayEnded = true;
-        uiManager.ToggleUI();
+
+        //uiManager.ToggleUI();
 
         totalAliveCustomers += aliveCustomers;
 		totalDeadCustomers += deadCustomers;
