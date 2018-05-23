@@ -22,7 +22,6 @@ public class Day : MonoBehaviour {
 	private int deadCustomers;
 	private int totalDeadCustomers;
 
-    //private UIManager uiManager;
 	private DayUI dayUI;
     private StarRatingUI starRatingUI;
     private RatingCalculator ratingCalculator;
@@ -31,10 +30,11 @@ public class Day : MonoBehaviour {
 
 	private void Start () {
 		dayUI = GetComponent<DayUI>();
-        //uiManager = FindObjectOfType<UIManager>();
         ratingCalculator = GetComponent<RatingCalculator>();
         starRatingUI = GetComponent<StarRatingUI>();
         descriptionLibrary = GetComponent<DescriptionLibrary>();
+
+        StartDay();
 	}
 
 	private void Update() {
@@ -46,14 +46,14 @@ public class Day : MonoBehaviour {
 	}
 
 	public void OrderComplete(bool customerSurvived) {
-		dayUI.StartDay(currentDay);
-
 		todaysCustomers++;
 
 		if (customerSurvived)
 			aliveCustomers++;
 		else
 			deadCustomers++;
+
+        StartDay();
 	}
 
 	private void StartDay() {
