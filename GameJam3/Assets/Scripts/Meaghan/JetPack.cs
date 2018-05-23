@@ -50,6 +50,8 @@ public class JetPack : MonoBehaviour
     private float destination;
     private Shop shop;
     private JetpackCamera Jcamera;
+
+    private Customer customer;
     private bool flying = false;
     private bool isFalling = false;
     private float turningAngle;
@@ -104,7 +106,7 @@ public class JetPack : MonoBehaviour
         UI = FindObjectOfType<UIManager>();
 
         audioSource = GetComponent<AudioSource>();
-
+        customer = GetComponent<Customer>();
 
         startPos = transform.position;
         startRot = transform.rotation;
@@ -149,19 +151,24 @@ public class JetPack : MonoBehaviour
                 }
             }
 
-            if (transform.position.y > minHeightControl && Input.GetMouseButtonDown(0))
+            if (transform.position.y > minHeightControl)
             {
-                if (!isFalling)
+                customer.StopSmokeEffect();
+
+                if (Input.GetMouseButtonDown(0))
                 {
-                    if (Input.mousePosition.x < Screen.width / 2)
+                    if (!isFalling)
                     {
-                        // move left
-                        transform.Rotate(Vector3.forward, turningAngle);
-                    }
-                    else
-                    {
-                        // move right
-                        transform.Rotate(Vector3.forward, -turningAngle);
+                        if (Input.mousePosition.x < Screen.width / 2)
+                        {
+                            // move left
+                            transform.Rotate(Vector3.forward, turningAngle);
+                        }
+                        else
+                        {
+                            // move right
+                            transform.Rotate(Vector3.forward, -turningAngle);
+                        }
                     }
                 }
             }

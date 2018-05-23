@@ -196,6 +196,8 @@ public class Shop : MonoBehaviour
         {
             flying = true;
 
+            currentCustomer.PlaySmokeEffect();
+
             jetPack.BurnTime = (currentBurnTime / maxBurnTime) * longestBurnTime;
             jetPack.TurningAngle = (currentTurnPower / maxTurnPower) * largestTurnPower;
 

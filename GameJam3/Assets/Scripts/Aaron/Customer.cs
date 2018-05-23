@@ -2,6 +2,9 @@
 
 public class Customer : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject smokeEffect;
+
     private SpriteRenderer customerRenderer;
     private SpriteRenderer wingsRenderer;
     private SpriteRenderer thrusterRenderer;
@@ -13,6 +16,16 @@ public class Customer : MonoBehaviour
         wingsRenderer = transform.GetChild(1).GetComponent<SpriteRenderer>();
         thrusterRenderer = transform.GetChild(2).GetComponent<SpriteRenderer>();
         gemRenderer = transform.GetChild(3).GetComponent<SpriteRenderer>();
+    }
+
+    public void PlaySmokeEffect()
+    {
+        smokeEffect.SetActive(true);
+    }
+
+    public void StopSmokeEffect()
+    {
+        smokeEffect.SetActive(false);
     }
 
     public void SetCustomer(Sprite sprite)

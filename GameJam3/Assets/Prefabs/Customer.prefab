@@ -474,6 +474,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5580bd34cddab1d4c9b78b7504334618, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  smokeEffect: {fileID: 1131302328426466}
 --- !u!114 &114717617333387198
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -487,7 +488,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeToMaxSpeed: 10
   maxSpeed: 10
-  disableThrustDelay: 0.5
+  disableThrustDelay: 0.2
   minX: -5
   maxX: 5
   offScreenKillDelay: 1
@@ -7262,7 +7263,7 @@ ParticleSystem:
   simulationSpeed: 1
   stopAction: 0
   looping: 1
-  prewarm: 1
+  prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
