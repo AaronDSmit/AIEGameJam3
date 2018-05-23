@@ -36,9 +36,6 @@ public class JetPack : MonoBehaviour
     private float minHeightControl;
 
     [SerializeField]
-    private AudioSource audioSource;
-
-    [SerializeField]
     private AudioClip takeOffSound;
 
     [SerializeField]
@@ -62,7 +59,7 @@ public class JetPack : MonoBehaviour
     private float fuelPercent = 1.0f;
     private float totalBurnTime;
     private bool dyingOffScreenCheck;
-
+    private AudioSource audioSource;
     private Vector3 startPos;
     private Quaternion startRot;
 
@@ -109,7 +106,7 @@ public class JetPack : MonoBehaviour
         Jcamera = FindObjectOfType<JetpackCamera>();
         UI = FindObjectOfType<UIManager>();
 
-       
+        audioSource = GetComponent<AudioSource>();
 
 
         startPos = transform.position;
@@ -222,8 +219,11 @@ public class JetPack : MonoBehaviour
     {
         isFalling = true;
 
-        //Stop playing the sound
-        audioSource.Stop();
+        if(audioSource != null)
+        {
+            //Stop playing the sound
+            audioSource.Stop();
+        }
 
         //Fall
         float c = 0;
