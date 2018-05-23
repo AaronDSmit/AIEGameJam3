@@ -13,6 +13,8 @@ public class UIManager : MonoBehaviour
 
     private Image fadePlane = null;
 
+    private DropDownMenu resultsUI;
+
     private JetPack jetPack;
     private JetpackCamera jCamera;
 
@@ -43,6 +45,8 @@ public class UIManager : MonoBehaviour
         fadePlane = GameObject.FindGameObjectWithTag("FadeScreen").GetComponent<Image>();
 
         scorchMark = GameObject.FindGameObjectWithTag("ScorchMark").GetComponent<SpriteRenderer>();
+
+        resultsUI = GameObject.FindGameObjectWithTag("Results").GetComponent<DropDownMenu>();
 
         BarAnimation[] statBars = FindObjectsOfType<BarAnimation>();
 
@@ -162,6 +166,11 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void ShowResultsUI()
+    {
+        resultsUI.TogglePullDown();
+    }
+
     public void UpdateStatBars(float burnTimePercent, float turningPowerPercent)
     {
         burnTimeBar.UpdateValue(burnTimePercent);
@@ -183,6 +192,8 @@ public class UIManager : MonoBehaviour
         ToggleFlyHUD();
         jetPack.ResetJetpack();
         jCamera.ResetCamera();
+
+        resultsUI.TogglePullDown();
         ScreenShake.instance.StopScreenShake();
         shop.Flying = false;
 

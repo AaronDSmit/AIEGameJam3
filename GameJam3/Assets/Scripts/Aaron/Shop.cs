@@ -7,6 +7,7 @@ public class Shop : MonoBehaviour
     private CustomerGenerator customerGen;
     private UIManager UI;
     private Customer currentCustomer;
+    private Day day;
 
     private JetPack jetPack;
 
@@ -62,6 +63,8 @@ public class Shop : MonoBehaviour
     {
         jetPack = FindObjectOfType<JetPack>();
         customerGen = GetComponent<CustomerGenerator>();
+
+        day = GameObject.FindGameObjectWithTag("DayManager").GetComponent<Day>();
 
         UI = GetComponent<UIManager>();
 
@@ -219,7 +222,25 @@ public class Shop : MonoBehaviour
 
     public void ArrivedSafely()
     {
-        UI.FadeOutIn();
+        day.OrderComplete(true);
+
+        UI.ShowResultsUI();
+
+        StartCoroutine(CheckForTap());
+    }
+
+    private IEnumerator CheckForTap()
+    {
+        while (true)
+        {
+            if (MobileInput.Tap)
+            {
+                UI.FadeOutIn();
+                break;
+            }
+
+            yield return null;
+        }
     }
 }
 
