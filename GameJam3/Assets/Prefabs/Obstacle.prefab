@@ -78,7 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4dd19072eb6c1e4aa4a023dd5f838c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  burnTimeReduction: 0.05
+  burnTimeReduction: 0.25
   minX: -4
   maxX: 4
   moveSpeed: 1
