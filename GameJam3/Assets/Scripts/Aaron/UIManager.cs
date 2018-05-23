@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
     private Image fadePlane = null;
 
     private DropDownMenu resultsUI;
+    private DropDownMenu endOfDayUI;
 
     private JetPack jetPack;
     private JetpackCamera jCamera;
@@ -34,6 +35,8 @@ public class UIManager : MonoBehaviour
 
     private Shop shop;
 
+    private Day day;
+
     private float scorchMarkStartAlpha;
 
     private SpriteRenderer scorchMark;
@@ -47,6 +50,9 @@ public class UIManager : MonoBehaviour
         scorchMark = GameObject.FindGameObjectWithTag("ScorchMark").GetComponent<SpriteRenderer>();
 
         resultsUI = GameObject.FindGameObjectWithTag("Results").GetComponent<DropDownMenu>();
+        endOfDayUI = GameObject.FindGameObjectWithTag("EndOfDay").GetComponent<DropDownMenu>();
+
+        day = GameObject.FindGameObjectWithTag("DayManager").GetComponent<Day>();
 
         BarAnimation[] statBars = FindObjectsOfType<BarAnimation>();
 
@@ -210,6 +216,27 @@ public class UIManager : MonoBehaviour
 
         StartCoroutine(FadeImage(1, 0, 1.0f));
         ToggleUI();
+
+        if (day.EndOfDay)
+        {
+            endOfDayUI.TogglePullDown();
+            day.EndDay();
+            StartCoroutine(CheckForTap());
+        }
+    }
+
+    private IEnumerator CheckForTap()
+    {
+        while (true)
+        {
+            if (MobileInput.Tap)
+            {
+                endOfDayUI.TogglePullDown();
+                break;
+            }
+
+            yield return null;
+        }
     }
 
     private IEnumerator FadeImage(float from, float to, float time)

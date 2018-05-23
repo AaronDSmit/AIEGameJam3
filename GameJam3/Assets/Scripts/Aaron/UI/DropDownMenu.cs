@@ -22,6 +22,13 @@ public class DropDownMenu : MonoBehaviour
 
     private bool pulledDown = false;
 
+    public float AnimationTime
+    {
+        get { return animationTime; }
+
+        set { animationTime = value; }
+    }
+
     private void Awake()
     {
         rect = GetComponent<RectTransform>();
