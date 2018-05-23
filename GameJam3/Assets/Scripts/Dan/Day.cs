@@ -45,15 +45,31 @@ public class Day : MonoBehaviour {
 			StartDay();
 	}
 
-	public void OrderComplete(bool customerSurvived) {
+    public void EndDay (float delayTime, bool succeeded) {
+        dayEnded = true;
+
+        OrderComplete(succeeded);
+        totalAliveCustomers += aliveCustomers;
+        totalDeadCustomers += deadCustomers;
+
+        if (currentDay >= totalDays) {
+            EndGame(delayTime);
+            return;
+        }
+
+        StarRating rating = ratingCalculator.GetStarRating(aliveCustomers, customersPerDay);
+
+        dayUI.EndDay(currentDay, descriptionLibrary.GetEndOfDayDescription(rating), 100, aliveCustomers, deadCustomers);
+        StartCoroutine(ActivateStarRating(rating, delayTime));
+    }
+
+    private void OrderComplete(bool customerSurvived) {
 		todaysCustomers++;
 
 		if (customerSurvived)
 			aliveCustomers++;
 		else
 			deadCustomers++;
-
-        StartDay();
 	}
 
 	private void StartDay() {
@@ -65,36 +81,19 @@ public class Day : MonoBehaviour {
 		deadCustomers = 0;
 	}
 
-	public void EndDay(float delayTime) {
-		dayEnded = true;
-
-        totalAliveCustomers += aliveCustomers;
-		totalDeadCustomers += deadCustomers;
-
-		if (currentDay >= totalDays) {
-			EndGame();
-			return;
-		}
-
-        StarRating rating = ratingCalculator.GetStarRating(aliveCustomers, customersPerDay);
-
-		dayUI.EndDay(currentDay, descriptionLibrary.GetEndOfDayDescription(rating), 100, aliveCustomers, deadCustomers);
-		StartCoroutine(ActivateStarRating(rating));
-    }
-
-	private void EndGame() {
+    private void EndGame (float delayTime) {
 		StarRating rating = ratingCalculator.GetStarRating(totalAliveCustomers, totalAliveCustomers + totalDeadCustomers);
 
 		dayUI.FinalDay(currentDay, descriptionLibrary.GetFinalDayDescription(rating), totalAliveCustomers, totalDeadCustomers);
-		StartCoroutine(ActivateStarRating(rating, true));
+		StartCoroutine(ActivateStarRating(rating, delayTime, true));
 	}
 
-	private IEnumerator ActivateStarRating(StarRating rating, bool finalDay = false) {
+	private IEnumerator ActivateStarRating(StarRating rating, float delay, bool finalDay = false) {
 		yield return new WaitForEndOfFrame();
 
 		if (finalDay)
-			starRatingUI.ActivateFinalDayStars(rating);
+			starRatingUI.ActivateFinalDayStars(rating, delay);
 		else
-			starRatingUI.ActivateEndOfDayStars(rating);
+			starRatingUI.ActivateEndOfDayStars(rating, delay);
 	}
 }
