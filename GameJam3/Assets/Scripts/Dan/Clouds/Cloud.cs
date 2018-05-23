@@ -9,13 +9,15 @@ public class Cloud : MonoBehaviour {
 	private float depth;
 	private float speed;
 	private float despawnXPosition;
+    private float despawnYPosition;
 
-	public void Init(CloudGenerator cloudGenerator, Vector3 direction, float depth, float speed, float despawnXPosition) {
+    public void Init (CloudGenerator cloudGenerator, Vector3 direction, float depth, float speed, float despawnXPosition, float despawnYPosition) {
 		this.cloudGenerator = cloudGenerator;
 		this.direction = direction;
 		this.depth = depth;
 		this.speed = speed;
 		this.despawnXPosition = despawnXPosition;
+        this.despawnYPosition = despawnYPosition;
 
 		isInitialised = true;
 	}

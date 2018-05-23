@@ -92,7 +92,7 @@ public class CloudGenerator : MonoBehaviour {
 		float zPosition = depths[Random.Range(0, depths.Count)];
 
 		Vector3 position = new Vector3(xPosition,
-			transform.position.y + minSpawnHeight,
+			transform.position.y + Random.Range(minSpawnHeight, maxSpawnHeight),
 			zPosition);
 
         cloud.transform.position = position;
@@ -100,7 +100,7 @@ public class CloudGenerator : MonoBehaviour {
         if (cloud.GetComponent<Cloud>()) {
             cloud.GetComponent<Cloud>().Init(this, xPosition < 0 ? Vector3.right : Vector3.left, zPosition,
             Random.Range(minCloudSpeed, maxCloudSpeed),
-            xPosition == minXPosition ? maxXPosition : minXPosition);
+            xPosition == minXPosition ? maxXPosition : minXPosition, despawnHeight);
         }
 	}
 
