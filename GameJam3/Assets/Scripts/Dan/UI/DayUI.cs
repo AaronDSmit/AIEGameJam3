@@ -30,7 +30,6 @@ public class DayUI : MonoBehaviour {
 	}
 
 	public void StartDay(int day) {
-        Debug.Log(day);
         dayText.text = string.Format("day {0}", day.ToString("D2"));
 	}
 

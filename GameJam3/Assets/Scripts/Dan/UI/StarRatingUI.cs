@@ -34,16 +34,16 @@ public class StarRatingUI : MonoBehaviour {
             case StarRating.ZERO:
                 break;
             case StarRating.ONE:
-                endOfDayStars[0].ActivateStar(activationInfo);
+                StartCoroutine(Activate(endOfDayStars[0], delay));
                 break;
             case StarRating.TWO:
-                endOfDayStars[0].ActivateStar(activationInfo);
-                StartCoroutine(Activate(endOfDayStars[1], delayBetweenStars));
+                StartCoroutine(Activate(endOfDayStars[0], delay));
+                StartCoroutine(Activate(endOfDayStars[0], delay + delayBetweenStars));
                 break;
             case StarRating.THREE:
-                endOfDayStars[0].ActivateStar(activationInfo);
-                StartCoroutine(Activate(endOfDayStars[1], delayBetweenStars));
-                StartCoroutine(Activate(endOfDayStars[2], delayBetweenStars * 2));
+                StartCoroutine(Activate(endOfDayStars[0], delay));
+                StartCoroutine(Activate(endOfDayStars[1], delay + delayBetweenStars));
+                StartCoroutine(Activate(endOfDayStars[2], delay + delayBetweenStars * 2));
                 break;
             default:
                 break;
