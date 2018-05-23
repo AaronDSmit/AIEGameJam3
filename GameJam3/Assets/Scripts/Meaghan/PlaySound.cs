@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class PlaySound : MonoBehaviour
 {
-    #region Inspector Variables
-    [SerializeField]
-    private AudioSource audioSource;
-
+    #region Inspector Variabless
     [SerializeField]
     private AudioClip buttonClip;
 
@@ -30,6 +27,12 @@ public class PlaySound : MonoBehaviour
     private AudioClip animalNoise3;
     #endregion
 
+    private AudioSource audioSource;
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     public void PlayButtonSound()
     {

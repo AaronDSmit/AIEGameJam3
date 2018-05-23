@@ -49,13 +49,10 @@ public class JetPack : MonoBehaviour
     private float currentLerpTime = 0.0f;
     private float destination;
     private Shop shop;
-    private bool belowTarget;
-    private bool aboveTarget;
     private JetpackCamera Jcamera;
     private bool flying = false;
     private bool isFalling = false;
     private float turningAngle;
-    private bool hasBurntFuel = false;
     private float fuelPercent = 1.0f;
     private float totalBurnTime;
     private bool dyingOffScreenCheck;
@@ -277,6 +274,7 @@ public class JetPack : MonoBehaviour
         {
             audioSource.clip = flyingSound;
             audioSource.Play();
+            audioSource.loop = true;
         }
     }
 

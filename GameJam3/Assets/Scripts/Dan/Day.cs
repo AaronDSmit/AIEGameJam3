@@ -12,7 +12,7 @@ public class Day : MonoBehaviour {
 	public int CurrentDay { get { return currentDay; } }
 	public int TodaysCustomers { get { return todaysCustomers; } }
 
-    public bool EndOfDay { get { return todaysCustomers > customersPerDay; } }
+    public bool EndOfDay { get { return todaysCustomers >= customersPerDay; } }
     public bool EndOfWeek { get { return EndOfDay && currentDay >= totalDays; } }
 
 	private int currentDay;
@@ -65,7 +65,7 @@ public class Day : MonoBehaviour {
 		deadCustomers = 0;
 	}
 
-	public void EndDay() {
+	public void EndDay(float delayTime) {
 		dayEnded = true;
 
         totalAliveCustomers += aliveCustomers;
