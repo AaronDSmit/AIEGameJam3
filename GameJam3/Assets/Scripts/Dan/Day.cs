@@ -12,6 +12,9 @@ public class Day : MonoBehaviour {
 	public int CurrentDay { get { return currentDay; } }
 	public int TodaysCustomers { get { return todaysCustomers; } }
 
+    public bool EndOfDay { get { return todaysCustomers > customersPerDay; } }
+    public bool EndOfWeek { get { return EndOfDay && currentDay >= totalDays; } }
+
 	private int currentDay;
 	private int todaysCustomers;
 	private int aliveCustomers;
@@ -32,7 +35,6 @@ public class Day : MonoBehaviour {
         ratingCalculator = GetComponent<RatingCalculator>();
         starRatingUI = GetComponent<StarRatingUI>();
         descriptionLibrary = GetComponent<DescriptionLibrary>();
-		StartDay(false);
 	}
 
 	private void Update() {
@@ -52,30 +54,19 @@ public class Day : MonoBehaviour {
 			aliveCustomers++;
 		else
 			deadCustomers++;
-
-		if (todaysCustomers > customersPerDay)
-			EndDay();
 	}
 
-	private void StartDay(bool toggleUI = true) {
+	private void StartDay() {
 		currentDay++;
 		dayUI.StartDay(currentDay);
 		dayEnded = false;
-
-        /*
-        if (toggleUI)
-            uiManager.ToggleUI();
-         */
-
 		todaysCustomers = 1;
 		aliveCustomers = 0;
 		deadCustomers = 0;
 	}
 
-	private void EndDay() {
+	public void EndDay() {
 		dayEnded = true;
-
-        //uiManager.ToggleUI();
 
         totalAliveCustomers += aliveCustomers;
 		totalDeadCustomers += deadCustomers;
