@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4242449703738054}
   - component: {fileID: 212619621673266384}
   m_Layer: 0
-  m_Name: star04
+  m_Name: balloon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,8 +74,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -22
-  m_Sprite: {fileID: 21300000, guid: aaeb3d71b64dc7845886d26161d8e5ca, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 3104667877f54bd47bc044f8744f0e71, type: 3}
+  m_Color: {r: 0.9705882, g: 0.5138408, b: 0.5138408, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
