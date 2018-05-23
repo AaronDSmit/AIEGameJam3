@@ -99,8 +99,34 @@ public class UIManager : MonoBehaviour
         componentButtons[2] = ComponentSelection.GetChild(2).GetComponent<RectTransform>();
 
         scorchMarkStartAlpha = scorchMark.color.a;
+    }
 
-        ToggleUI();
+    private void Start()
+    {
+        StartCoroutine(SlowlyBringInUI());
+    }
+
+    private IEnumerator SlowlyBringInUI()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        currentStats.TogglePullDown();
+
+        yield return null;
+
+        componentsSelection.TogglePullDown();
+
+        yield return null;
+
+        rightButton.TogglePullDown();
+
+        yield return null;
+
+        leftButton.TogglePullDown();
+
+        yield return null;
+
+        fireButton.TogglePullDown();
     }
 
     public void ToggleFlyHUD()

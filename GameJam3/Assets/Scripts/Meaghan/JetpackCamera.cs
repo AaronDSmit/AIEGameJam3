@@ -19,9 +19,6 @@ public class JetpackCamera : MonoBehaviour
     #region Variables
     private float t = 0.0f;
     private float currentLerpTime;
-    private bool isAtGoal;
-    private bool getCurrentY = true;
-    private float currY;
     private Vector3 startPos;
     private bool hasTakenOff = false;
     private bool hasLanded = false;
@@ -88,6 +85,7 @@ public class JetpackCamera : MonoBehaviour
 
     public void ResetCamera()
     {
+        currentLerpTime = 0.0f;
         transform.position = startPos;
         t = 0;
         hasTakenOff = false;
