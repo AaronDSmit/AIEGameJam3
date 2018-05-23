@@ -26,6 +26,8 @@ public class CloudGenerator : MonoBehaviour {
 
     [SerializeField] private bool forceStartProduction;
 
+    public float CurrentYDespawn { get { return transform.position.y + despawnHeight; } }
+
     private bool producingClouds;
 	private float currentSpawnTime;
 	private float spawnCount;
@@ -83,8 +85,6 @@ public class CloudGenerator : MonoBehaviour {
 	}
 
 	private void SpawnCloud() {
-		currentCloudNumber++;
-
 		GameObject cloud = Instantiate(objects[Random.Range(0, objects.Count)]);
 		cloud.transform.SetParent(cloudParent);
 
@@ -98,9 +98,10 @@ public class CloudGenerator : MonoBehaviour {
         cloud.transform.position = position;
 
         if (cloud.GetComponent<Cloud>()) {
+            currentCloudNumber++;
             cloud.GetComponent<Cloud>().Init(this, xPosition < 0 ? Vector3.right : Vector3.left, zPosition,
             Random.Range(minCloudSpeed, maxCloudSpeed),
-            xPosition == minXPosition ? maxXPosition : minXPosition, despawnHeight);
+            xPosition == minXPosition ? maxXPosition : minXPosition);
         }
 	}
 
@@ -115,7 +116,10 @@ public class CloudGenerator : MonoBehaviour {
 		Gizmos.DrawWireCube(new Vector3(transform.position.x, transform.position.y + minSpawnHeight, transform.position.z), 
 			new Vector3(Mathf.Abs(minXPosition) + maxXPosition, 1, 1));
 
-		Gizmos.DrawWireCube(new Vector3(transform.position.x, transform.position.y + despawnHeight, transform.position.z),
+        Gizmos.DrawWireCube(new Vector3(transform.position.x, transform.position.y + maxSpawnHeight, transform.position.z),
+            new Vector3(Mathf.Abs(minXPosition) + maxXPosition, 1, 1));
+
+        Gizmos.DrawWireCube(new Vector3(transform.position.x, transform.position.y + despawnHeight, transform.position.z),
 			new Vector3(Mathf.Abs(minXPosition) + maxXPosition, 1, 1));
 	}
 }

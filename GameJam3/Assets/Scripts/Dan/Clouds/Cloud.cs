@@ -9,15 +9,13 @@ public class Cloud : MonoBehaviour {
 	private float depth;
 	private float speed;
 	private float despawnXPosition;
-    private float despawnYPosition;
 
-    public void Init (CloudGenerator cloudGenerator, Vector3 direction, float depth, float speed, float despawnXPosition, float despawnYPosition) {
+    public void Init (CloudGenerator cloudGenerator, Vector3 direction, float depth, float speed, float despawnXPosition) {
 		this.cloudGenerator = cloudGenerator;
 		this.direction = direction;
 		this.depth = depth;
 		this.speed = speed;
 		this.despawnXPosition = despawnXPosition;
-        this.despawnYPosition = despawnYPosition;
 
 		isInitialised = true;
 	}
@@ -36,7 +34,8 @@ public class Cloud : MonoBehaviour {
 		transform.position = newLocation;
 
 		if(despawnXPosition < 0 && transform.position.x <= despawnXPosition ||
-			despawnXPosition > 0 && transform.position.x >= despawnXPosition) {
+			despawnXPosition > 0 && transform.position.x >= despawnXPosition ||
+            transform.position.y <= cloudGenerator.CurrentYDespawn ) {
 			cloudGenerator.CloudDespawned();
 			Destroy(gameObject);
 		}

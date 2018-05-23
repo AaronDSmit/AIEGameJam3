@@ -52,9 +52,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followObject: {fileID: 0}
-  minSpawnHeight: 8.08
-  maxSpawnHeight: 0
-  despawnHeight: -10
+  minSpawnHeight: 12
+  maxSpawnHeight: 18
+  despawnHeight: -6.12
   minXPosition: -8
   maxXPosition: 8
   minSpawnTime: 0.75
@@ -69,7 +69,7 @@ MonoBehaviour:
   - {fileID: 1169126364227550, guid: 6d7a3ddc737944a44aad0a1f5c96bfce, type: 2}
   - {fileID: 1171094072787054, guid: 25e766cc357f96a47a99b006290f8c8c, type: 2}
   - {fileID: 1937820688577612, guid: 2856a94f078fc0f419189823d39bee26, type: 2}
-  - {fileID: 1434981447124922, guid: f6e5a42dc7a380147b9c3ccb045764c7, type: 2}
+  - {fileID: 1434981447124922, guid: 65a56cbc1d30bf94f9c53e65c4d49cc0, type: 2}
   - {fileID: 1434981447124922, guid: 60659f4b61a34664a8e3399ecc419d7b, type: 2}
   depths:
   - 5
