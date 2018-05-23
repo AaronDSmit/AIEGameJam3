@@ -71,7 +71,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endOfDayUI: {fileID: 0}
-  dayAlert: {fileID: 0}
+  dayText: {fileID: 0}
   dayNumber: {fileID: 0}
   description: {fileID: 0}
   goldAmount: {fileID: 0}
@@ -91,8 +91,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0de9feed08673714e9231331eb6e08ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endOfDayDescriptions: []
-  finalDayDescriptions: []
+  endOfDayDescriptions:
+  - {fileID: 11400000, guid: 9d1378e754257b941adc44794a26efcc, type: 2}
+  - {fileID: 11400000, guid: 20e6896fe40688545b7843e565c5f480, type: 2}
+  - {fileID: 11400000, guid: 7f35e3ff652f96c489be643150055b67, type: 2}
+  - {fileID: 11400000, guid: eb5fffe64b5a47f4b91883d21b24d9fd, type: 2}
+  - {fileID: 11400000, guid: 2796629d8011c0c4d80b7032d03585b6, type: 2}
+  - {fileID: 11400000, guid: caa623a2aa83c5148bfb208279c5c592, type: 2}
+  - {fileID: 11400000, guid: 4a32d15cfa3d9e34788c9279ac75f295, type: 2}
+  - {fileID: 11400000, guid: 734bb6a64be151d4aad2563496d29ca6, type: 2}
+  - {fileID: 11400000, guid: b57a60c6ce433f34d90c790383145745, type: 2}
+  - {fileID: 11400000, guid: 1f3d801ca5666d9418a12d437917184b, type: 2}
+  - {fileID: 11400000, guid: 77360d7a824eb6a42b30c2e78565ee20, type: 2}
+  - {fileID: 11400000, guid: 350e7f6e69095b945a30c9facb37e9bc, type: 2}
+  finalDayDescriptions:
+  - {fileID: 11400000, guid: b2f825f2fbfde3e4b9c9a75fb69a8dcf, type: 2}
+  - {fileID: 11400000, guid: 846e183ad6cafc44787575d939a65083, type: 2}
+  - {fileID: 11400000, guid: 231463e271c979c40bd91701d3592e6c, type: 2}
+  - {fileID: 11400000, guid: c7ac7429f282f3745b26f6adeb63aea7, type: 2}
+  - {fileID: 11400000, guid: 7337a846b3f38e64bb46755894e83028, type: 2}
+  - {fileID: 11400000, guid: f90ea4611e8b0f34888e0c133e9d7e66, type: 2}
+  - {fileID: 11400000, guid: edc05269531ea434e9118e3af2a51b4c, type: 2}
+  - {fileID: 11400000, guid: f12f82c6e0aaf8748a5ddd2ca5783076, type: 2}
+  - {fileID: 11400000, guid: 63af189481daf0b47ad66db716fcab49, type: 2}
+  - {fileID: 11400000, guid: 8a390d2abd0005e4b8176889cbe70f78, type: 2}
+  - {fileID: 11400000, guid: e3b3458ba099b934d929af20b80bff18, type: 2}
+  - {fileID: 11400000, guid: 2af3bb5a2f3140b42a1d1a4a1e76ae07, type: 2}
 --- !u!114 &114452315348694660
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -105,7 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalDays: 3
-  customersPerDay: 5
+  customersPerDay: 1
 --- !u!114 &114933738639942578
 MonoBehaviour:
   m_ObjectHideFlags: 1
