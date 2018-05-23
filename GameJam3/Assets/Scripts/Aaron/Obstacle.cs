@@ -51,13 +51,18 @@ public class Obstacle : MonoBehaviour
         {
             if(collisionClip != null)
             {
-                audioSource.PlayOneShot(collisionClip, 0.5f);
+                audioSource.PlayOneShot(collisionClip, 1.0f);
             }
 
             other.gameObject.GetComponent<JetPack>().ReduceBurnTime(burnTimeReduction);
 
-            gameObject.SetActive(false);
+            Invoke("DelayDestroy", collisionClip.length);
         }
+    }
+
+    private void DelayDestroy()
+    {
+        gameObject.SetActive(false);
     }
 
     private void Update()
